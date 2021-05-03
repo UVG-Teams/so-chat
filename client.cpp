@@ -6,11 +6,12 @@
 
 #include <netdb.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <string.h>
 #include <iostream>
 #include <sys/socket.h>
 
-
+#define MAX_CLIENT_BUFFER 2048
 using namespace std;
 
 int choice;
@@ -20,7 +21,9 @@ struct hostent *host;
 long port;
 static int socket_fd;
 
+
 void connect_to_server(int socket_fd, struct sockaddr_in *server_address, struct hostent *host, long port);
+
 
 int main(int argc, char *argv[]) {
 
@@ -29,25 +32,23 @@ int main(int argc, char *argv[]) {
     port = strtol(argv[3], NULL, 0);
 
     if(host == NULL) {
-        cout << "\nNo se pudo obtener el host" << endl
-             << stderr << endl;
+        cout << "\nNo se pudo obtener el host" << stderr << endl;
         exit(1);
     }
 
     socket_fd = socket(AF_INET, SOCK_STREAM, 0);
-    cout << "Socket: " << endl
-         << socket_fd << endl;
 
     if(socket_fd == -1) {
-        cout << "\nNo se pudo crear el socket" << endl
-             << stderr << endl;
+        cout << "\nNo se pudo crear el socket" << stderr << endl;
         exit(1);
     }
+
+    cout << "Socket: " << socket_fd << endl;
 
     connect_to_server(socket_fd, &server_address, host, port);
 
     do {
-        cout << "\n1. Chat con todos los usuarios" << endl
+        cout << "\n1. Chat general" << endl
              << "2. Chat privado" << endl
              << "3. Cambiar estado" << endl
              << "4. Usuarios conectados" << endl
@@ -77,8 +78,13 @@ int main(int argc, char *argv[]) {
                 cout << "Opcion 6\n" << endl;
                 break;
             case 7:
-                cout << "Adios :)" << endl;
-                return 1;
+                if(write(socket_fd, "exit", MAX_CLIENT_BUFFER - 1) == -1) {
+                    cout << "La conexion fallo, vuelva a intentar" << endl;
+                } else {
+                    cout << "Adios :)" << endl;
+                    close(socket_fd);
+                    return 1;
+                }
         }
     } while(choice != 7);
 }
@@ -98,7 +104,7 @@ void connect_to_server(int socket_fd, struct sockaddr_in *server_address, struct
 
     // Conectar el socket
     if(connect(socket_fd, (struct sockaddr *) server_address, sizeof(struct sockaddr)) < 0) {
-        perror("No se ha podido conectar con el servidor");
+        cout << "No se ha podido conectar con el servidor" << endl;
         exit(1);
     }
 }
