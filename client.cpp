@@ -30,6 +30,7 @@ int main(int argc, char *argv[]) {
     username = argv[1];
     host = gethostbyname(argv[2]);
     port = strtol(argv[3], NULL, 0);
+    char server_buffer[MAX_CLIENT_BUFFER];
 
     if(host == NULL) {
         cout << "\nNo se pudo obtener el host" << stderr << endl;
@@ -48,13 +49,12 @@ int main(int argc, char *argv[]) {
     connect_to_server(socket_fd, &server_address, host, port);
 
     do {
-        cout << "\n1. Chat general" << endl
-             << "2. Chat privado" << endl
-             << "3. Cambiar estado" << endl
-             << "4. Usuarios conectados" << endl
-             << "5. Información de un usuario" << endl
-             << "6. Ayuda" << endl
-             << "7. Salir\n" << endl;
+        cout << "\n1. Chat" << endl
+             << "2. Cambiar estado" << endl
+             << "3. Usuarios conectados" << endl
+             << "4. Información de un usuario" << endl
+             << "5. Ayuda" << endl
+             << "6. Salir\n" << endl;
         cout << "Ingresa una opción" << endl;
         cin >> choice;
 
@@ -69,16 +69,15 @@ int main(int argc, char *argv[]) {
                 cout << "Opcion 3\n" << endl;
                 break;
             case 4:
-                cout << "Opcion 4\n" << endl;
+                if(write(socket_fd, "/users", MAX_CLIENT_BUFFER - 1) == -1) {
+                    cout << "La conexion fallo, vuelva a intentar" << endl;
+                }
                 break;
             case 5:
                 cout << "Opcion 5\n" << endl;
                 break;
             case 6:
-                cout << "Opcion 6\n" << endl;
-                break;
-            case 7:
-                if(write(socket_fd, "exit", MAX_CLIENT_BUFFER - 1) == -1) {
+                if(write(socket_fd, "/exit", MAX_CLIENT_BUFFER - 1) == -1) {
                     cout << "La conexion fallo, vuelva a intentar" << endl;
                 } else {
                     cout << "Adios :)" << endl;
@@ -86,6 +85,11 @@ int main(int argc, char *argv[]) {
                     return 1;
                 }
         }
+
+        int len_read = read(socket_fd, server_buffer, MAX_CLIENT_BUFFER - 1);
+        server_buffer[len_read] = '\0';
+        cout << "Server:\n" << server_buffer << endl;
+
     } while(choice != 7);
 }
 

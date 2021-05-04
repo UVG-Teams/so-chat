@@ -179,10 +179,12 @@ void *client_listener(void *client_data) {
 
         cout << "Cliente: " << client_buffer << endl;
 
-        if(strcmp(client_buffer, "exit") == 0) {
+        if(strcmp(client_buffer, "/exit") == 0) {
             cout << "El cliente se ha desconectado, socket: " << current_client_socket_fd << endl;
             disconnect_client(chatrooms_data, current_client_socket_fd);
             return NULL;
+        } else if (strcmp(client_buffer, "/users") == 0) {
+            write(current_client_socket_fd, "Usuarios: ", MAX_CLIENT_BUFFER - 1);
         }
 
         // If the client sent /exit\n, remove them from the client list and close their socket

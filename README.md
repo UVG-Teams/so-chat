@@ -1,36 +1,18 @@
 # so-chat
 
-Server:
+## Server:
     IP: 3.9.146.73
     PORT: 8000
 
-Registro de usuarios
-    username: string
-    ip: string
+## Ejecutar en server:
+    g++ -o server server.cpp -lpthread
+    ./server 8000
 
-Liberacion de usuario
-    username: string
-    ip: string
+## Ejecutar el cliente:
+    g++ -o client client.cpp
+    ./client username 3.9.146.73 8000
 
-Usuarios conectados
+## Para que es ayuda? debe responder el server o el cliente?
 
-Obtener info de usuario
-    username: string
-
-Cambio de estado:
-    username: string
-    status: string
-
-Definición de estatus
-    username: string
-    status: string
-
-Envio de mensaje
-    username: string
-    content: string
-    sent_to: string (username del destinatario || general)
-    sent_at: struct??????????????
-
-
-Error de comunicación
-    error: string
+## Para compilar el proto
+    protoc --cpp_out=./ ./petition.proto
