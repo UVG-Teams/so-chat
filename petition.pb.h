@@ -53,6 +53,7 @@ struct TableStruct_petition_2eproto {
   static const ::PROTOBUF_NAMESPACE_ID::uint32 offsets[];
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_petition_2eproto;
+::PROTOBUF_NAMESPACE_ID::Metadata descriptor_table_petition_2eproto_metadata_getter(int index);
 namespace chat {
 class ClientPetition;
 struct ClientPetitionDefaultTypeInternal;
@@ -73,7 +74,7 @@ class ClientPetition PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:chat.ClientPetition) */ {
  public:
   inline ClientPetition() : ClientPetition(nullptr) {}
-  ~ClientPetition() override;
+  virtual ~ClientPetition();
   explicit constexpr ClientPetition(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
   ClientPetition(const ClientPetition& from);
@@ -99,10 +100,10 @@ class ClientPetition PROTOBUF_FINAL :
     return GetDescriptor();
   }
   static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
+    return GetMetadataStatic().descriptor;
   }
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
+    return GetMetadataStatic().reflection;
   }
   static const ClientPetition& default_instance() {
     return *internal_default_instance();
@@ -154,8 +155,8 @@ class ClientPetition PROTOBUF_FINAL :
   int GetCachedSize() const final { return _cached_size_.Get(); }
 
   private:
-  void SharedCtor();
-  void SharedDtor();
+  inline void SharedCtor();
+  inline void SharedDtor();
   void SetCachedSize(int size) const final;
   void InternalSwap(ClientPetition* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
@@ -170,6 +171,12 @@ class ClientPetition PROTOBUF_FINAL :
   public:
 
   ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    return ::descriptor_table_petition_2eproto_metadata_getter(kIndexInFileMessages);
+  }
+
+  public:
 
   // nested types ----------------------------------------------------
 
@@ -183,15 +190,17 @@ class ClientPetition PROTOBUF_FINAL :
     kNewStatusFieldNumber = 8,
     kOptionFieldNumber = 1,
   };
-  // optional string username = 2;
+  // string username = 2;
   bool has_username() const;
   private:
   bool _internal_has_username() const;
   public:
   void clear_username();
   const std::string& username() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_username(ArgT0&& arg0, ArgT... args);
+  void set_username(const std::string& value);
+  void set_username(std::string&& value);
+  void set_username(const char* value);
+  void set_username(const char* value, size_t size);
   std::string* mutable_username();
   std::string* release_username();
   void set_allocated_username(std::string* username);
@@ -201,15 +210,17 @@ class ClientPetition PROTOBUF_FINAL :
   std::string* _internal_mutable_username();
   public:
 
-  // optional string ip = 3;
+  // string ip = 3;
   bool has_ip() const;
   private:
   bool _internal_has_ip() const;
   public:
   void clear_ip();
   const std::string& ip() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_ip(ArgT0&& arg0, ArgT... args);
+  void set_ip(const std::string& value);
+  void set_ip(std::string&& value);
+  void set_ip(const char* value);
+  void set_ip(const char* value, size_t size);
   std::string* mutable_ip();
   std::string* release_ip();
   void set_allocated_ip(std::string* ip);
@@ -219,15 +230,17 @@ class ClientPetition PROTOBUF_FINAL :
   std::string* _internal_mutable_ip();
   public:
 
-  // optional string message = 6;
+  // string message = 6;
   bool has_message() const;
   private:
   bool _internal_has_message() const;
   public:
   void clear_message();
   const std::string& message() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_message(ArgT0&& arg0, ArgT... args);
+  void set_message(const std::string& value);
+  void set_message(std::string&& value);
+  void set_message(const char* value);
+  void set_message(const char* value, size_t size);
   std::string* mutable_message();
   std::string* release_message();
   void set_allocated_message(std::string* message);
@@ -237,15 +250,17 @@ class ClientPetition PROTOBUF_FINAL :
   std::string* _internal_mutable_message();
   public:
 
-  // optional string sent_to = 7;
+  // string sent_to = 7;
   bool has_sent_to() const;
   private:
   bool _internal_has_sent_to() const;
   public:
   void clear_sent_to();
   const std::string& sent_to() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_sent_to(ArgT0&& arg0, ArgT... args);
+  void set_sent_to(const std::string& value);
+  void set_sent_to(std::string&& value);
+  void set_sent_to(const char* value);
+  void set_sent_to(const char* value, size_t size);
   std::string* mutable_sent_to();
   std::string* release_sent_to();
   void set_allocated_sent_to(std::string* sent_to);
@@ -255,15 +270,17 @@ class ClientPetition PROTOBUF_FINAL :
   std::string* _internal_mutable_sent_to();
   public:
 
-  // optional string new_status = 8;
+  // string new_status = 8;
   bool has_new_status() const;
   private:
   bool _internal_has_new_status() const;
   public:
   void clear_new_status();
   const std::string& new_status() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_new_status(ArgT0&& arg0, ArgT... args);
+  void set_new_status(const std::string& value);
+  void set_new_status(std::string&& value);
+  void set_new_status(const char* value);
+  void set_new_status(const char* value, size_t size);
   std::string* mutable_new_status();
   std::string* release_new_status();
   void set_allocated_new_status(std::string* new_status);
@@ -273,7 +290,7 @@ class ClientPetition PROTOBUF_FINAL :
   std::string* _internal_mutable_new_status();
   public:
 
-  // optional int32 option = 1;
+  // int32 option = 1;
   bool has_option() const;
   private:
   bool _internal_has_option() const;
@@ -309,7 +326,7 @@ class ServerResponse PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:chat.ServerResponse) */ {
  public:
   inline ServerResponse() : ServerResponse(nullptr) {}
-  ~ServerResponse() override;
+  virtual ~ServerResponse();
   explicit constexpr ServerResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
   ServerResponse(const ServerResponse& from);
@@ -335,10 +352,10 @@ class ServerResponse PROTOBUF_FINAL :
     return GetDescriptor();
   }
   static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
+    return GetMetadataStatic().descriptor;
   }
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
+    return GetMetadataStatic().reflection;
   }
   static const ServerResponse& default_instance() {
     return *internal_default_instance();
@@ -390,8 +407,8 @@ class ServerResponse PROTOBUF_FINAL :
   int GetCachedSize() const final { return _cached_size_.Get(); }
 
   private:
-  void SharedCtor();
-  void SharedDtor();
+  inline void SharedCtor();
+  inline void SharedDtor();
   void SetCachedSize(int size) const final;
   void InternalSwap(ServerResponse* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
@@ -406,6 +423,12 @@ class ServerResponse PROTOBUF_FINAL :
   public:
 
   ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    return ::descriptor_table_petition_2eproto_metadata_getter(kIndexInFileMessages);
+  }
+
+  public:
 
   // nested types ----------------------------------------------------
 
@@ -417,15 +440,17 @@ class ServerResponse PROTOBUF_FINAL :
     kUserMessageFieldNumber = 4,
     kCodeFieldNumber = 1,
   };
-  // optional string server_message = 2;
+  // string server_message = 2;
   bool has_server_message() const;
   private:
   bool _internal_has_server_message() const;
   public:
   void clear_server_message();
   const std::string& server_message() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_server_message(ArgT0&& arg0, ArgT... args);
+  void set_server_message(const std::string& value);
+  void set_server_message(std::string&& value);
+  void set_server_message(const char* value);
+  void set_server_message(const char* value, size_t size);
   std::string* mutable_server_message();
   std::string* release_server_message();
   void set_allocated_server_message(std::string* server_message);
@@ -435,15 +460,17 @@ class ServerResponse PROTOBUF_FINAL :
   std::string* _internal_mutable_server_message();
   public:
 
-  // optional string username = 3;
+  // string username = 3;
   bool has_username() const;
   private:
   bool _internal_has_username() const;
   public:
   void clear_username();
   const std::string& username() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_username(ArgT0&& arg0, ArgT... args);
+  void set_username(const std::string& value);
+  void set_username(std::string&& value);
+  void set_username(const char* value);
+  void set_username(const char* value, size_t size);
   std::string* mutable_username();
   std::string* release_username();
   void set_allocated_username(std::string* username);
@@ -453,15 +480,17 @@ class ServerResponse PROTOBUF_FINAL :
   std::string* _internal_mutable_username();
   public:
 
-  // optional string user_message = 4;
+  // string user_message = 4;
   bool has_user_message() const;
   private:
   bool _internal_has_user_message() const;
   public:
   void clear_user_message();
   const std::string& user_message() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_user_message(ArgT0&& arg0, ArgT... args);
+  void set_user_message(const std::string& value);
+  void set_user_message(std::string&& value);
+  void set_user_message(const char* value);
+  void set_user_message(const char* value, size_t size);
   std::string* mutable_user_message();
   std::string* release_user_message();
   void set_allocated_user_message(std::string* user_message);
@@ -471,7 +500,7 @@ class ServerResponse PROTOBUF_FINAL :
   std::string* _internal_mutable_user_message();
   public:
 
-  // optional int32 code = 1;
+  // int32 code = 1;
   bool has_code() const;
   private:
   bool _internal_has_code() const;
@@ -510,7 +539,7 @@ class ServerResponse PROTOBUF_FINAL :
 #endif  // __GNUC__
 // ClientPetition
 
-// optional int32 option = 1;
+// int32 option = 1;
 inline bool ClientPetition::_internal_has_option() const {
   bool value = (_has_bits_[0] & 0x00000020u) != 0;
   return value;
@@ -538,7 +567,7 @@ inline void ClientPetition::set_option(::PROTOBUF_NAMESPACE_ID::int32 value) {
   // @@protoc_insertion_point(field_set:chat.ClientPetition.option)
 }
 
-// optional string username = 2;
+// string username = 2;
 inline bool ClientPetition::_internal_has_username() const {
   bool value = (_has_bits_[0] & 0x00000001u) != 0;
   return value;
@@ -554,11 +583,8 @@ inline const std::string& ClientPetition::username() const {
   // @@protoc_insertion_point(field_get:chat.ClientPetition.username)
   return _internal_username();
 }
-template <typename ArgT0, typename... ArgT>
-PROTOBUF_ALWAYS_INLINE
-inline void ClientPetition::set_username(ArgT0&& arg0, ArgT... args) {
- _has_bits_[0] |= 0x00000001u;
- username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArena());
+inline void ClientPetition::set_username(const std::string& value) {
+  _internal_set_username(value);
   // @@protoc_insertion_point(field_set:chat.ClientPetition.username)
 }
 inline std::string* ClientPetition::mutable_username() {
@@ -571,6 +597,25 @@ inline const std::string& ClientPetition::_internal_username() const {
 inline void ClientPetition::_internal_set_username(const std::string& value) {
   _has_bits_[0] |= 0x00000001u;
   username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void ClientPetition::set_username(std::string&& value) {
+  _has_bits_[0] |= 0x00000001u;
+  username_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:chat.ClientPetition.username)
+}
+inline void ClientPetition::set_username(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000001u;
+  username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:chat.ClientPetition.username)
+}
+inline void ClientPetition::set_username(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000001u;
+  username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:chat.ClientPetition.username)
 }
 inline std::string* ClientPetition::_internal_mutable_username() {
   _has_bits_[0] |= 0x00000001u;
@@ -595,7 +640,7 @@ inline void ClientPetition::set_allocated_username(std::string* username) {
   // @@protoc_insertion_point(field_set_allocated:chat.ClientPetition.username)
 }
 
-// optional string ip = 3;
+// string ip = 3;
 inline bool ClientPetition::_internal_has_ip() const {
   bool value = (_has_bits_[0] & 0x00000002u) != 0;
   return value;
@@ -611,11 +656,8 @@ inline const std::string& ClientPetition::ip() const {
   // @@protoc_insertion_point(field_get:chat.ClientPetition.ip)
   return _internal_ip();
 }
-template <typename ArgT0, typename... ArgT>
-PROTOBUF_ALWAYS_INLINE
-inline void ClientPetition::set_ip(ArgT0&& arg0, ArgT... args) {
- _has_bits_[0] |= 0x00000002u;
- ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArena());
+inline void ClientPetition::set_ip(const std::string& value) {
+  _internal_set_ip(value);
   // @@protoc_insertion_point(field_set:chat.ClientPetition.ip)
 }
 inline std::string* ClientPetition::mutable_ip() {
@@ -628,6 +670,25 @@ inline const std::string& ClientPetition::_internal_ip() const {
 inline void ClientPetition::_internal_set_ip(const std::string& value) {
   _has_bits_[0] |= 0x00000002u;
   ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void ClientPetition::set_ip(std::string&& value) {
+  _has_bits_[0] |= 0x00000002u;
+  ip_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:chat.ClientPetition.ip)
+}
+inline void ClientPetition::set_ip(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000002u;
+  ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:chat.ClientPetition.ip)
+}
+inline void ClientPetition::set_ip(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000002u;
+  ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:chat.ClientPetition.ip)
 }
 inline std::string* ClientPetition::_internal_mutable_ip() {
   _has_bits_[0] |= 0x00000002u;
@@ -652,7 +713,7 @@ inline void ClientPetition::set_allocated_ip(std::string* ip) {
   // @@protoc_insertion_point(field_set_allocated:chat.ClientPetition.ip)
 }
 
-// optional string message = 6;
+// string message = 6;
 inline bool ClientPetition::_internal_has_message() const {
   bool value = (_has_bits_[0] & 0x00000004u) != 0;
   return value;
@@ -668,11 +729,8 @@ inline const std::string& ClientPetition::message() const {
   // @@protoc_insertion_point(field_get:chat.ClientPetition.message)
   return _internal_message();
 }
-template <typename ArgT0, typename... ArgT>
-PROTOBUF_ALWAYS_INLINE
-inline void ClientPetition::set_message(ArgT0&& arg0, ArgT... args) {
- _has_bits_[0] |= 0x00000004u;
- message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArena());
+inline void ClientPetition::set_message(const std::string& value) {
+  _internal_set_message(value);
   // @@protoc_insertion_point(field_set:chat.ClientPetition.message)
 }
 inline std::string* ClientPetition::mutable_message() {
@@ -685,6 +743,25 @@ inline const std::string& ClientPetition::_internal_message() const {
 inline void ClientPetition::_internal_set_message(const std::string& value) {
   _has_bits_[0] |= 0x00000004u;
   message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void ClientPetition::set_message(std::string&& value) {
+  _has_bits_[0] |= 0x00000004u;
+  message_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:chat.ClientPetition.message)
+}
+inline void ClientPetition::set_message(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000004u;
+  message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:chat.ClientPetition.message)
+}
+inline void ClientPetition::set_message(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000004u;
+  message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:chat.ClientPetition.message)
 }
 inline std::string* ClientPetition::_internal_mutable_message() {
   _has_bits_[0] |= 0x00000004u;
@@ -709,7 +786,7 @@ inline void ClientPetition::set_allocated_message(std::string* message) {
   // @@protoc_insertion_point(field_set_allocated:chat.ClientPetition.message)
 }
 
-// optional string sent_to = 7;
+// string sent_to = 7;
 inline bool ClientPetition::_internal_has_sent_to() const {
   bool value = (_has_bits_[0] & 0x00000008u) != 0;
   return value;
@@ -725,11 +802,8 @@ inline const std::string& ClientPetition::sent_to() const {
   // @@protoc_insertion_point(field_get:chat.ClientPetition.sent_to)
   return _internal_sent_to();
 }
-template <typename ArgT0, typename... ArgT>
-PROTOBUF_ALWAYS_INLINE
-inline void ClientPetition::set_sent_to(ArgT0&& arg0, ArgT... args) {
- _has_bits_[0] |= 0x00000008u;
- sent_to_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArena());
+inline void ClientPetition::set_sent_to(const std::string& value) {
+  _internal_set_sent_to(value);
   // @@protoc_insertion_point(field_set:chat.ClientPetition.sent_to)
 }
 inline std::string* ClientPetition::mutable_sent_to() {
@@ -742,6 +816,25 @@ inline const std::string& ClientPetition::_internal_sent_to() const {
 inline void ClientPetition::_internal_set_sent_to(const std::string& value) {
   _has_bits_[0] |= 0x00000008u;
   sent_to_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void ClientPetition::set_sent_to(std::string&& value) {
+  _has_bits_[0] |= 0x00000008u;
+  sent_to_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:chat.ClientPetition.sent_to)
+}
+inline void ClientPetition::set_sent_to(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000008u;
+  sent_to_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:chat.ClientPetition.sent_to)
+}
+inline void ClientPetition::set_sent_to(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000008u;
+  sent_to_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:chat.ClientPetition.sent_to)
 }
 inline std::string* ClientPetition::_internal_mutable_sent_to() {
   _has_bits_[0] |= 0x00000008u;
@@ -766,7 +859,7 @@ inline void ClientPetition::set_allocated_sent_to(std::string* sent_to) {
   // @@protoc_insertion_point(field_set_allocated:chat.ClientPetition.sent_to)
 }
 
-// optional string new_status = 8;
+// string new_status = 8;
 inline bool ClientPetition::_internal_has_new_status() const {
   bool value = (_has_bits_[0] & 0x00000010u) != 0;
   return value;
@@ -782,11 +875,8 @@ inline const std::string& ClientPetition::new_status() const {
   // @@protoc_insertion_point(field_get:chat.ClientPetition.new_status)
   return _internal_new_status();
 }
-template <typename ArgT0, typename... ArgT>
-PROTOBUF_ALWAYS_INLINE
-inline void ClientPetition::set_new_status(ArgT0&& arg0, ArgT... args) {
- _has_bits_[0] |= 0x00000010u;
- new_status_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArena());
+inline void ClientPetition::set_new_status(const std::string& value) {
+  _internal_set_new_status(value);
   // @@protoc_insertion_point(field_set:chat.ClientPetition.new_status)
 }
 inline std::string* ClientPetition::mutable_new_status() {
@@ -799,6 +889,25 @@ inline const std::string& ClientPetition::_internal_new_status() const {
 inline void ClientPetition::_internal_set_new_status(const std::string& value) {
   _has_bits_[0] |= 0x00000010u;
   new_status_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void ClientPetition::set_new_status(std::string&& value) {
+  _has_bits_[0] |= 0x00000010u;
+  new_status_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:chat.ClientPetition.new_status)
+}
+inline void ClientPetition::set_new_status(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000010u;
+  new_status_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:chat.ClientPetition.new_status)
+}
+inline void ClientPetition::set_new_status(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000010u;
+  new_status_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:chat.ClientPetition.new_status)
 }
 inline std::string* ClientPetition::_internal_mutable_new_status() {
   _has_bits_[0] |= 0x00000010u;
@@ -827,7 +936,7 @@ inline void ClientPetition::set_allocated_new_status(std::string* new_status) {
 
 // ServerResponse
 
-// optional int32 code = 1;
+// int32 code = 1;
 inline bool ServerResponse::_internal_has_code() const {
   bool value = (_has_bits_[0] & 0x00000008u) != 0;
   return value;
@@ -855,7 +964,7 @@ inline void ServerResponse::set_code(::PROTOBUF_NAMESPACE_ID::int32 value) {
   // @@protoc_insertion_point(field_set:chat.ServerResponse.code)
 }
 
-// optional string server_message = 2;
+// string server_message = 2;
 inline bool ServerResponse::_internal_has_server_message() const {
   bool value = (_has_bits_[0] & 0x00000001u) != 0;
   return value;
@@ -871,11 +980,8 @@ inline const std::string& ServerResponse::server_message() const {
   // @@protoc_insertion_point(field_get:chat.ServerResponse.server_message)
   return _internal_server_message();
 }
-template <typename ArgT0, typename... ArgT>
-PROTOBUF_ALWAYS_INLINE
-inline void ServerResponse::set_server_message(ArgT0&& arg0, ArgT... args) {
- _has_bits_[0] |= 0x00000001u;
- server_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArena());
+inline void ServerResponse::set_server_message(const std::string& value) {
+  _internal_set_server_message(value);
   // @@protoc_insertion_point(field_set:chat.ServerResponse.server_message)
 }
 inline std::string* ServerResponse::mutable_server_message() {
@@ -888,6 +994,25 @@ inline const std::string& ServerResponse::_internal_server_message() const {
 inline void ServerResponse::_internal_set_server_message(const std::string& value) {
   _has_bits_[0] |= 0x00000001u;
   server_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void ServerResponse::set_server_message(std::string&& value) {
+  _has_bits_[0] |= 0x00000001u;
+  server_message_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:chat.ServerResponse.server_message)
+}
+inline void ServerResponse::set_server_message(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000001u;
+  server_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:chat.ServerResponse.server_message)
+}
+inline void ServerResponse::set_server_message(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000001u;
+  server_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:chat.ServerResponse.server_message)
 }
 inline std::string* ServerResponse::_internal_mutable_server_message() {
   _has_bits_[0] |= 0x00000001u;
@@ -912,7 +1037,7 @@ inline void ServerResponse::set_allocated_server_message(std::string* server_mes
   // @@protoc_insertion_point(field_set_allocated:chat.ServerResponse.server_message)
 }
 
-// optional string username = 3;
+// string username = 3;
 inline bool ServerResponse::_internal_has_username() const {
   bool value = (_has_bits_[0] & 0x00000002u) != 0;
   return value;
@@ -928,11 +1053,8 @@ inline const std::string& ServerResponse::username() const {
   // @@protoc_insertion_point(field_get:chat.ServerResponse.username)
   return _internal_username();
 }
-template <typename ArgT0, typename... ArgT>
-PROTOBUF_ALWAYS_INLINE
-inline void ServerResponse::set_username(ArgT0&& arg0, ArgT... args) {
- _has_bits_[0] |= 0x00000002u;
- username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArena());
+inline void ServerResponse::set_username(const std::string& value) {
+  _internal_set_username(value);
   // @@protoc_insertion_point(field_set:chat.ServerResponse.username)
 }
 inline std::string* ServerResponse::mutable_username() {
@@ -945,6 +1067,25 @@ inline const std::string& ServerResponse::_internal_username() const {
 inline void ServerResponse::_internal_set_username(const std::string& value) {
   _has_bits_[0] |= 0x00000002u;
   username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void ServerResponse::set_username(std::string&& value) {
+  _has_bits_[0] |= 0x00000002u;
+  username_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:chat.ServerResponse.username)
+}
+inline void ServerResponse::set_username(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000002u;
+  username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:chat.ServerResponse.username)
+}
+inline void ServerResponse::set_username(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000002u;
+  username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:chat.ServerResponse.username)
 }
 inline std::string* ServerResponse::_internal_mutable_username() {
   _has_bits_[0] |= 0x00000002u;
@@ -969,7 +1110,7 @@ inline void ServerResponse::set_allocated_username(std::string* username) {
   // @@protoc_insertion_point(field_set_allocated:chat.ServerResponse.username)
 }
 
-// optional string user_message = 4;
+// string user_message = 4;
 inline bool ServerResponse::_internal_has_user_message() const {
   bool value = (_has_bits_[0] & 0x00000004u) != 0;
   return value;
@@ -985,11 +1126,8 @@ inline const std::string& ServerResponse::user_message() const {
   // @@protoc_insertion_point(field_get:chat.ServerResponse.user_message)
   return _internal_user_message();
 }
-template <typename ArgT0, typename... ArgT>
-PROTOBUF_ALWAYS_INLINE
-inline void ServerResponse::set_user_message(ArgT0&& arg0, ArgT... args) {
- _has_bits_[0] |= 0x00000004u;
- user_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArena());
+inline void ServerResponse::set_user_message(const std::string& value) {
+  _internal_set_user_message(value);
   // @@protoc_insertion_point(field_set:chat.ServerResponse.user_message)
 }
 inline std::string* ServerResponse::mutable_user_message() {
@@ -1002,6 +1140,25 @@ inline const std::string& ServerResponse::_internal_user_message() const {
 inline void ServerResponse::_internal_set_user_message(const std::string& value) {
   _has_bits_[0] |= 0x00000004u;
   user_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void ServerResponse::set_user_message(std::string&& value) {
+  _has_bits_[0] |= 0x00000004u;
+  user_message_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:chat.ServerResponse.user_message)
+}
+inline void ServerResponse::set_user_message(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000004u;
+  user_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:chat.ServerResponse.user_message)
+}
+inline void ServerResponse::set_user_message(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000004u;
+  user_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:chat.ServerResponse.user_message)
 }
 inline std::string* ServerResponse::_internal_mutable_user_message() {
   _has_bits_[0] |= 0x00000004u;

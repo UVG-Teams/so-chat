@@ -116,8 +116,10 @@ const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_petiti
   schemas, file_default_instances, TableStruct_petition_2eproto::offsets,
   file_level_metadata_petition_2eproto, file_level_enum_descriptors_petition_2eproto, file_level_service_descriptors_petition_2eproto,
 };
-PROTOBUF_ATTRIBUTE_WEAK const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable* descriptor_table_petition_2eproto_getter() {
-  return &descriptor_table_petition_2eproto;
+PROTOBUF_ATTRIBUTE_WEAK ::PROTOBUF_NAMESPACE_ID::Metadata
+descriptor_table_petition_2eproto_metadata_getter(int index) {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_petition_2eproto);
+  return descriptor_table_petition_2eproto.file_level_metadata[index];
 }
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -257,8 +259,9 @@ const char* ClientPetition::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
     switch (tag >> 3) {
-      // optional int32 option = 1;
+      // int32 option = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           _Internal::set_has_option(&has_bits);
@@ -266,7 +269,7 @@ const char* ClientPetition::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // optional string username = 2;
+      // string username = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           auto str = _internal_mutable_username();
@@ -275,7 +278,7 @@ const char* ClientPetition::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // optional string ip = 3;
+      // string ip = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
           auto str = _internal_mutable_ip();
@@ -284,7 +287,7 @@ const char* ClientPetition::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // optional string message = 6;
+      // string message = 6;
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
           auto str = _internal_mutable_message();
@@ -293,7 +296,7 @@ const char* ClientPetition::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // optional string sent_to = 7;
+      // string sent_to = 7;
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
           auto str = _internal_mutable_sent_to();
@@ -302,7 +305,7 @@ const char* ClientPetition::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // optional string new_status = 8;
+      // string new_status = 8;
       case 8:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 66)) {
           auto str = _internal_mutable_new_status();
@@ -313,8 +316,7 @@ const char* ClientPetition::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
         continue;
       default: {
       handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
+        if ((tag & 7) == 4 || tag == 0) {
           ctx->SetLastTag(tag);
           goto success;
         }
@@ -341,13 +343,13 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // optional int32 option = 1;
+  // int32 option = 1;
   if (_internal_has_option()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_option(), target);
   }
 
-  // optional string username = 2;
+  // string username = 2;
   if (_internal_has_username()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_username().data(), static_cast<int>(this->_internal_username().length()),
@@ -357,7 +359,7 @@ failure:
         2, this->_internal_username(), target);
   }
 
-  // optional string ip = 3;
+  // string ip = 3;
   if (_internal_has_ip()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_ip().data(), static_cast<int>(this->_internal_ip().length()),
@@ -367,7 +369,7 @@ failure:
         3, this->_internal_ip(), target);
   }
 
-  // optional string message = 6;
+  // string message = 6;
   if (_internal_has_message()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_message().data(), static_cast<int>(this->_internal_message().length()),
@@ -377,7 +379,7 @@ failure:
         6, this->_internal_message(), target);
   }
 
-  // optional string sent_to = 7;
+  // string sent_to = 7;
   if (_internal_has_sent_to()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_sent_to().data(), static_cast<int>(this->_internal_sent_to().length()),
@@ -387,7 +389,7 @@ failure:
         7, this->_internal_sent_to(), target);
   }
 
-  // optional string new_status = 8;
+  // string new_status = 8;
   if (_internal_has_new_status()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_new_status().data(), static_cast<int>(this->_internal_new_status().length()),
@@ -415,42 +417,42 @@ size_t ClientPetition::ByteSizeLong() const {
 
   cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 0x0000003fu) {
-    // optional string username = 2;
+    // string username = 2;
     if (cached_has_bits & 0x00000001u) {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
           this->_internal_username());
     }
 
-    // optional string ip = 3;
+    // string ip = 3;
     if (cached_has_bits & 0x00000002u) {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
           this->_internal_ip());
     }
 
-    // optional string message = 6;
+    // string message = 6;
     if (cached_has_bits & 0x00000004u) {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
           this->_internal_message());
     }
 
-    // optional string sent_to = 7;
+    // string sent_to = 7;
     if (cached_has_bits & 0x00000008u) {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
           this->_internal_sent_to());
     }
 
-    // optional string new_status = 8;
+    // string new_status = 8;
     if (cached_has_bits & 0x00000010u) {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
           this->_internal_new_status());
     }
 
-    // optional int32 option = 1;
+    // int32 option = 1;
     if (cached_has_bits & 0x00000020u) {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
@@ -533,7 +535,7 @@ bool ClientPetition::IsInitialized() const {
 
 void ClientPetition::InternalSwap(ClientPetition* other) {
   using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   swap(_has_bits_[0], other->_has_bits_[0]);
   username_.Swap(&other->username_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   ip_.Swap(&other->ip_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
@@ -544,10 +546,9 @@ void ClientPetition::InternalSwap(ClientPetition* other) {
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ClientPetition::GetMetadata() const {
-  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
-      &descriptor_table_petition_2eproto_getter, &descriptor_table_petition_2eproto_once,
-      file_level_metadata_petition_2eproto[0]);
+  return GetMetadataStatic();
 }
+
 
 // ===================================================================
 
@@ -656,8 +657,9 @@ const char* ServerResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
     switch (tag >> 3) {
-      // optional int32 code = 1;
+      // int32 code = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           _Internal::set_has_code(&has_bits);
@@ -665,7 +667,7 @@ const char* ServerResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // optional string server_message = 2;
+      // string server_message = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           auto str = _internal_mutable_server_message();
@@ -674,7 +676,7 @@ const char* ServerResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // optional string username = 3;
+      // string username = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
           auto str = _internal_mutable_username();
@@ -683,7 +685,7 @@ const char* ServerResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // optional string user_message = 4;
+      // string user_message = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
           auto str = _internal_mutable_user_message();
@@ -694,8 +696,7 @@ const char* ServerResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
         continue;
       default: {
       handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
+        if ((tag & 7) == 4 || tag == 0) {
           ctx->SetLastTag(tag);
           goto success;
         }
@@ -722,13 +723,13 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // optional int32 code = 1;
+  // int32 code = 1;
   if (_internal_has_code()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_code(), target);
   }
 
-  // optional string server_message = 2;
+  // string server_message = 2;
   if (_internal_has_server_message()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_server_message().data(), static_cast<int>(this->_internal_server_message().length()),
@@ -738,7 +739,7 @@ failure:
         2, this->_internal_server_message(), target);
   }
 
-  // optional string username = 3;
+  // string username = 3;
   if (_internal_has_username()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_username().data(), static_cast<int>(this->_internal_username().length()),
@@ -748,7 +749,7 @@ failure:
         3, this->_internal_username(), target);
   }
 
-  // optional string user_message = 4;
+  // string user_message = 4;
   if (_internal_has_user_message()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_user_message().data(), static_cast<int>(this->_internal_user_message().length()),
@@ -776,28 +777,28 @@ size_t ServerResponse::ByteSizeLong() const {
 
   cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 0x0000000fu) {
-    // optional string server_message = 2;
+    // string server_message = 2;
     if (cached_has_bits & 0x00000001u) {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
           this->_internal_server_message());
     }
 
-    // optional string username = 3;
+    // string username = 3;
     if (cached_has_bits & 0x00000002u) {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
           this->_internal_username());
     }
 
-    // optional string user_message = 4;
+    // string user_message = 4;
     if (cached_has_bits & 0x00000004u) {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
           this->_internal_user_message());
     }
 
-    // optional int32 code = 1;
+    // int32 code = 1;
     if (cached_has_bits & 0x00000008u) {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
@@ -874,7 +875,7 @@ bool ServerResponse::IsInitialized() const {
 
 void ServerResponse::InternalSwap(ServerResponse* other) {
   using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   swap(_has_bits_[0], other->_has_bits_[0]);
   server_message_.Swap(&other->server_message_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   username_.Swap(&other->username_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
@@ -883,10 +884,9 @@ void ServerResponse::InternalSwap(ServerResponse* other) {
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ServerResponse::GetMetadata() const {
-  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
-      &descriptor_table_petition_2eproto_getter, &descriptor_table_petition_2eproto_once,
-      file_level_metadata_petition_2eproto[1]);
+  return GetMetadataStatic();
 }
+
 
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace chat

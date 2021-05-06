@@ -29,7 +29,7 @@ void connect_to_server(int socket_fd, struct sockaddr_in *server_address, struct
 
 
 int main(int argc, char *argv[]) {
-    // GOOGLE_PROTOBUF_VERIFY_VERSION;
+    GOOGLE_PROTOBUF_VERIFY_VERSION;
     username = argv[1];
     host = gethostbyname(argv[2]);
     port = strtol(argv[3], NULL, 0);
@@ -52,7 +52,7 @@ int main(int argc, char *argv[]) {
     connect_to_server(socket_fd, &server_address, host, port);
 
     do {
-        // chat::ClientPetition client_petition;
+        chat::ClientPetition client_petition;
 
         cout << "\n1. Chat" << endl
              << "2. Cambiar estado" << endl
