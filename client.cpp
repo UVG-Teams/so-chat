@@ -11,6 +11,9 @@
 #include <iostream>
 #include <sys/socket.h>
 
+// ProtoBuff
+#include "petition.pb.h"
+
 #define MAX_CLIENT_BUFFER 2048
 using namespace std;
 
@@ -26,7 +29,7 @@ void connect_to_server(int socket_fd, struct sockaddr_in *server_address, struct
 
 
 int main(int argc, char *argv[]) {
-
+    // GOOGLE_PROTOBUF_VERIFY_VERSION;
     username = argv[1];
     host = gethostbyname(argv[2]);
     port = strtol(argv[3], NULL, 0);
@@ -49,34 +52,34 @@ int main(int argc, char *argv[]) {
     connect_to_server(socket_fd, &server_address, host, port);
 
     do {
+        // chat::ClientPetition client_petition;
+
         cout << "\n1. Chat" << endl
              << "2. Cambiar estado" << endl
-             << "3. Usuarios conectados" << endl
-             << "4. Información de un usuario" << endl
-             << "5. Ayuda" << endl
-             << "6. Salir\n" << endl;
+             << "3. Info de usuario/s conectado/s" << endl
+             << "4. Ayuda" << endl
+             << "5. Salir\n" << endl;
         cout << "Ingresa una opción" << endl;
         cin >> choice;
+
+        // client_petition.set_option(choice);
 
         switch(choice) {
             case 1:
                 cout << "Opcion 1\n" << endl;
                 break;
             case 2:
-                cout << "Opcion 2\n" << endl;
-                break;
-            case 3:
                 cout << "Opcion 3\n" << endl;
                 break;
-            case 4:
+            case 3:
                 if(write(socket_fd, "/users", MAX_CLIENT_BUFFER - 1) == -1) {
                     cout << "La conexion fallo, vuelva a intentar" << endl;
                 }
                 break;
-            case 5:
+            case 4:
                 cout << "Opcion 5\n" << endl;
                 break;
-            case 6:
+            case 5:
                 if(write(socket_fd, "/exit", MAX_CLIENT_BUFFER - 1) == -1) {
                     cout << "La conexion fallo, vuelva a intentar" << endl;
                 } else {
