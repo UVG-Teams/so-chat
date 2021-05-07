@@ -53,6 +53,7 @@ int main(int argc, char *argv[]) {
 
     do {
         chat::ClientPetition client_petition;
+        string petition;
 
         cout << "\n1. Chat" << endl
              << "2. Cambiar estado" << endl
@@ -62,22 +63,29 @@ int main(int argc, char *argv[]) {
         cout << "Ingresa una opción" << endl;
         cin >> choice;
 
-        // client_petition.set_option(choice);
+        client_petition.set_option(choice);
+
+        client_petition.SerializeToString(&petition);
 
         switch(choice) {
             case 1:
                 cout << "Opcion 1\n" << endl;
                 break;
             case 2:
-                cout << "Opcion 3\n" << endl;
+                cout << "Opcion 2\n" << endl;
                 break;
             case 3:
-                if(write(socket_fd, "/users", MAX_CLIENT_BUFFER - 1) == -1) {
+                // client_petition.ParseFromString(petition);
+                // cout << "Opcion:\n" << endl
+                //      << petition << endl
+                //      << &petition << endl
+                //      << client_petition.option() << endl;
+                if(write(socket_fd, &petition, MAX_CLIENT_BUFFER - 1) == -1) {
                     cout << "La conexion fallo, vuelva a intentar" << endl;
                 }
                 break;
             case 4:
-                cout << "Opcion 5\n" << endl;
+                cout << "Opcion 4\n" << endl;
                 break;
             case 5:
                 if(write(socket_fd, "/exit", MAX_CLIENT_BUFFER - 1) == -1) {
@@ -85,15 +93,16 @@ int main(int argc, char *argv[]) {
                 } else {
                     cout << "Adios :)" << endl;
                     close(socket_fd);
+                    google::protobuf::ShutdownProtobufLibrary();
                     return 1;
                 }
         }
 
-        int len_read = read(socket_fd, server_buffer, MAX_CLIENT_BUFFER - 1);
-        server_buffer[len_read] = '\0';
-        cout << "Server:\n" << server_buffer << endl;
+        // int len_read = read(socket_fd, server_buffer, MAX_CLIENT_BUFFER - 1);
+        // server_buffer[len_read] = '\0';
+        // cout << "Server:\n" << server_buffer << endl;
 
-    } while(choice != 7);
+    } while(choice != 5);
 }
 
 

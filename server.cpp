@@ -12,6 +12,9 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 
+// ProtoBuff
+#include "petition.pb.h"
+
 
 #define MAX_CLIENT_BUFFER 2048
 using namespace std;
@@ -54,6 +57,7 @@ void disconnect_client(ChatroomsData *chatrooms_data, int current_client_socket_
 
 
 int main(int argc, char *argv[]) {
+    GOOGLE_PROTOBUF_VERIFY_VERSION;
 
     struct sockaddr_in server_address;
     int socket_fd;
@@ -86,7 +90,7 @@ void bind_socket(struct sockaddr_in *server_address, int socket_fd, long port) {
     server_address -> sin_addr.s_addr = htonl(INADDR_ANY);
     server_address -> sin_port = htons(port);
 
-    if(bind(socket_fd, (struct sockaddr *)server_address, sizeof(struct sockaddr_in)) == -1) {
+    if(::bind(socket_fd, (struct sockaddr *)server_address, sizeof(struct sockaddr_in)) == -1) {
         cout <<  "Enlazado de los sockets fallido" << endl;
         exit(1);
     }
@@ -172,12 +176,19 @@ void *client_listener(void *client_data) {
 
     // queue *q = data->queue;
     char client_buffer[MAX_CLIENT_BUFFER];
+    chat::ClientPetition client_petition;
+    string petition;
 
     while(true) {
-        int len_read = read(current_client_socket_fd, client_buffer, MAX_CLIENT_BUFFER - 1);
-        client_buffer[len_read] = '\0';
+        int len_read = read(current_client_socket_fd, &petition, MAX_CLIENT_BUFFER - 1);
+        // client_buffer[len_read] = '\0';
 
-        cout << "Cliente: " << client_buffer << endl;
+        client_petition.ParseFromString(petition);
+
+        // cout << "Cliente1: " << client_buffer << endl;
+        cout << "Cliente: " << client_petition.option() << endl;
+        // cout << "Cliente2: " << petition << endl;
+        // cout << "Cliente3: " << &petition << endl;
 
         if(strcmp(client_buffer, "/exit") == 0) {
             cout << "El cliente se ha desconectado, socket: " << current_client_socket_fd << endl;
