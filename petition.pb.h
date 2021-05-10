@@ -46,7 +46,7 @@ struct TableStruct_petition_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[2]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[8]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -55,20 +55,1067 @@ struct TableStruct_petition_2eproto {
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_petition_2eproto;
 ::PROTOBUF_NAMESPACE_ID::Metadata descriptor_table_petition_2eproto_metadata_getter(int index);
 namespace chat {
+class ChangeStatus;
+struct ChangeStatusDefaultTypeInternal;
+extern ChangeStatusDefaultTypeInternal _ChangeStatus_default_instance_;
 class ClientPetition;
 struct ClientPetitionDefaultTypeInternal;
 extern ClientPetitionDefaultTypeInternal _ClientPetition_default_instance_;
+class ConnectedUsersResponse;
+struct ConnectedUsersResponseDefaultTypeInternal;
+extern ConnectedUsersResponseDefaultTypeInternal _ConnectedUsersResponse_default_instance_;
+class MessageCommunication;
+struct MessageCommunicationDefaultTypeInternal;
+extern MessageCommunicationDefaultTypeInternal _MessageCommunication_default_instance_;
 class ServerResponse;
 struct ServerResponseDefaultTypeInternal;
 extern ServerResponseDefaultTypeInternal _ServerResponse_default_instance_;
+class UserInfo;
+struct UserInfoDefaultTypeInternal;
+extern UserInfoDefaultTypeInternal _UserInfo_default_instance_;
+class UserRegistration;
+struct UserRegistrationDefaultTypeInternal;
+extern UserRegistrationDefaultTypeInternal _UserRegistration_default_instance_;
+class UserRequest;
+struct UserRequestDefaultTypeInternal;
+extern UserRequestDefaultTypeInternal _UserRequest_default_instance_;
 }  // namespace chat
 PROTOBUF_NAMESPACE_OPEN
+template<> ::chat::ChangeStatus* Arena::CreateMaybeMessage<::chat::ChangeStatus>(Arena*);
 template<> ::chat::ClientPetition* Arena::CreateMaybeMessage<::chat::ClientPetition>(Arena*);
+template<> ::chat::ConnectedUsersResponse* Arena::CreateMaybeMessage<::chat::ConnectedUsersResponse>(Arena*);
+template<> ::chat::MessageCommunication* Arena::CreateMaybeMessage<::chat::MessageCommunication>(Arena*);
 template<> ::chat::ServerResponse* Arena::CreateMaybeMessage<::chat::ServerResponse>(Arena*);
+template<> ::chat::UserInfo* Arena::CreateMaybeMessage<::chat::UserInfo>(Arena*);
+template<> ::chat::UserRegistration* Arena::CreateMaybeMessage<::chat::UserRegistration>(Arena*);
+template<> ::chat::UserRequest* Arena::CreateMaybeMessage<::chat::UserRequest>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace chat {
 
 // ===================================================================
+
+class UserRegistration PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:chat.UserRegistration) */ {
+ public:
+  inline UserRegistration() : UserRegistration(nullptr) {}
+  virtual ~UserRegistration();
+  explicit constexpr UserRegistration(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UserRegistration(const UserRegistration& from);
+  UserRegistration(UserRegistration&& from) noexcept
+    : UserRegistration() {
+    *this = ::std::move(from);
+  }
+
+  inline UserRegistration& operator=(const UserRegistration& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UserRegistration& operator=(UserRegistration&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const UserRegistration& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UserRegistration* internal_default_instance() {
+    return reinterpret_cast<const UserRegistration*>(
+               &_UserRegistration_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(UserRegistration& a, UserRegistration& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UserRegistration* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UserRegistration* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline UserRegistration* New() const final {
+    return CreateMaybeMessage<UserRegistration>(nullptr);
+  }
+
+  UserRegistration* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<UserRegistration>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const UserRegistration& from);
+  void MergeFrom(const UserRegistration& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UserRegistration* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "chat.UserRegistration";
+  }
+  protected:
+  explicit UserRegistration(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    return ::descriptor_table_petition_2eproto_metadata_getter(kIndexInFileMessages);
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUsernameFieldNumber = 1,
+    kIpFieldNumber = 2,
+  };
+  // string username = 1;
+  bool has_username() const;
+  private:
+  bool _internal_has_username() const;
+  public:
+  void clear_username();
+  const std::string& username() const;
+  void set_username(const std::string& value);
+  void set_username(std::string&& value);
+  void set_username(const char* value);
+  void set_username(const char* value, size_t size);
+  std::string* mutable_username();
+  std::string* release_username();
+  void set_allocated_username(std::string* username);
+  private:
+  const std::string& _internal_username() const;
+  void _internal_set_username(const std::string& value);
+  std::string* _internal_mutable_username();
+  public:
+
+  // string ip = 2;
+  bool has_ip() const;
+  private:
+  bool _internal_has_ip() const;
+  public:
+  void clear_ip();
+  const std::string& ip() const;
+  void set_ip(const std::string& value);
+  void set_ip(std::string&& value);
+  void set_ip(const char* value);
+  void set_ip(const char* value, size_t size);
+  std::string* mutable_ip();
+  std::string* release_ip();
+  void set_allocated_ip(std::string* ip);
+  private:
+  const std::string& _internal_ip() const;
+  void _internal_set_ip(const std::string& value);
+  std::string* _internal_mutable_ip();
+  public:
+
+  // @@protoc_insertion_point(class_scope:chat.UserRegistration)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr username_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr ip_;
+  friend struct ::TableStruct_petition_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UserInfo PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:chat.UserInfo) */ {
+ public:
+  inline UserInfo() : UserInfo(nullptr) {}
+  virtual ~UserInfo();
+  explicit constexpr UserInfo(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UserInfo(const UserInfo& from);
+  UserInfo(UserInfo&& from) noexcept
+    : UserInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline UserInfo& operator=(const UserInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UserInfo& operator=(UserInfo&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const UserInfo& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UserInfo* internal_default_instance() {
+    return reinterpret_cast<const UserInfo*>(
+               &_UserInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(UserInfo& a, UserInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UserInfo* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UserInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline UserInfo* New() const final {
+    return CreateMaybeMessage<UserInfo>(nullptr);
+  }
+
+  UserInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<UserInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const UserInfo& from);
+  void MergeFrom(const UserInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UserInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "chat.UserInfo";
+  }
+  protected:
+  explicit UserInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    return ::descriptor_table_petition_2eproto_metadata_getter(kIndexInFileMessages);
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUsernameFieldNumber = 1,
+    kStatusFieldNumber = 2,
+    kIpFieldNumber = 3,
+  };
+  // string username = 1;
+  bool has_username() const;
+  private:
+  bool _internal_has_username() const;
+  public:
+  void clear_username();
+  const std::string& username() const;
+  void set_username(const std::string& value);
+  void set_username(std::string&& value);
+  void set_username(const char* value);
+  void set_username(const char* value, size_t size);
+  std::string* mutable_username();
+  std::string* release_username();
+  void set_allocated_username(std::string* username);
+  private:
+  const std::string& _internal_username() const;
+  void _internal_set_username(const std::string& value);
+  std::string* _internal_mutable_username();
+  public:
+
+  // string status = 2;
+  bool has_status() const;
+  private:
+  bool _internal_has_status() const;
+  public:
+  void clear_status();
+  const std::string& status() const;
+  void set_status(const std::string& value);
+  void set_status(std::string&& value);
+  void set_status(const char* value);
+  void set_status(const char* value, size_t size);
+  std::string* mutable_status();
+  std::string* release_status();
+  void set_allocated_status(std::string* status);
+  private:
+  const std::string& _internal_status() const;
+  void _internal_set_status(const std::string& value);
+  std::string* _internal_mutable_status();
+  public:
+
+  // string ip = 3;
+  bool has_ip() const;
+  private:
+  bool _internal_has_ip() const;
+  public:
+  void clear_ip();
+  const std::string& ip() const;
+  void set_ip(const std::string& value);
+  void set_ip(std::string&& value);
+  void set_ip(const char* value);
+  void set_ip(const char* value, size_t size);
+  std::string* mutable_ip();
+  std::string* release_ip();
+  void set_allocated_ip(std::string* ip);
+  private:
+  const std::string& _internal_ip() const;
+  void _internal_set_ip(const std::string& value);
+  std::string* _internal_mutable_ip();
+  public:
+
+  // @@protoc_insertion_point(class_scope:chat.UserInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr username_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr status_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr ip_;
+  friend struct ::TableStruct_petition_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UserRequest PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:chat.UserRequest) */ {
+ public:
+  inline UserRequest() : UserRequest(nullptr) {}
+  virtual ~UserRequest();
+  explicit constexpr UserRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UserRequest(const UserRequest& from);
+  UserRequest(UserRequest&& from) noexcept
+    : UserRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline UserRequest& operator=(const UserRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UserRequest& operator=(UserRequest&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const UserRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UserRequest* internal_default_instance() {
+    return reinterpret_cast<const UserRequest*>(
+               &_UserRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(UserRequest& a, UserRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UserRequest* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UserRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline UserRequest* New() const final {
+    return CreateMaybeMessage<UserRequest>(nullptr);
+  }
+
+  UserRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<UserRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const UserRequest& from);
+  void MergeFrom(const UserRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UserRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "chat.UserRequest";
+  }
+  protected:
+  explicit UserRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    return ::descriptor_table_petition_2eproto_metadata_getter(kIndexInFileMessages);
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUserFieldNumber = 1,
+  };
+  // string user = 1;
+  bool has_user() const;
+  private:
+  bool _internal_has_user() const;
+  public:
+  void clear_user();
+  const std::string& user() const;
+  void set_user(const std::string& value);
+  void set_user(std::string&& value);
+  void set_user(const char* value);
+  void set_user(const char* value, size_t size);
+  std::string* mutable_user();
+  std::string* release_user();
+  void set_allocated_user(std::string* user);
+  private:
+  const std::string& _internal_user() const;
+  void _internal_set_user(const std::string& value);
+  std::string* _internal_mutable_user();
+  public:
+
+  // @@protoc_insertion_point(class_scope:chat.UserRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr user_;
+  friend struct ::TableStruct_petition_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ConnectedUsersResponse PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:chat.ConnectedUsersResponse) */ {
+ public:
+  inline ConnectedUsersResponse() : ConnectedUsersResponse(nullptr) {}
+  virtual ~ConnectedUsersResponse();
+  explicit constexpr ConnectedUsersResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ConnectedUsersResponse(const ConnectedUsersResponse& from);
+  ConnectedUsersResponse(ConnectedUsersResponse&& from) noexcept
+    : ConnectedUsersResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline ConnectedUsersResponse& operator=(const ConnectedUsersResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ConnectedUsersResponse& operator=(ConnectedUsersResponse&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ConnectedUsersResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ConnectedUsersResponse* internal_default_instance() {
+    return reinterpret_cast<const ConnectedUsersResponse*>(
+               &_ConnectedUsersResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(ConnectedUsersResponse& a, ConnectedUsersResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ConnectedUsersResponse* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ConnectedUsersResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ConnectedUsersResponse* New() const final {
+    return CreateMaybeMessage<ConnectedUsersResponse>(nullptr);
+  }
+
+  ConnectedUsersResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ConnectedUsersResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ConnectedUsersResponse& from);
+  void MergeFrom(const ConnectedUsersResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ConnectedUsersResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "chat.ConnectedUsersResponse";
+  }
+  protected:
+  explicit ConnectedUsersResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    return ::descriptor_table_petition_2eproto_metadata_getter(kIndexInFileMessages);
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kConnectedUsersFieldNumber = 1,
+  };
+  // repeated .chat.UserInfo connectedUsers = 1;
+  int connectedusers_size() const;
+  private:
+  int _internal_connectedusers_size() const;
+  public:
+  void clear_connectedusers();
+  ::chat::UserInfo* mutable_connectedusers(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::chat::UserInfo >*
+      mutable_connectedusers();
+  private:
+  const ::chat::UserInfo& _internal_connectedusers(int index) const;
+  ::chat::UserInfo* _internal_add_connectedusers();
+  public:
+  const ::chat::UserInfo& connectedusers(int index) const;
+  ::chat::UserInfo* add_connectedusers();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::chat::UserInfo >&
+      connectedusers() const;
+
+  // @@protoc_insertion_point(class_scope:chat.ConnectedUsersResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::chat::UserInfo > connectedusers_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_petition_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ChangeStatus PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:chat.ChangeStatus) */ {
+ public:
+  inline ChangeStatus() : ChangeStatus(nullptr) {}
+  virtual ~ChangeStatus();
+  explicit constexpr ChangeStatus(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ChangeStatus(const ChangeStatus& from);
+  ChangeStatus(ChangeStatus&& from) noexcept
+    : ChangeStatus() {
+    *this = ::std::move(from);
+  }
+
+  inline ChangeStatus& operator=(const ChangeStatus& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ChangeStatus& operator=(ChangeStatus&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ChangeStatus& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ChangeStatus* internal_default_instance() {
+    return reinterpret_cast<const ChangeStatus*>(
+               &_ChangeStatus_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(ChangeStatus& a, ChangeStatus& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ChangeStatus* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ChangeStatus* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ChangeStatus* New() const final {
+    return CreateMaybeMessage<ChangeStatus>(nullptr);
+  }
+
+  ChangeStatus* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ChangeStatus>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ChangeStatus& from);
+  void MergeFrom(const ChangeStatus& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ChangeStatus* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "chat.ChangeStatus";
+  }
+  protected:
+  explicit ChangeStatus(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    return ::descriptor_table_petition_2eproto_metadata_getter(kIndexInFileMessages);
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUsernameFieldNumber = 1,
+    kStatusFieldNumber = 2,
+  };
+  // string username = 1;
+  bool has_username() const;
+  private:
+  bool _internal_has_username() const;
+  public:
+  void clear_username();
+  const std::string& username() const;
+  void set_username(const std::string& value);
+  void set_username(std::string&& value);
+  void set_username(const char* value);
+  void set_username(const char* value, size_t size);
+  std::string* mutable_username();
+  std::string* release_username();
+  void set_allocated_username(std::string* username);
+  private:
+  const std::string& _internal_username() const;
+  void _internal_set_username(const std::string& value);
+  std::string* _internal_mutable_username();
+  public:
+
+  // string status = 2;
+  bool has_status() const;
+  private:
+  bool _internal_has_status() const;
+  public:
+  void clear_status();
+  const std::string& status() const;
+  void set_status(const std::string& value);
+  void set_status(std::string&& value);
+  void set_status(const char* value);
+  void set_status(const char* value, size_t size);
+  std::string* mutable_status();
+  std::string* release_status();
+  void set_allocated_status(std::string* status);
+  private:
+  const std::string& _internal_status() const;
+  void _internal_set_status(const std::string& value);
+  std::string* _internal_mutable_status();
+  public:
+
+  // @@protoc_insertion_point(class_scope:chat.ChangeStatus)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr username_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr status_;
+  friend struct ::TableStruct_petition_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MessageCommunication PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:chat.MessageCommunication) */ {
+ public:
+  inline MessageCommunication() : MessageCommunication(nullptr) {}
+  virtual ~MessageCommunication();
+  explicit constexpr MessageCommunication(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  MessageCommunication(const MessageCommunication& from);
+  MessageCommunication(MessageCommunication&& from) noexcept
+    : MessageCommunication() {
+    *this = ::std::move(from);
+  }
+
+  inline MessageCommunication& operator=(const MessageCommunication& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MessageCommunication& operator=(MessageCommunication&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const MessageCommunication& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MessageCommunication* internal_default_instance() {
+    return reinterpret_cast<const MessageCommunication*>(
+               &_MessageCommunication_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(MessageCommunication& a, MessageCommunication& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MessageCommunication* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MessageCommunication* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline MessageCommunication* New() const final {
+    return CreateMaybeMessage<MessageCommunication>(nullptr);
+  }
+
+  MessageCommunication* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<MessageCommunication>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const MessageCommunication& from);
+  void MergeFrom(const MessageCommunication& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MessageCommunication* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "chat.MessageCommunication";
+  }
+  protected:
+  explicit MessageCommunication(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    return ::descriptor_table_petition_2eproto_metadata_getter(kIndexInFileMessages);
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMessageFieldNumber = 1,
+    kRecipientFieldNumber = 2,
+    kSenderFieldNumber = 3,
+  };
+  // string message = 1;
+  bool has_message() const;
+  private:
+  bool _internal_has_message() const;
+  public:
+  void clear_message();
+  const std::string& message() const;
+  void set_message(const std::string& value);
+  void set_message(std::string&& value);
+  void set_message(const char* value);
+  void set_message(const char* value, size_t size);
+  std::string* mutable_message();
+  std::string* release_message();
+  void set_allocated_message(std::string* message);
+  private:
+  const std::string& _internal_message() const;
+  void _internal_set_message(const std::string& value);
+  std::string* _internal_mutable_message();
+  public:
+
+  // string recipient = 2;
+  bool has_recipient() const;
+  private:
+  bool _internal_has_recipient() const;
+  public:
+  void clear_recipient();
+  const std::string& recipient() const;
+  void set_recipient(const std::string& value);
+  void set_recipient(std::string&& value);
+  void set_recipient(const char* value);
+  void set_recipient(const char* value, size_t size);
+  std::string* mutable_recipient();
+  std::string* release_recipient();
+  void set_allocated_recipient(std::string* recipient);
+  private:
+  const std::string& _internal_recipient() const;
+  void _internal_set_recipient(const std::string& value);
+  std::string* _internal_mutable_recipient();
+  public:
+
+  // string sender = 3;
+  bool has_sender() const;
+  private:
+  bool _internal_has_sender() const;
+  public:
+  void clear_sender();
+  const std::string& sender() const;
+  void set_sender(const std::string& value);
+  void set_sender(std::string&& value);
+  void set_sender(const char* value);
+  void set_sender(const char* value, size_t size);
+  std::string* mutable_sender();
+  std::string* release_sender();
+  void set_allocated_sender(std::string* sender);
+  private:
+  const std::string& _internal_sender() const;
+  void _internal_set_sender(const std::string& value);
+  std::string* _internal_mutable_sender();
+  public:
+
+  // @@protoc_insertion_point(class_scope:chat.MessageCommunication)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr message_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr recipient_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr sender_;
+  friend struct ::TableStruct_petition_2eproto;
+};
+// -------------------------------------------------------------------
 
 class ClientPetition PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:chat.ClientPetition) */ {
@@ -113,7 +1160,7 @@ class ClientPetition PROTOBUF_FINAL :
                &_ClientPetition_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    6;
 
   friend void swap(ClientPetition& a, ClientPetition& b) {
     a.Swap(&b);
@@ -183,112 +1230,83 @@ class ClientPetition PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kUsernameFieldNumber = 2,
-    kIpFieldNumber = 3,
-    kMessageFieldNumber = 6,
-    kSentToFieldNumber = 7,
-    kNewStatusFieldNumber = 8,
+    kRegistrationFieldNumber = 2,
+    kUsersFieldNumber = 3,
+    kChangeFieldNumber = 4,
+    kMessageCommunicationFieldNumber = 5,
     kOptionFieldNumber = 1,
   };
-  // string username = 2;
-  bool has_username() const;
+  // .chat.UserRegistration registration = 2;
+  bool has_registration() const;
   private:
-  bool _internal_has_username() const;
+  bool _internal_has_registration() const;
   public:
-  void clear_username();
-  const std::string& username() const;
-  void set_username(const std::string& value);
-  void set_username(std::string&& value);
-  void set_username(const char* value);
-  void set_username(const char* value, size_t size);
-  std::string* mutable_username();
-  std::string* release_username();
-  void set_allocated_username(std::string* username);
+  void clear_registration();
+  const ::chat::UserRegistration& registration() const;
+  ::chat::UserRegistration* release_registration();
+  ::chat::UserRegistration* mutable_registration();
+  void set_allocated_registration(::chat::UserRegistration* registration);
   private:
-  const std::string& _internal_username() const;
-  void _internal_set_username(const std::string& value);
-  std::string* _internal_mutable_username();
+  const ::chat::UserRegistration& _internal_registration() const;
+  ::chat::UserRegistration* _internal_mutable_registration();
   public:
+  void unsafe_arena_set_allocated_registration(
+      ::chat::UserRegistration* registration);
+  ::chat::UserRegistration* unsafe_arena_release_registration();
 
-  // string ip = 3;
-  bool has_ip() const;
+  // .chat.UserRequest users = 3;
+  bool has_users() const;
   private:
-  bool _internal_has_ip() const;
+  bool _internal_has_users() const;
   public:
-  void clear_ip();
-  const std::string& ip() const;
-  void set_ip(const std::string& value);
-  void set_ip(std::string&& value);
-  void set_ip(const char* value);
-  void set_ip(const char* value, size_t size);
-  std::string* mutable_ip();
-  std::string* release_ip();
-  void set_allocated_ip(std::string* ip);
+  void clear_users();
+  const ::chat::UserRequest& users() const;
+  ::chat::UserRequest* release_users();
+  ::chat::UserRequest* mutable_users();
+  void set_allocated_users(::chat::UserRequest* users);
   private:
-  const std::string& _internal_ip() const;
-  void _internal_set_ip(const std::string& value);
-  std::string* _internal_mutable_ip();
+  const ::chat::UserRequest& _internal_users() const;
+  ::chat::UserRequest* _internal_mutable_users();
   public:
+  void unsafe_arena_set_allocated_users(
+      ::chat::UserRequest* users);
+  ::chat::UserRequest* unsafe_arena_release_users();
 
-  // string message = 6;
-  bool has_message() const;
+  // .chat.ChangeStatus change = 4;
+  bool has_change() const;
   private:
-  bool _internal_has_message() const;
+  bool _internal_has_change() const;
   public:
-  void clear_message();
-  const std::string& message() const;
-  void set_message(const std::string& value);
-  void set_message(std::string&& value);
-  void set_message(const char* value);
-  void set_message(const char* value, size_t size);
-  std::string* mutable_message();
-  std::string* release_message();
-  void set_allocated_message(std::string* message);
+  void clear_change();
+  const ::chat::ChangeStatus& change() const;
+  ::chat::ChangeStatus* release_change();
+  ::chat::ChangeStatus* mutable_change();
+  void set_allocated_change(::chat::ChangeStatus* change);
   private:
-  const std::string& _internal_message() const;
-  void _internal_set_message(const std::string& value);
-  std::string* _internal_mutable_message();
+  const ::chat::ChangeStatus& _internal_change() const;
+  ::chat::ChangeStatus* _internal_mutable_change();
   public:
+  void unsafe_arena_set_allocated_change(
+      ::chat::ChangeStatus* change);
+  ::chat::ChangeStatus* unsafe_arena_release_change();
 
-  // string sent_to = 7;
-  bool has_sent_to() const;
+  // .chat.MessageCommunication messageCommunication = 5;
+  bool has_messagecommunication() const;
   private:
-  bool _internal_has_sent_to() const;
+  bool _internal_has_messagecommunication() const;
   public:
-  void clear_sent_to();
-  const std::string& sent_to() const;
-  void set_sent_to(const std::string& value);
-  void set_sent_to(std::string&& value);
-  void set_sent_to(const char* value);
-  void set_sent_to(const char* value, size_t size);
-  std::string* mutable_sent_to();
-  std::string* release_sent_to();
-  void set_allocated_sent_to(std::string* sent_to);
+  void clear_messagecommunication();
+  const ::chat::MessageCommunication& messagecommunication() const;
+  ::chat::MessageCommunication* release_messagecommunication();
+  ::chat::MessageCommunication* mutable_messagecommunication();
+  void set_allocated_messagecommunication(::chat::MessageCommunication* messagecommunication);
   private:
-  const std::string& _internal_sent_to() const;
-  void _internal_set_sent_to(const std::string& value);
-  std::string* _internal_mutable_sent_to();
+  const ::chat::MessageCommunication& _internal_messagecommunication() const;
+  ::chat::MessageCommunication* _internal_mutable_messagecommunication();
   public:
-
-  // string new_status = 8;
-  bool has_new_status() const;
-  private:
-  bool _internal_has_new_status() const;
-  public:
-  void clear_new_status();
-  const std::string& new_status() const;
-  void set_new_status(const std::string& value);
-  void set_new_status(std::string&& value);
-  void set_new_status(const char* value);
-  void set_new_status(const char* value, size_t size);
-  std::string* mutable_new_status();
-  std::string* release_new_status();
-  void set_allocated_new_status(std::string* new_status);
-  private:
-  const std::string& _internal_new_status() const;
-  void _internal_set_new_status(const std::string& value);
-  std::string* _internal_mutable_new_status();
-  public:
+  void unsafe_arena_set_allocated_messagecommunication(
+      ::chat::MessageCommunication* messagecommunication);
+  ::chat::MessageCommunication* unsafe_arena_release_messagecommunication();
 
   // int32 option = 1;
   bool has_option() const;
@@ -312,11 +1330,10 @@ class ClientPetition PROTOBUF_FINAL :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr username_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr ip_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr message_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr sent_to_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr new_status_;
+  ::chat::UserRegistration* registration_;
+  ::chat::UserRequest* users_;
+  ::chat::ChangeStatus* change_;
+  ::chat::MessageCommunication* messagecommunication_;
   ::PROTOBUF_NAMESPACE_ID::int32 option_;
   friend struct ::TableStruct_petition_2eproto;
 };
@@ -365,7 +1382,7 @@ class ServerResponse PROTOBUF_FINAL :
                &_ServerResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    7;
 
   friend void swap(ServerResponse& a, ServerResponse& b) {
     a.Swap(&b);
@@ -435,72 +1452,120 @@ class ServerResponse PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kServerMessageFieldNumber = 2,
-    kUsernameFieldNumber = 3,
-    kUserMessageFieldNumber = 4,
-    kCodeFieldNumber = 1,
+    kServerMessageFieldNumber = 3,
+    kConnectedUsersFieldNumber = 4,
+    kMessageCommunicationFieldNumber = 5,
+    kUserInfoResponseFieldNumber = 6,
+    kChangeFieldNumber = 7,
+    kOptionFieldNumber = 1,
+    kCodeFieldNumber = 2,
   };
-  // string server_message = 2;
-  bool has_server_message() const;
+  // string serverMessage = 3;
+  bool has_servermessage() const;
   private:
-  bool _internal_has_server_message() const;
+  bool _internal_has_servermessage() const;
   public:
-  void clear_server_message();
-  const std::string& server_message() const;
-  void set_server_message(const std::string& value);
-  void set_server_message(std::string&& value);
-  void set_server_message(const char* value);
-  void set_server_message(const char* value, size_t size);
-  std::string* mutable_server_message();
-  std::string* release_server_message();
-  void set_allocated_server_message(std::string* server_message);
+  void clear_servermessage();
+  const std::string& servermessage() const;
+  void set_servermessage(const std::string& value);
+  void set_servermessage(std::string&& value);
+  void set_servermessage(const char* value);
+  void set_servermessage(const char* value, size_t size);
+  std::string* mutable_servermessage();
+  std::string* release_servermessage();
+  void set_allocated_servermessage(std::string* servermessage);
   private:
-  const std::string& _internal_server_message() const;
-  void _internal_set_server_message(const std::string& value);
-  std::string* _internal_mutable_server_message();
-  public:
-
-  // string username = 3;
-  bool has_username() const;
-  private:
-  bool _internal_has_username() const;
-  public:
-  void clear_username();
-  const std::string& username() const;
-  void set_username(const std::string& value);
-  void set_username(std::string&& value);
-  void set_username(const char* value);
-  void set_username(const char* value, size_t size);
-  std::string* mutable_username();
-  std::string* release_username();
-  void set_allocated_username(std::string* username);
-  private:
-  const std::string& _internal_username() const;
-  void _internal_set_username(const std::string& value);
-  std::string* _internal_mutable_username();
+  const std::string& _internal_servermessage() const;
+  void _internal_set_servermessage(const std::string& value);
+  std::string* _internal_mutable_servermessage();
   public:
 
-  // string user_message = 4;
-  bool has_user_message() const;
+  // .chat.ConnectedUsersResponse connectedUsers = 4;
+  bool has_connectedusers() const;
   private:
-  bool _internal_has_user_message() const;
+  bool _internal_has_connectedusers() const;
   public:
-  void clear_user_message();
-  const std::string& user_message() const;
-  void set_user_message(const std::string& value);
-  void set_user_message(std::string&& value);
-  void set_user_message(const char* value);
-  void set_user_message(const char* value, size_t size);
-  std::string* mutable_user_message();
-  std::string* release_user_message();
-  void set_allocated_user_message(std::string* user_message);
+  void clear_connectedusers();
+  const ::chat::ConnectedUsersResponse& connectedusers() const;
+  ::chat::ConnectedUsersResponse* release_connectedusers();
+  ::chat::ConnectedUsersResponse* mutable_connectedusers();
+  void set_allocated_connectedusers(::chat::ConnectedUsersResponse* connectedusers);
   private:
-  const std::string& _internal_user_message() const;
-  void _internal_set_user_message(const std::string& value);
-  std::string* _internal_mutable_user_message();
+  const ::chat::ConnectedUsersResponse& _internal_connectedusers() const;
+  ::chat::ConnectedUsersResponse* _internal_mutable_connectedusers();
+  public:
+  void unsafe_arena_set_allocated_connectedusers(
+      ::chat::ConnectedUsersResponse* connectedusers);
+  ::chat::ConnectedUsersResponse* unsafe_arena_release_connectedusers();
+
+  // .chat.MessageCommunication messageCommunication = 5;
+  bool has_messagecommunication() const;
+  private:
+  bool _internal_has_messagecommunication() const;
+  public:
+  void clear_messagecommunication();
+  const ::chat::MessageCommunication& messagecommunication() const;
+  ::chat::MessageCommunication* release_messagecommunication();
+  ::chat::MessageCommunication* mutable_messagecommunication();
+  void set_allocated_messagecommunication(::chat::MessageCommunication* messagecommunication);
+  private:
+  const ::chat::MessageCommunication& _internal_messagecommunication() const;
+  ::chat::MessageCommunication* _internal_mutable_messagecommunication();
+  public:
+  void unsafe_arena_set_allocated_messagecommunication(
+      ::chat::MessageCommunication* messagecommunication);
+  ::chat::MessageCommunication* unsafe_arena_release_messagecommunication();
+
+  // .chat.UserInfo userInfoResponse = 6;
+  bool has_userinforesponse() const;
+  private:
+  bool _internal_has_userinforesponse() const;
+  public:
+  void clear_userinforesponse();
+  const ::chat::UserInfo& userinforesponse() const;
+  ::chat::UserInfo* release_userinforesponse();
+  ::chat::UserInfo* mutable_userinforesponse();
+  void set_allocated_userinforesponse(::chat::UserInfo* userinforesponse);
+  private:
+  const ::chat::UserInfo& _internal_userinforesponse() const;
+  ::chat::UserInfo* _internal_mutable_userinforesponse();
+  public:
+  void unsafe_arena_set_allocated_userinforesponse(
+      ::chat::UserInfo* userinforesponse);
+  ::chat::UserInfo* unsafe_arena_release_userinforesponse();
+
+  // .chat.ChangeStatus change = 7;
+  bool has_change() const;
+  private:
+  bool _internal_has_change() const;
+  public:
+  void clear_change();
+  const ::chat::ChangeStatus& change() const;
+  ::chat::ChangeStatus* release_change();
+  ::chat::ChangeStatus* mutable_change();
+  void set_allocated_change(::chat::ChangeStatus* change);
+  private:
+  const ::chat::ChangeStatus& _internal_change() const;
+  ::chat::ChangeStatus* _internal_mutable_change();
+  public:
+  void unsafe_arena_set_allocated_change(
+      ::chat::ChangeStatus* change);
+  ::chat::ChangeStatus* unsafe_arena_release_change();
+
+  // int32 option = 1;
+  bool has_option() const;
+  private:
+  bool _internal_has_option() const;
+  public:
+  void clear_option();
+  ::PROTOBUF_NAMESPACE_ID::int32 option() const;
+  void set_option(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_option() const;
+  void _internal_set_option(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
-  // int32 code = 1;
+  // int32 code = 2;
   bool has_code() const;
   private:
   bool _internal_has_code() const;
@@ -522,9 +1587,12 @@ class ServerResponse PROTOBUF_FINAL :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr server_message_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr username_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr user_message_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr servermessage_;
+  ::chat::ConnectedUsersResponse* connectedusers_;
+  ::chat::MessageCommunication* messagecommunication_;
+  ::chat::UserInfo* userinforesponse_;
+  ::chat::ChangeStatus* change_;
+  ::PROTOBUF_NAMESPACE_ID::int32 option_;
   ::PROTOBUF_NAMESPACE_ID::int32 code_;
   friend struct ::TableStruct_petition_2eproto;
 };
@@ -537,11 +1605,877 @@ class ServerResponse PROTOBUF_FINAL :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// UserRegistration
+
+// string username = 1;
+inline bool UserRegistration::_internal_has_username() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool UserRegistration::has_username() const {
+  return _internal_has_username();
+}
+inline void UserRegistration::clear_username() {
+  username_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& UserRegistration::username() const {
+  // @@protoc_insertion_point(field_get:chat.UserRegistration.username)
+  return _internal_username();
+}
+inline void UserRegistration::set_username(const std::string& value) {
+  _internal_set_username(value);
+  // @@protoc_insertion_point(field_set:chat.UserRegistration.username)
+}
+inline std::string* UserRegistration::mutable_username() {
+  // @@protoc_insertion_point(field_mutable:chat.UserRegistration.username)
+  return _internal_mutable_username();
+}
+inline const std::string& UserRegistration::_internal_username() const {
+  return username_.Get();
+}
+inline void UserRegistration::_internal_set_username(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void UserRegistration::set_username(std::string&& value) {
+  _has_bits_[0] |= 0x00000001u;
+  username_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:chat.UserRegistration.username)
+}
+inline void UserRegistration::set_username(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000001u;
+  username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:chat.UserRegistration.username)
+}
+inline void UserRegistration::set_username(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000001u;
+  username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:chat.UserRegistration.username)
+}
+inline std::string* UserRegistration::_internal_mutable_username() {
+  _has_bits_[0] |= 0x00000001u;
+  return username_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* UserRegistration::release_username() {
+  // @@protoc_insertion_point(field_release:chat.UserRegistration.username)
+  if (!_internal_has_username()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  return username_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void UserRegistration::set_allocated_username(std::string* username) {
+  if (username != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  username_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), username,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:chat.UserRegistration.username)
+}
+
+// string ip = 2;
+inline bool UserRegistration::_internal_has_ip() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool UserRegistration::has_ip() const {
+  return _internal_has_ip();
+}
+inline void UserRegistration::clear_ip() {
+  ip_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline const std::string& UserRegistration::ip() const {
+  // @@protoc_insertion_point(field_get:chat.UserRegistration.ip)
+  return _internal_ip();
+}
+inline void UserRegistration::set_ip(const std::string& value) {
+  _internal_set_ip(value);
+  // @@protoc_insertion_point(field_set:chat.UserRegistration.ip)
+}
+inline std::string* UserRegistration::mutable_ip() {
+  // @@protoc_insertion_point(field_mutable:chat.UserRegistration.ip)
+  return _internal_mutable_ip();
+}
+inline const std::string& UserRegistration::_internal_ip() const {
+  return ip_.Get();
+}
+inline void UserRegistration::_internal_set_ip(const std::string& value) {
+  _has_bits_[0] |= 0x00000002u;
+  ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void UserRegistration::set_ip(std::string&& value) {
+  _has_bits_[0] |= 0x00000002u;
+  ip_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:chat.UserRegistration.ip)
+}
+inline void UserRegistration::set_ip(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000002u;
+  ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:chat.UserRegistration.ip)
+}
+inline void UserRegistration::set_ip(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000002u;
+  ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:chat.UserRegistration.ip)
+}
+inline std::string* UserRegistration::_internal_mutable_ip() {
+  _has_bits_[0] |= 0x00000002u;
+  return ip_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* UserRegistration::release_ip() {
+  // @@protoc_insertion_point(field_release:chat.UserRegistration.ip)
+  if (!_internal_has_ip()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000002u;
+  return ip_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void UserRegistration::set_allocated_ip(std::string* ip) {
+  if (ip != nullptr) {
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  ip_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ip,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:chat.UserRegistration.ip)
+}
+
+// -------------------------------------------------------------------
+
+// UserInfo
+
+// string username = 1;
+inline bool UserInfo::_internal_has_username() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool UserInfo::has_username() const {
+  return _internal_has_username();
+}
+inline void UserInfo::clear_username() {
+  username_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& UserInfo::username() const {
+  // @@protoc_insertion_point(field_get:chat.UserInfo.username)
+  return _internal_username();
+}
+inline void UserInfo::set_username(const std::string& value) {
+  _internal_set_username(value);
+  // @@protoc_insertion_point(field_set:chat.UserInfo.username)
+}
+inline std::string* UserInfo::mutable_username() {
+  // @@protoc_insertion_point(field_mutable:chat.UserInfo.username)
+  return _internal_mutable_username();
+}
+inline const std::string& UserInfo::_internal_username() const {
+  return username_.Get();
+}
+inline void UserInfo::_internal_set_username(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void UserInfo::set_username(std::string&& value) {
+  _has_bits_[0] |= 0x00000001u;
+  username_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:chat.UserInfo.username)
+}
+inline void UserInfo::set_username(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000001u;
+  username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:chat.UserInfo.username)
+}
+inline void UserInfo::set_username(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000001u;
+  username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:chat.UserInfo.username)
+}
+inline std::string* UserInfo::_internal_mutable_username() {
+  _has_bits_[0] |= 0x00000001u;
+  return username_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* UserInfo::release_username() {
+  // @@protoc_insertion_point(field_release:chat.UserInfo.username)
+  if (!_internal_has_username()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  return username_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void UserInfo::set_allocated_username(std::string* username) {
+  if (username != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  username_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), username,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:chat.UserInfo.username)
+}
+
+// string status = 2;
+inline bool UserInfo::_internal_has_status() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool UserInfo::has_status() const {
+  return _internal_has_status();
+}
+inline void UserInfo::clear_status() {
+  status_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline const std::string& UserInfo::status() const {
+  // @@protoc_insertion_point(field_get:chat.UserInfo.status)
+  return _internal_status();
+}
+inline void UserInfo::set_status(const std::string& value) {
+  _internal_set_status(value);
+  // @@protoc_insertion_point(field_set:chat.UserInfo.status)
+}
+inline std::string* UserInfo::mutable_status() {
+  // @@protoc_insertion_point(field_mutable:chat.UserInfo.status)
+  return _internal_mutable_status();
+}
+inline const std::string& UserInfo::_internal_status() const {
+  return status_.Get();
+}
+inline void UserInfo::_internal_set_status(const std::string& value) {
+  _has_bits_[0] |= 0x00000002u;
+  status_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void UserInfo::set_status(std::string&& value) {
+  _has_bits_[0] |= 0x00000002u;
+  status_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:chat.UserInfo.status)
+}
+inline void UserInfo::set_status(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000002u;
+  status_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:chat.UserInfo.status)
+}
+inline void UserInfo::set_status(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000002u;
+  status_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:chat.UserInfo.status)
+}
+inline std::string* UserInfo::_internal_mutable_status() {
+  _has_bits_[0] |= 0x00000002u;
+  return status_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* UserInfo::release_status() {
+  // @@protoc_insertion_point(field_release:chat.UserInfo.status)
+  if (!_internal_has_status()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000002u;
+  return status_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void UserInfo::set_allocated_status(std::string* status) {
+  if (status != nullptr) {
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  status_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), status,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:chat.UserInfo.status)
+}
+
+// string ip = 3;
+inline bool UserInfo::_internal_has_ip() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool UserInfo::has_ip() const {
+  return _internal_has_ip();
+}
+inline void UserInfo::clear_ip() {
+  ip_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline const std::string& UserInfo::ip() const {
+  // @@protoc_insertion_point(field_get:chat.UserInfo.ip)
+  return _internal_ip();
+}
+inline void UserInfo::set_ip(const std::string& value) {
+  _internal_set_ip(value);
+  // @@protoc_insertion_point(field_set:chat.UserInfo.ip)
+}
+inline std::string* UserInfo::mutable_ip() {
+  // @@protoc_insertion_point(field_mutable:chat.UserInfo.ip)
+  return _internal_mutable_ip();
+}
+inline const std::string& UserInfo::_internal_ip() const {
+  return ip_.Get();
+}
+inline void UserInfo::_internal_set_ip(const std::string& value) {
+  _has_bits_[0] |= 0x00000004u;
+  ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void UserInfo::set_ip(std::string&& value) {
+  _has_bits_[0] |= 0x00000004u;
+  ip_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:chat.UserInfo.ip)
+}
+inline void UserInfo::set_ip(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000004u;
+  ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:chat.UserInfo.ip)
+}
+inline void UserInfo::set_ip(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000004u;
+  ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:chat.UserInfo.ip)
+}
+inline std::string* UserInfo::_internal_mutable_ip() {
+  _has_bits_[0] |= 0x00000004u;
+  return ip_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* UserInfo::release_ip() {
+  // @@protoc_insertion_point(field_release:chat.UserInfo.ip)
+  if (!_internal_has_ip()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000004u;
+  return ip_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void UserInfo::set_allocated_ip(std::string* ip) {
+  if (ip != nullptr) {
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  ip_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ip,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:chat.UserInfo.ip)
+}
+
+// -------------------------------------------------------------------
+
+// UserRequest
+
+// string user = 1;
+inline bool UserRequest::_internal_has_user() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool UserRequest::has_user() const {
+  return _internal_has_user();
+}
+inline void UserRequest::clear_user() {
+  user_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& UserRequest::user() const {
+  // @@protoc_insertion_point(field_get:chat.UserRequest.user)
+  return _internal_user();
+}
+inline void UserRequest::set_user(const std::string& value) {
+  _internal_set_user(value);
+  // @@protoc_insertion_point(field_set:chat.UserRequest.user)
+}
+inline std::string* UserRequest::mutable_user() {
+  // @@protoc_insertion_point(field_mutable:chat.UserRequest.user)
+  return _internal_mutable_user();
+}
+inline const std::string& UserRequest::_internal_user() const {
+  return user_.Get();
+}
+inline void UserRequest::_internal_set_user(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  user_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void UserRequest::set_user(std::string&& value) {
+  _has_bits_[0] |= 0x00000001u;
+  user_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:chat.UserRequest.user)
+}
+inline void UserRequest::set_user(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000001u;
+  user_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:chat.UserRequest.user)
+}
+inline void UserRequest::set_user(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000001u;
+  user_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:chat.UserRequest.user)
+}
+inline std::string* UserRequest::_internal_mutable_user() {
+  _has_bits_[0] |= 0x00000001u;
+  return user_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* UserRequest::release_user() {
+  // @@protoc_insertion_point(field_release:chat.UserRequest.user)
+  if (!_internal_has_user()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  return user_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void UserRequest::set_allocated_user(std::string* user) {
+  if (user != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  user_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), user,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:chat.UserRequest.user)
+}
+
+// -------------------------------------------------------------------
+
+// ConnectedUsersResponse
+
+// repeated .chat.UserInfo connectedUsers = 1;
+inline int ConnectedUsersResponse::_internal_connectedusers_size() const {
+  return connectedusers_.size();
+}
+inline int ConnectedUsersResponse::connectedusers_size() const {
+  return _internal_connectedusers_size();
+}
+inline void ConnectedUsersResponse::clear_connectedusers() {
+  connectedusers_.Clear();
+}
+inline ::chat::UserInfo* ConnectedUsersResponse::mutable_connectedusers(int index) {
+  // @@protoc_insertion_point(field_mutable:chat.ConnectedUsersResponse.connectedUsers)
+  return connectedusers_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::chat::UserInfo >*
+ConnectedUsersResponse::mutable_connectedusers() {
+  // @@protoc_insertion_point(field_mutable_list:chat.ConnectedUsersResponse.connectedUsers)
+  return &connectedusers_;
+}
+inline const ::chat::UserInfo& ConnectedUsersResponse::_internal_connectedusers(int index) const {
+  return connectedusers_.Get(index);
+}
+inline const ::chat::UserInfo& ConnectedUsersResponse::connectedusers(int index) const {
+  // @@protoc_insertion_point(field_get:chat.ConnectedUsersResponse.connectedUsers)
+  return _internal_connectedusers(index);
+}
+inline ::chat::UserInfo* ConnectedUsersResponse::_internal_add_connectedusers() {
+  return connectedusers_.Add();
+}
+inline ::chat::UserInfo* ConnectedUsersResponse::add_connectedusers() {
+  // @@protoc_insertion_point(field_add:chat.ConnectedUsersResponse.connectedUsers)
+  return _internal_add_connectedusers();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::chat::UserInfo >&
+ConnectedUsersResponse::connectedusers() const {
+  // @@protoc_insertion_point(field_list:chat.ConnectedUsersResponse.connectedUsers)
+  return connectedusers_;
+}
+
+// -------------------------------------------------------------------
+
+// ChangeStatus
+
+// string username = 1;
+inline bool ChangeStatus::_internal_has_username() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool ChangeStatus::has_username() const {
+  return _internal_has_username();
+}
+inline void ChangeStatus::clear_username() {
+  username_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& ChangeStatus::username() const {
+  // @@protoc_insertion_point(field_get:chat.ChangeStatus.username)
+  return _internal_username();
+}
+inline void ChangeStatus::set_username(const std::string& value) {
+  _internal_set_username(value);
+  // @@protoc_insertion_point(field_set:chat.ChangeStatus.username)
+}
+inline std::string* ChangeStatus::mutable_username() {
+  // @@protoc_insertion_point(field_mutable:chat.ChangeStatus.username)
+  return _internal_mutable_username();
+}
+inline const std::string& ChangeStatus::_internal_username() const {
+  return username_.Get();
+}
+inline void ChangeStatus::_internal_set_username(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void ChangeStatus::set_username(std::string&& value) {
+  _has_bits_[0] |= 0x00000001u;
+  username_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:chat.ChangeStatus.username)
+}
+inline void ChangeStatus::set_username(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000001u;
+  username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:chat.ChangeStatus.username)
+}
+inline void ChangeStatus::set_username(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000001u;
+  username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:chat.ChangeStatus.username)
+}
+inline std::string* ChangeStatus::_internal_mutable_username() {
+  _has_bits_[0] |= 0x00000001u;
+  return username_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* ChangeStatus::release_username() {
+  // @@protoc_insertion_point(field_release:chat.ChangeStatus.username)
+  if (!_internal_has_username()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  return username_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void ChangeStatus::set_allocated_username(std::string* username) {
+  if (username != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  username_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), username,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:chat.ChangeStatus.username)
+}
+
+// string status = 2;
+inline bool ChangeStatus::_internal_has_status() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool ChangeStatus::has_status() const {
+  return _internal_has_status();
+}
+inline void ChangeStatus::clear_status() {
+  status_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline const std::string& ChangeStatus::status() const {
+  // @@protoc_insertion_point(field_get:chat.ChangeStatus.status)
+  return _internal_status();
+}
+inline void ChangeStatus::set_status(const std::string& value) {
+  _internal_set_status(value);
+  // @@protoc_insertion_point(field_set:chat.ChangeStatus.status)
+}
+inline std::string* ChangeStatus::mutable_status() {
+  // @@protoc_insertion_point(field_mutable:chat.ChangeStatus.status)
+  return _internal_mutable_status();
+}
+inline const std::string& ChangeStatus::_internal_status() const {
+  return status_.Get();
+}
+inline void ChangeStatus::_internal_set_status(const std::string& value) {
+  _has_bits_[0] |= 0x00000002u;
+  status_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void ChangeStatus::set_status(std::string&& value) {
+  _has_bits_[0] |= 0x00000002u;
+  status_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:chat.ChangeStatus.status)
+}
+inline void ChangeStatus::set_status(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000002u;
+  status_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:chat.ChangeStatus.status)
+}
+inline void ChangeStatus::set_status(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000002u;
+  status_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:chat.ChangeStatus.status)
+}
+inline std::string* ChangeStatus::_internal_mutable_status() {
+  _has_bits_[0] |= 0x00000002u;
+  return status_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* ChangeStatus::release_status() {
+  // @@protoc_insertion_point(field_release:chat.ChangeStatus.status)
+  if (!_internal_has_status()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000002u;
+  return status_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void ChangeStatus::set_allocated_status(std::string* status) {
+  if (status != nullptr) {
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  status_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), status,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:chat.ChangeStatus.status)
+}
+
+// -------------------------------------------------------------------
+
+// MessageCommunication
+
+// string message = 1;
+inline bool MessageCommunication::_internal_has_message() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool MessageCommunication::has_message() const {
+  return _internal_has_message();
+}
+inline void MessageCommunication::clear_message() {
+  message_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& MessageCommunication::message() const {
+  // @@protoc_insertion_point(field_get:chat.MessageCommunication.message)
+  return _internal_message();
+}
+inline void MessageCommunication::set_message(const std::string& value) {
+  _internal_set_message(value);
+  // @@protoc_insertion_point(field_set:chat.MessageCommunication.message)
+}
+inline std::string* MessageCommunication::mutable_message() {
+  // @@protoc_insertion_point(field_mutable:chat.MessageCommunication.message)
+  return _internal_mutable_message();
+}
+inline const std::string& MessageCommunication::_internal_message() const {
+  return message_.Get();
+}
+inline void MessageCommunication::_internal_set_message(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void MessageCommunication::set_message(std::string&& value) {
+  _has_bits_[0] |= 0x00000001u;
+  message_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:chat.MessageCommunication.message)
+}
+inline void MessageCommunication::set_message(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000001u;
+  message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:chat.MessageCommunication.message)
+}
+inline void MessageCommunication::set_message(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000001u;
+  message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:chat.MessageCommunication.message)
+}
+inline std::string* MessageCommunication::_internal_mutable_message() {
+  _has_bits_[0] |= 0x00000001u;
+  return message_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* MessageCommunication::release_message() {
+  // @@protoc_insertion_point(field_release:chat.MessageCommunication.message)
+  if (!_internal_has_message()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  return message_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void MessageCommunication::set_allocated_message(std::string* message) {
+  if (message != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  message_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), message,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:chat.MessageCommunication.message)
+}
+
+// string recipient = 2;
+inline bool MessageCommunication::_internal_has_recipient() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool MessageCommunication::has_recipient() const {
+  return _internal_has_recipient();
+}
+inline void MessageCommunication::clear_recipient() {
+  recipient_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline const std::string& MessageCommunication::recipient() const {
+  // @@protoc_insertion_point(field_get:chat.MessageCommunication.recipient)
+  return _internal_recipient();
+}
+inline void MessageCommunication::set_recipient(const std::string& value) {
+  _internal_set_recipient(value);
+  // @@protoc_insertion_point(field_set:chat.MessageCommunication.recipient)
+}
+inline std::string* MessageCommunication::mutable_recipient() {
+  // @@protoc_insertion_point(field_mutable:chat.MessageCommunication.recipient)
+  return _internal_mutable_recipient();
+}
+inline const std::string& MessageCommunication::_internal_recipient() const {
+  return recipient_.Get();
+}
+inline void MessageCommunication::_internal_set_recipient(const std::string& value) {
+  _has_bits_[0] |= 0x00000002u;
+  recipient_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void MessageCommunication::set_recipient(std::string&& value) {
+  _has_bits_[0] |= 0x00000002u;
+  recipient_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:chat.MessageCommunication.recipient)
+}
+inline void MessageCommunication::set_recipient(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000002u;
+  recipient_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:chat.MessageCommunication.recipient)
+}
+inline void MessageCommunication::set_recipient(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000002u;
+  recipient_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:chat.MessageCommunication.recipient)
+}
+inline std::string* MessageCommunication::_internal_mutable_recipient() {
+  _has_bits_[0] |= 0x00000002u;
+  return recipient_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* MessageCommunication::release_recipient() {
+  // @@protoc_insertion_point(field_release:chat.MessageCommunication.recipient)
+  if (!_internal_has_recipient()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000002u;
+  return recipient_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void MessageCommunication::set_allocated_recipient(std::string* recipient) {
+  if (recipient != nullptr) {
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  recipient_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), recipient,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:chat.MessageCommunication.recipient)
+}
+
+// string sender = 3;
+inline bool MessageCommunication::_internal_has_sender() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool MessageCommunication::has_sender() const {
+  return _internal_has_sender();
+}
+inline void MessageCommunication::clear_sender() {
+  sender_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline const std::string& MessageCommunication::sender() const {
+  // @@protoc_insertion_point(field_get:chat.MessageCommunication.sender)
+  return _internal_sender();
+}
+inline void MessageCommunication::set_sender(const std::string& value) {
+  _internal_set_sender(value);
+  // @@protoc_insertion_point(field_set:chat.MessageCommunication.sender)
+}
+inline std::string* MessageCommunication::mutable_sender() {
+  // @@protoc_insertion_point(field_mutable:chat.MessageCommunication.sender)
+  return _internal_mutable_sender();
+}
+inline const std::string& MessageCommunication::_internal_sender() const {
+  return sender_.Get();
+}
+inline void MessageCommunication::_internal_set_sender(const std::string& value) {
+  _has_bits_[0] |= 0x00000004u;
+  sender_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void MessageCommunication::set_sender(std::string&& value) {
+  _has_bits_[0] |= 0x00000004u;
+  sender_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:chat.MessageCommunication.sender)
+}
+inline void MessageCommunication::set_sender(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000004u;
+  sender_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:chat.MessageCommunication.sender)
+}
+inline void MessageCommunication::set_sender(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000004u;
+  sender_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:chat.MessageCommunication.sender)
+}
+inline std::string* MessageCommunication::_internal_mutable_sender() {
+  _has_bits_[0] |= 0x00000004u;
+  return sender_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* MessageCommunication::release_sender() {
+  // @@protoc_insertion_point(field_release:chat.MessageCommunication.sender)
+  if (!_internal_has_sender()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000004u;
+  return sender_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void MessageCommunication::set_allocated_sender(std::string* sender) {
+  if (sender != nullptr) {
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  sender_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), sender,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:chat.MessageCommunication.sender)
+}
+
+// -------------------------------------------------------------------
+
 // ClientPetition
 
 // int32 option = 1;
 inline bool ClientPetition::_internal_has_option() const {
-  bool value = (_has_bits_[0] & 0x00000020u) != 0;
+  bool value = (_has_bits_[0] & 0x00000010u) != 0;
   return value;
 }
 inline bool ClientPetition::has_option() const {
@@ -549,7 +2483,7 @@ inline bool ClientPetition::has_option() const {
 }
 inline void ClientPetition::clear_option() {
   option_ = 0;
-  _has_bits_[0] &= ~0x00000020u;
+  _has_bits_[0] &= ~0x00000010u;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 ClientPetition::_internal_option() const {
   return option_;
@@ -559,7 +2493,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int32 ClientPetition::option() const {
   return _internal_option();
 }
 inline void ClientPetition::_internal_set_option(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  _has_bits_[0] |= 0x00000020u;
+  _has_bits_[0] |= 0x00000010u;
   option_ = value;
 }
 inline void ClientPetition::set_option(::PROTOBUF_NAMESPACE_ID::int32 value) {
@@ -567,378 +2501,385 @@ inline void ClientPetition::set_option(::PROTOBUF_NAMESPACE_ID::int32 value) {
   // @@protoc_insertion_point(field_set:chat.ClientPetition.option)
 }
 
-// string username = 2;
-inline bool ClientPetition::_internal_has_username() const {
+// .chat.UserRegistration registration = 2;
+inline bool ClientPetition::_internal_has_registration() const {
   bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || registration_ != nullptr);
   return value;
 }
-inline bool ClientPetition::has_username() const {
-  return _internal_has_username();
+inline bool ClientPetition::has_registration() const {
+  return _internal_has_registration();
 }
-inline void ClientPetition::clear_username() {
-  username_.ClearToEmpty();
-  _has_bits_[0] &= ~0x00000001u;
-}
-inline const std::string& ClientPetition::username() const {
-  // @@protoc_insertion_point(field_get:chat.ClientPetition.username)
-  return _internal_username();
-}
-inline void ClientPetition::set_username(const std::string& value) {
-  _internal_set_username(value);
-  // @@protoc_insertion_point(field_set:chat.ClientPetition.username)
-}
-inline std::string* ClientPetition::mutable_username() {
-  // @@protoc_insertion_point(field_mutable:chat.ClientPetition.username)
-  return _internal_mutable_username();
-}
-inline const std::string& ClientPetition::_internal_username() const {
-  return username_.Get();
-}
-inline void ClientPetition::_internal_set_username(const std::string& value) {
-  _has_bits_[0] |= 0x00000001u;
-  username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
-}
-inline void ClientPetition::set_username(std::string&& value) {
-  _has_bits_[0] |= 0x00000001u;
-  username_.Set(
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:chat.ClientPetition.username)
-}
-inline void ClientPetition::set_username(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  _has_bits_[0] |= 0x00000001u;
-  username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:chat.ClientPetition.username)
-}
-inline void ClientPetition::set_username(const char* value,
-    size_t size) {
-  _has_bits_[0] |= 0x00000001u;
-  username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
-      reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:chat.ClientPetition.username)
-}
-inline std::string* ClientPetition::_internal_mutable_username() {
-  _has_bits_[0] |= 0x00000001u;
-  return username_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
-}
-inline std::string* ClientPetition::release_username() {
-  // @@protoc_insertion_point(field_release:chat.ClientPetition.username)
-  if (!_internal_has_username()) {
-    return nullptr;
+inline void ClientPetition::clear_registration() {
+  if (GetArena() == nullptr && registration_ != nullptr) {
+    delete registration_;
   }
+  registration_ = nullptr;
   _has_bits_[0] &= ~0x00000001u;
-  return username_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline void ClientPetition::set_allocated_username(std::string* username) {
-  if (username != nullptr) {
+inline const ::chat::UserRegistration& ClientPetition::_internal_registration() const {
+  const ::chat::UserRegistration* p = registration_;
+  return p != nullptr ? *p : reinterpret_cast<const ::chat::UserRegistration&>(
+      ::chat::_UserRegistration_default_instance_);
+}
+inline const ::chat::UserRegistration& ClientPetition::registration() const {
+  // @@protoc_insertion_point(field_get:chat.ClientPetition.registration)
+  return _internal_registration();
+}
+inline void ClientPetition::unsafe_arena_set_allocated_registration(
+    ::chat::UserRegistration* registration) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(registration_);
+  }
+  registration_ = registration;
+  if (registration) {
     _has_bits_[0] |= 0x00000001u;
   } else {
     _has_bits_[0] &= ~0x00000001u;
   }
-  username_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), username,
-      GetArena());
-  // @@protoc_insertion_point(field_set_allocated:chat.ClientPetition.username)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:chat.ClientPetition.registration)
+}
+inline ::chat::UserRegistration* ClientPetition::release_registration() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::chat::UserRegistration* temp = registration_;
+  registration_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::chat::UserRegistration* ClientPetition::unsafe_arena_release_registration() {
+  // @@protoc_insertion_point(field_release:chat.ClientPetition.registration)
+  _has_bits_[0] &= ~0x00000001u;
+  ::chat::UserRegistration* temp = registration_;
+  registration_ = nullptr;
+  return temp;
+}
+inline ::chat::UserRegistration* ClientPetition::_internal_mutable_registration() {
+  _has_bits_[0] |= 0x00000001u;
+  if (registration_ == nullptr) {
+    auto* p = CreateMaybeMessage<::chat::UserRegistration>(GetArena());
+    registration_ = p;
+  }
+  return registration_;
+}
+inline ::chat::UserRegistration* ClientPetition::mutable_registration() {
+  // @@protoc_insertion_point(field_mutable:chat.ClientPetition.registration)
+  return _internal_mutable_registration();
+}
+inline void ClientPetition::set_allocated_registration(::chat::UserRegistration* registration) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete registration_;
+  }
+  if (registration) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(registration);
+    if (message_arena != submessage_arena) {
+      registration = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, registration, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  registration_ = registration;
+  // @@protoc_insertion_point(field_set_allocated:chat.ClientPetition.registration)
 }
 
-// string ip = 3;
-inline bool ClientPetition::_internal_has_ip() const {
+// .chat.UserRequest users = 3;
+inline bool ClientPetition::_internal_has_users() const {
   bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || users_ != nullptr);
   return value;
 }
-inline bool ClientPetition::has_ip() const {
-  return _internal_has_ip();
+inline bool ClientPetition::has_users() const {
+  return _internal_has_users();
 }
-inline void ClientPetition::clear_ip() {
-  ip_.ClearToEmpty();
-  _has_bits_[0] &= ~0x00000002u;
-}
-inline const std::string& ClientPetition::ip() const {
-  // @@protoc_insertion_point(field_get:chat.ClientPetition.ip)
-  return _internal_ip();
-}
-inline void ClientPetition::set_ip(const std::string& value) {
-  _internal_set_ip(value);
-  // @@protoc_insertion_point(field_set:chat.ClientPetition.ip)
-}
-inline std::string* ClientPetition::mutable_ip() {
-  // @@protoc_insertion_point(field_mutable:chat.ClientPetition.ip)
-  return _internal_mutable_ip();
-}
-inline const std::string& ClientPetition::_internal_ip() const {
-  return ip_.Get();
-}
-inline void ClientPetition::_internal_set_ip(const std::string& value) {
-  _has_bits_[0] |= 0x00000002u;
-  ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
-}
-inline void ClientPetition::set_ip(std::string&& value) {
-  _has_bits_[0] |= 0x00000002u;
-  ip_.Set(
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:chat.ClientPetition.ip)
-}
-inline void ClientPetition::set_ip(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  _has_bits_[0] |= 0x00000002u;
-  ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:chat.ClientPetition.ip)
-}
-inline void ClientPetition::set_ip(const char* value,
-    size_t size) {
-  _has_bits_[0] |= 0x00000002u;
-  ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
-      reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:chat.ClientPetition.ip)
-}
-inline std::string* ClientPetition::_internal_mutable_ip() {
-  _has_bits_[0] |= 0x00000002u;
-  return ip_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
-}
-inline std::string* ClientPetition::release_ip() {
-  // @@protoc_insertion_point(field_release:chat.ClientPetition.ip)
-  if (!_internal_has_ip()) {
-    return nullptr;
+inline void ClientPetition::clear_users() {
+  if (GetArena() == nullptr && users_ != nullptr) {
+    delete users_;
   }
+  users_ = nullptr;
   _has_bits_[0] &= ~0x00000002u;
-  return ip_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline void ClientPetition::set_allocated_ip(std::string* ip) {
-  if (ip != nullptr) {
+inline const ::chat::UserRequest& ClientPetition::_internal_users() const {
+  const ::chat::UserRequest* p = users_;
+  return p != nullptr ? *p : reinterpret_cast<const ::chat::UserRequest&>(
+      ::chat::_UserRequest_default_instance_);
+}
+inline const ::chat::UserRequest& ClientPetition::users() const {
+  // @@protoc_insertion_point(field_get:chat.ClientPetition.users)
+  return _internal_users();
+}
+inline void ClientPetition::unsafe_arena_set_allocated_users(
+    ::chat::UserRequest* users) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(users_);
+  }
+  users_ = users;
+  if (users) {
     _has_bits_[0] |= 0x00000002u;
   } else {
     _has_bits_[0] &= ~0x00000002u;
   }
-  ip_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ip,
-      GetArena());
-  // @@protoc_insertion_point(field_set_allocated:chat.ClientPetition.ip)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:chat.ClientPetition.users)
+}
+inline ::chat::UserRequest* ClientPetition::release_users() {
+  _has_bits_[0] &= ~0x00000002u;
+  ::chat::UserRequest* temp = users_;
+  users_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::chat::UserRequest* ClientPetition::unsafe_arena_release_users() {
+  // @@protoc_insertion_point(field_release:chat.ClientPetition.users)
+  _has_bits_[0] &= ~0x00000002u;
+  ::chat::UserRequest* temp = users_;
+  users_ = nullptr;
+  return temp;
+}
+inline ::chat::UserRequest* ClientPetition::_internal_mutable_users() {
+  _has_bits_[0] |= 0x00000002u;
+  if (users_ == nullptr) {
+    auto* p = CreateMaybeMessage<::chat::UserRequest>(GetArena());
+    users_ = p;
+  }
+  return users_;
+}
+inline ::chat::UserRequest* ClientPetition::mutable_users() {
+  // @@protoc_insertion_point(field_mutable:chat.ClientPetition.users)
+  return _internal_mutable_users();
+}
+inline void ClientPetition::set_allocated_users(::chat::UserRequest* users) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete users_;
+  }
+  if (users) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(users);
+    if (message_arena != submessage_arena) {
+      users = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, users, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  users_ = users;
+  // @@protoc_insertion_point(field_set_allocated:chat.ClientPetition.users)
 }
 
-// string message = 6;
-inline bool ClientPetition::_internal_has_message() const {
+// .chat.ChangeStatus change = 4;
+inline bool ClientPetition::_internal_has_change() const {
   bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  PROTOBUF_ASSUME(!value || change_ != nullptr);
   return value;
 }
-inline bool ClientPetition::has_message() const {
-  return _internal_has_message();
+inline bool ClientPetition::has_change() const {
+  return _internal_has_change();
 }
-inline void ClientPetition::clear_message() {
-  message_.ClearToEmpty();
-  _has_bits_[0] &= ~0x00000004u;
-}
-inline const std::string& ClientPetition::message() const {
-  // @@protoc_insertion_point(field_get:chat.ClientPetition.message)
-  return _internal_message();
-}
-inline void ClientPetition::set_message(const std::string& value) {
-  _internal_set_message(value);
-  // @@protoc_insertion_point(field_set:chat.ClientPetition.message)
-}
-inline std::string* ClientPetition::mutable_message() {
-  // @@protoc_insertion_point(field_mutable:chat.ClientPetition.message)
-  return _internal_mutable_message();
-}
-inline const std::string& ClientPetition::_internal_message() const {
-  return message_.Get();
-}
-inline void ClientPetition::_internal_set_message(const std::string& value) {
-  _has_bits_[0] |= 0x00000004u;
-  message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
-}
-inline void ClientPetition::set_message(std::string&& value) {
-  _has_bits_[0] |= 0x00000004u;
-  message_.Set(
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:chat.ClientPetition.message)
-}
-inline void ClientPetition::set_message(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  _has_bits_[0] |= 0x00000004u;
-  message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:chat.ClientPetition.message)
-}
-inline void ClientPetition::set_message(const char* value,
-    size_t size) {
-  _has_bits_[0] |= 0x00000004u;
-  message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
-      reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:chat.ClientPetition.message)
-}
-inline std::string* ClientPetition::_internal_mutable_message() {
-  _has_bits_[0] |= 0x00000004u;
-  return message_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
-}
-inline std::string* ClientPetition::release_message() {
-  // @@protoc_insertion_point(field_release:chat.ClientPetition.message)
-  if (!_internal_has_message()) {
-    return nullptr;
+inline void ClientPetition::clear_change() {
+  if (GetArena() == nullptr && change_ != nullptr) {
+    delete change_;
   }
+  change_ = nullptr;
   _has_bits_[0] &= ~0x00000004u;
-  return message_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline void ClientPetition::set_allocated_message(std::string* message) {
-  if (message != nullptr) {
+inline const ::chat::ChangeStatus& ClientPetition::_internal_change() const {
+  const ::chat::ChangeStatus* p = change_;
+  return p != nullptr ? *p : reinterpret_cast<const ::chat::ChangeStatus&>(
+      ::chat::_ChangeStatus_default_instance_);
+}
+inline const ::chat::ChangeStatus& ClientPetition::change() const {
+  // @@protoc_insertion_point(field_get:chat.ClientPetition.change)
+  return _internal_change();
+}
+inline void ClientPetition::unsafe_arena_set_allocated_change(
+    ::chat::ChangeStatus* change) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(change_);
+  }
+  change_ = change;
+  if (change) {
     _has_bits_[0] |= 0x00000004u;
   } else {
     _has_bits_[0] &= ~0x00000004u;
   }
-  message_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), message,
-      GetArena());
-  // @@protoc_insertion_point(field_set_allocated:chat.ClientPetition.message)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:chat.ClientPetition.change)
+}
+inline ::chat::ChangeStatus* ClientPetition::release_change() {
+  _has_bits_[0] &= ~0x00000004u;
+  ::chat::ChangeStatus* temp = change_;
+  change_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::chat::ChangeStatus* ClientPetition::unsafe_arena_release_change() {
+  // @@protoc_insertion_point(field_release:chat.ClientPetition.change)
+  _has_bits_[0] &= ~0x00000004u;
+  ::chat::ChangeStatus* temp = change_;
+  change_ = nullptr;
+  return temp;
+}
+inline ::chat::ChangeStatus* ClientPetition::_internal_mutable_change() {
+  _has_bits_[0] |= 0x00000004u;
+  if (change_ == nullptr) {
+    auto* p = CreateMaybeMessage<::chat::ChangeStatus>(GetArena());
+    change_ = p;
+  }
+  return change_;
+}
+inline ::chat::ChangeStatus* ClientPetition::mutable_change() {
+  // @@protoc_insertion_point(field_mutable:chat.ClientPetition.change)
+  return _internal_mutable_change();
+}
+inline void ClientPetition::set_allocated_change(::chat::ChangeStatus* change) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete change_;
+  }
+  if (change) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(change);
+    if (message_arena != submessage_arena) {
+      change = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, change, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  change_ = change;
+  // @@protoc_insertion_point(field_set_allocated:chat.ClientPetition.change)
 }
 
-// string sent_to = 7;
-inline bool ClientPetition::_internal_has_sent_to() const {
+// .chat.MessageCommunication messageCommunication = 5;
+inline bool ClientPetition::_internal_has_messagecommunication() const {
   bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  PROTOBUF_ASSUME(!value || messagecommunication_ != nullptr);
   return value;
 }
-inline bool ClientPetition::has_sent_to() const {
-  return _internal_has_sent_to();
+inline bool ClientPetition::has_messagecommunication() const {
+  return _internal_has_messagecommunication();
 }
-inline void ClientPetition::clear_sent_to() {
-  sent_to_.ClearToEmpty();
-  _has_bits_[0] &= ~0x00000008u;
-}
-inline const std::string& ClientPetition::sent_to() const {
-  // @@protoc_insertion_point(field_get:chat.ClientPetition.sent_to)
-  return _internal_sent_to();
-}
-inline void ClientPetition::set_sent_to(const std::string& value) {
-  _internal_set_sent_to(value);
-  // @@protoc_insertion_point(field_set:chat.ClientPetition.sent_to)
-}
-inline std::string* ClientPetition::mutable_sent_to() {
-  // @@protoc_insertion_point(field_mutable:chat.ClientPetition.sent_to)
-  return _internal_mutable_sent_to();
-}
-inline const std::string& ClientPetition::_internal_sent_to() const {
-  return sent_to_.Get();
-}
-inline void ClientPetition::_internal_set_sent_to(const std::string& value) {
-  _has_bits_[0] |= 0x00000008u;
-  sent_to_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
-}
-inline void ClientPetition::set_sent_to(std::string&& value) {
-  _has_bits_[0] |= 0x00000008u;
-  sent_to_.Set(
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:chat.ClientPetition.sent_to)
-}
-inline void ClientPetition::set_sent_to(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  _has_bits_[0] |= 0x00000008u;
-  sent_to_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:chat.ClientPetition.sent_to)
-}
-inline void ClientPetition::set_sent_to(const char* value,
-    size_t size) {
-  _has_bits_[0] |= 0x00000008u;
-  sent_to_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
-      reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:chat.ClientPetition.sent_to)
-}
-inline std::string* ClientPetition::_internal_mutable_sent_to() {
-  _has_bits_[0] |= 0x00000008u;
-  return sent_to_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
-}
-inline std::string* ClientPetition::release_sent_to() {
-  // @@protoc_insertion_point(field_release:chat.ClientPetition.sent_to)
-  if (!_internal_has_sent_to()) {
-    return nullptr;
+inline void ClientPetition::clear_messagecommunication() {
+  if (GetArena() == nullptr && messagecommunication_ != nullptr) {
+    delete messagecommunication_;
   }
+  messagecommunication_ = nullptr;
   _has_bits_[0] &= ~0x00000008u;
-  return sent_to_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline void ClientPetition::set_allocated_sent_to(std::string* sent_to) {
-  if (sent_to != nullptr) {
+inline const ::chat::MessageCommunication& ClientPetition::_internal_messagecommunication() const {
+  const ::chat::MessageCommunication* p = messagecommunication_;
+  return p != nullptr ? *p : reinterpret_cast<const ::chat::MessageCommunication&>(
+      ::chat::_MessageCommunication_default_instance_);
+}
+inline const ::chat::MessageCommunication& ClientPetition::messagecommunication() const {
+  // @@protoc_insertion_point(field_get:chat.ClientPetition.messageCommunication)
+  return _internal_messagecommunication();
+}
+inline void ClientPetition::unsafe_arena_set_allocated_messagecommunication(
+    ::chat::MessageCommunication* messagecommunication) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(messagecommunication_);
+  }
+  messagecommunication_ = messagecommunication;
+  if (messagecommunication) {
     _has_bits_[0] |= 0x00000008u;
   } else {
     _has_bits_[0] &= ~0x00000008u;
   }
-  sent_to_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), sent_to,
-      GetArena());
-  // @@protoc_insertion_point(field_set_allocated:chat.ClientPetition.sent_to)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:chat.ClientPetition.messageCommunication)
 }
-
-// string new_status = 8;
-inline bool ClientPetition::_internal_has_new_status() const {
-  bool value = (_has_bits_[0] & 0x00000010u) != 0;
-  return value;
-}
-inline bool ClientPetition::has_new_status() const {
-  return _internal_has_new_status();
-}
-inline void ClientPetition::clear_new_status() {
-  new_status_.ClearToEmpty();
-  _has_bits_[0] &= ~0x00000010u;
-}
-inline const std::string& ClientPetition::new_status() const {
-  // @@protoc_insertion_point(field_get:chat.ClientPetition.new_status)
-  return _internal_new_status();
-}
-inline void ClientPetition::set_new_status(const std::string& value) {
-  _internal_set_new_status(value);
-  // @@protoc_insertion_point(field_set:chat.ClientPetition.new_status)
-}
-inline std::string* ClientPetition::mutable_new_status() {
-  // @@protoc_insertion_point(field_mutable:chat.ClientPetition.new_status)
-  return _internal_mutable_new_status();
-}
-inline const std::string& ClientPetition::_internal_new_status() const {
-  return new_status_.Get();
-}
-inline void ClientPetition::_internal_set_new_status(const std::string& value) {
-  _has_bits_[0] |= 0x00000010u;
-  new_status_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
-}
-inline void ClientPetition::set_new_status(std::string&& value) {
-  _has_bits_[0] |= 0x00000010u;
-  new_status_.Set(
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:chat.ClientPetition.new_status)
-}
-inline void ClientPetition::set_new_status(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  _has_bits_[0] |= 0x00000010u;
-  new_status_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:chat.ClientPetition.new_status)
-}
-inline void ClientPetition::set_new_status(const char* value,
-    size_t size) {
-  _has_bits_[0] |= 0x00000010u;
-  new_status_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
-      reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:chat.ClientPetition.new_status)
-}
-inline std::string* ClientPetition::_internal_mutable_new_status() {
-  _has_bits_[0] |= 0x00000010u;
-  return new_status_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
-}
-inline std::string* ClientPetition::release_new_status() {
-  // @@protoc_insertion_point(field_release:chat.ClientPetition.new_status)
-  if (!_internal_has_new_status()) {
-    return nullptr;
+inline ::chat::MessageCommunication* ClientPetition::release_messagecommunication() {
+  _has_bits_[0] &= ~0x00000008u;
+  ::chat::MessageCommunication* temp = messagecommunication_;
+  messagecommunication_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
-  _has_bits_[0] &= ~0x00000010u;
-  return new_status_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  return temp;
 }
-inline void ClientPetition::set_allocated_new_status(std::string* new_status) {
-  if (new_status != nullptr) {
-    _has_bits_[0] |= 0x00000010u;
+inline ::chat::MessageCommunication* ClientPetition::unsafe_arena_release_messagecommunication() {
+  // @@protoc_insertion_point(field_release:chat.ClientPetition.messageCommunication)
+  _has_bits_[0] &= ~0x00000008u;
+  ::chat::MessageCommunication* temp = messagecommunication_;
+  messagecommunication_ = nullptr;
+  return temp;
+}
+inline ::chat::MessageCommunication* ClientPetition::_internal_mutable_messagecommunication() {
+  _has_bits_[0] |= 0x00000008u;
+  if (messagecommunication_ == nullptr) {
+    auto* p = CreateMaybeMessage<::chat::MessageCommunication>(GetArena());
+    messagecommunication_ = p;
+  }
+  return messagecommunication_;
+}
+inline ::chat::MessageCommunication* ClientPetition::mutable_messagecommunication() {
+  // @@protoc_insertion_point(field_mutable:chat.ClientPetition.messageCommunication)
+  return _internal_mutable_messagecommunication();
+}
+inline void ClientPetition::set_allocated_messagecommunication(::chat::MessageCommunication* messagecommunication) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete messagecommunication_;
+  }
+  if (messagecommunication) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(messagecommunication);
+    if (message_arena != submessage_arena) {
+      messagecommunication = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, messagecommunication, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000008u;
   } else {
-    _has_bits_[0] &= ~0x00000010u;
+    _has_bits_[0] &= ~0x00000008u;
   }
-  new_status_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), new_status,
-      GetArena());
-  // @@protoc_insertion_point(field_set_allocated:chat.ClientPetition.new_status)
+  messagecommunication_ = messagecommunication;
+  // @@protoc_insertion_point(field_set_allocated:chat.ClientPetition.messageCommunication)
 }
 
 // -------------------------------------------------------------------
 
 // ServerResponse
 
-// int32 code = 1;
+// int32 option = 1;
+inline bool ServerResponse::_internal_has_option() const {
+  bool value = (_has_bits_[0] & 0x00000020u) != 0;
+  return value;
+}
+inline bool ServerResponse::has_option() const {
+  return _internal_has_option();
+}
+inline void ServerResponse::clear_option() {
+  option_ = 0;
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ServerResponse::_internal_option() const {
+  return option_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ServerResponse::option() const {
+  // @@protoc_insertion_point(field_get:chat.ServerResponse.option)
+  return _internal_option();
+}
+inline void ServerResponse::_internal_set_option(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000020u;
+  option_ = value;
+}
+inline void ServerResponse::set_option(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_option(value);
+  // @@protoc_insertion_point(field_set:chat.ServerResponse.option)
+}
+
+// int32 code = 2;
 inline bool ServerResponse::_internal_has_code() const {
-  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  bool value = (_has_bits_[0] & 0x00000040u) != 0;
   return value;
 }
 inline bool ServerResponse::has_code() const {
@@ -946,7 +2887,7 @@ inline bool ServerResponse::has_code() const {
 }
 inline void ServerResponse::clear_code() {
   code_ = 0;
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000040u;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 ServerResponse::_internal_code() const {
   return code_;
@@ -956,7 +2897,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int32 ServerResponse::code() const {
   return _internal_code();
 }
 inline void ServerResponse::_internal_set_code(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  _has_bits_[0] |= 0x00000008u;
+  _has_bits_[0] |= 0x00000040u;
   code_ = value;
 }
 inline void ServerResponse::set_code(::PROTOBUF_NAMESPACE_ID::int32 value) {
@@ -964,228 +2905,438 @@ inline void ServerResponse::set_code(::PROTOBUF_NAMESPACE_ID::int32 value) {
   // @@protoc_insertion_point(field_set:chat.ServerResponse.code)
 }
 
-// string server_message = 2;
-inline bool ServerResponse::_internal_has_server_message() const {
+// string serverMessage = 3;
+inline bool ServerResponse::_internal_has_servermessage() const {
   bool value = (_has_bits_[0] & 0x00000001u) != 0;
   return value;
 }
-inline bool ServerResponse::has_server_message() const {
-  return _internal_has_server_message();
+inline bool ServerResponse::has_servermessage() const {
+  return _internal_has_servermessage();
 }
-inline void ServerResponse::clear_server_message() {
-  server_message_.ClearToEmpty();
+inline void ServerResponse::clear_servermessage() {
+  servermessage_.ClearToEmpty();
   _has_bits_[0] &= ~0x00000001u;
 }
-inline const std::string& ServerResponse::server_message() const {
-  // @@protoc_insertion_point(field_get:chat.ServerResponse.server_message)
-  return _internal_server_message();
+inline const std::string& ServerResponse::servermessage() const {
+  // @@protoc_insertion_point(field_get:chat.ServerResponse.serverMessage)
+  return _internal_servermessage();
 }
-inline void ServerResponse::set_server_message(const std::string& value) {
-  _internal_set_server_message(value);
-  // @@protoc_insertion_point(field_set:chat.ServerResponse.server_message)
+inline void ServerResponse::set_servermessage(const std::string& value) {
+  _internal_set_servermessage(value);
+  // @@protoc_insertion_point(field_set:chat.ServerResponse.serverMessage)
 }
-inline std::string* ServerResponse::mutable_server_message() {
-  // @@protoc_insertion_point(field_mutable:chat.ServerResponse.server_message)
-  return _internal_mutable_server_message();
+inline std::string* ServerResponse::mutable_servermessage() {
+  // @@protoc_insertion_point(field_mutable:chat.ServerResponse.serverMessage)
+  return _internal_mutable_servermessage();
 }
-inline const std::string& ServerResponse::_internal_server_message() const {
-  return server_message_.Get();
+inline const std::string& ServerResponse::_internal_servermessage() const {
+  return servermessage_.Get();
 }
-inline void ServerResponse::_internal_set_server_message(const std::string& value) {
+inline void ServerResponse::_internal_set_servermessage(const std::string& value) {
   _has_bits_[0] |= 0x00000001u;
-  server_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+  servermessage_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
 }
-inline void ServerResponse::set_server_message(std::string&& value) {
+inline void ServerResponse::set_servermessage(std::string&& value) {
   _has_bits_[0] |= 0x00000001u;
-  server_message_.Set(
+  servermessage_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:chat.ServerResponse.server_message)
+  // @@protoc_insertion_point(field_set_rvalue:chat.ServerResponse.serverMessage)
 }
-inline void ServerResponse::set_server_message(const char* value) {
+inline void ServerResponse::set_servermessage(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   _has_bits_[0] |= 0x00000001u;
-  server_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:chat.ServerResponse.server_message)
+  servermessage_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:chat.ServerResponse.serverMessage)
 }
-inline void ServerResponse::set_server_message(const char* value,
+inline void ServerResponse::set_servermessage(const char* value,
     size_t size) {
   _has_bits_[0] |= 0x00000001u;
-  server_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+  servermessage_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:chat.ServerResponse.server_message)
+  // @@protoc_insertion_point(field_set_pointer:chat.ServerResponse.serverMessage)
 }
-inline std::string* ServerResponse::_internal_mutable_server_message() {
+inline std::string* ServerResponse::_internal_mutable_servermessage() {
   _has_bits_[0] |= 0x00000001u;
-  return server_message_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+  return servermessage_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
-inline std::string* ServerResponse::release_server_message() {
-  // @@protoc_insertion_point(field_release:chat.ServerResponse.server_message)
-  if (!_internal_has_server_message()) {
+inline std::string* ServerResponse::release_servermessage() {
+  // @@protoc_insertion_point(field_release:chat.ServerResponse.serverMessage)
+  if (!_internal_has_servermessage()) {
     return nullptr;
   }
   _has_bits_[0] &= ~0x00000001u;
-  return server_message_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  return servermessage_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline void ServerResponse::set_allocated_server_message(std::string* server_message) {
-  if (server_message != nullptr) {
+inline void ServerResponse::set_allocated_servermessage(std::string* servermessage) {
+  if (servermessage != nullptr) {
     _has_bits_[0] |= 0x00000001u;
   } else {
     _has_bits_[0] &= ~0x00000001u;
   }
-  server_message_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), server_message,
+  servermessage_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), servermessage,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:chat.ServerResponse.server_message)
+  // @@protoc_insertion_point(field_set_allocated:chat.ServerResponse.serverMessage)
 }
 
-// string username = 3;
-inline bool ServerResponse::_internal_has_username() const {
+// .chat.ConnectedUsersResponse connectedUsers = 4;
+inline bool ServerResponse::_internal_has_connectedusers() const {
   bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || connectedusers_ != nullptr);
   return value;
 }
-inline bool ServerResponse::has_username() const {
-  return _internal_has_username();
+inline bool ServerResponse::has_connectedusers() const {
+  return _internal_has_connectedusers();
 }
-inline void ServerResponse::clear_username() {
-  username_.ClearToEmpty();
-  _has_bits_[0] &= ~0x00000002u;
-}
-inline const std::string& ServerResponse::username() const {
-  // @@protoc_insertion_point(field_get:chat.ServerResponse.username)
-  return _internal_username();
-}
-inline void ServerResponse::set_username(const std::string& value) {
-  _internal_set_username(value);
-  // @@protoc_insertion_point(field_set:chat.ServerResponse.username)
-}
-inline std::string* ServerResponse::mutable_username() {
-  // @@protoc_insertion_point(field_mutable:chat.ServerResponse.username)
-  return _internal_mutable_username();
-}
-inline const std::string& ServerResponse::_internal_username() const {
-  return username_.Get();
-}
-inline void ServerResponse::_internal_set_username(const std::string& value) {
-  _has_bits_[0] |= 0x00000002u;
-  username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
-}
-inline void ServerResponse::set_username(std::string&& value) {
-  _has_bits_[0] |= 0x00000002u;
-  username_.Set(
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:chat.ServerResponse.username)
-}
-inline void ServerResponse::set_username(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  _has_bits_[0] |= 0x00000002u;
-  username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:chat.ServerResponse.username)
-}
-inline void ServerResponse::set_username(const char* value,
-    size_t size) {
-  _has_bits_[0] |= 0x00000002u;
-  username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
-      reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:chat.ServerResponse.username)
-}
-inline std::string* ServerResponse::_internal_mutable_username() {
-  _has_bits_[0] |= 0x00000002u;
-  return username_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
-}
-inline std::string* ServerResponse::release_username() {
-  // @@protoc_insertion_point(field_release:chat.ServerResponse.username)
-  if (!_internal_has_username()) {
-    return nullptr;
+inline void ServerResponse::clear_connectedusers() {
+  if (GetArena() == nullptr && connectedusers_ != nullptr) {
+    delete connectedusers_;
   }
+  connectedusers_ = nullptr;
   _has_bits_[0] &= ~0x00000002u;
-  return username_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline void ServerResponse::set_allocated_username(std::string* username) {
-  if (username != nullptr) {
+inline const ::chat::ConnectedUsersResponse& ServerResponse::_internal_connectedusers() const {
+  const ::chat::ConnectedUsersResponse* p = connectedusers_;
+  return p != nullptr ? *p : reinterpret_cast<const ::chat::ConnectedUsersResponse&>(
+      ::chat::_ConnectedUsersResponse_default_instance_);
+}
+inline const ::chat::ConnectedUsersResponse& ServerResponse::connectedusers() const {
+  // @@protoc_insertion_point(field_get:chat.ServerResponse.connectedUsers)
+  return _internal_connectedusers();
+}
+inline void ServerResponse::unsafe_arena_set_allocated_connectedusers(
+    ::chat::ConnectedUsersResponse* connectedusers) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(connectedusers_);
+  }
+  connectedusers_ = connectedusers;
+  if (connectedusers) {
     _has_bits_[0] |= 0x00000002u;
   } else {
     _has_bits_[0] &= ~0x00000002u;
   }
-  username_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), username,
-      GetArena());
-  // @@protoc_insertion_point(field_set_allocated:chat.ServerResponse.username)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:chat.ServerResponse.connectedUsers)
+}
+inline ::chat::ConnectedUsersResponse* ServerResponse::release_connectedusers() {
+  _has_bits_[0] &= ~0x00000002u;
+  ::chat::ConnectedUsersResponse* temp = connectedusers_;
+  connectedusers_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::chat::ConnectedUsersResponse* ServerResponse::unsafe_arena_release_connectedusers() {
+  // @@protoc_insertion_point(field_release:chat.ServerResponse.connectedUsers)
+  _has_bits_[0] &= ~0x00000002u;
+  ::chat::ConnectedUsersResponse* temp = connectedusers_;
+  connectedusers_ = nullptr;
+  return temp;
+}
+inline ::chat::ConnectedUsersResponse* ServerResponse::_internal_mutable_connectedusers() {
+  _has_bits_[0] |= 0x00000002u;
+  if (connectedusers_ == nullptr) {
+    auto* p = CreateMaybeMessage<::chat::ConnectedUsersResponse>(GetArena());
+    connectedusers_ = p;
+  }
+  return connectedusers_;
+}
+inline ::chat::ConnectedUsersResponse* ServerResponse::mutable_connectedusers() {
+  // @@protoc_insertion_point(field_mutable:chat.ServerResponse.connectedUsers)
+  return _internal_mutable_connectedusers();
+}
+inline void ServerResponse::set_allocated_connectedusers(::chat::ConnectedUsersResponse* connectedusers) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete connectedusers_;
+  }
+  if (connectedusers) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(connectedusers);
+    if (message_arena != submessage_arena) {
+      connectedusers = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, connectedusers, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  connectedusers_ = connectedusers;
+  // @@protoc_insertion_point(field_set_allocated:chat.ServerResponse.connectedUsers)
 }
 
-// string user_message = 4;
-inline bool ServerResponse::_internal_has_user_message() const {
+// .chat.MessageCommunication messageCommunication = 5;
+inline bool ServerResponse::_internal_has_messagecommunication() const {
   bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  PROTOBUF_ASSUME(!value || messagecommunication_ != nullptr);
   return value;
 }
-inline bool ServerResponse::has_user_message() const {
-  return _internal_has_user_message();
+inline bool ServerResponse::has_messagecommunication() const {
+  return _internal_has_messagecommunication();
 }
-inline void ServerResponse::clear_user_message() {
-  user_message_.ClearToEmpty();
-  _has_bits_[0] &= ~0x00000004u;
-}
-inline const std::string& ServerResponse::user_message() const {
-  // @@protoc_insertion_point(field_get:chat.ServerResponse.user_message)
-  return _internal_user_message();
-}
-inline void ServerResponse::set_user_message(const std::string& value) {
-  _internal_set_user_message(value);
-  // @@protoc_insertion_point(field_set:chat.ServerResponse.user_message)
-}
-inline std::string* ServerResponse::mutable_user_message() {
-  // @@protoc_insertion_point(field_mutable:chat.ServerResponse.user_message)
-  return _internal_mutable_user_message();
-}
-inline const std::string& ServerResponse::_internal_user_message() const {
-  return user_message_.Get();
-}
-inline void ServerResponse::_internal_set_user_message(const std::string& value) {
-  _has_bits_[0] |= 0x00000004u;
-  user_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
-}
-inline void ServerResponse::set_user_message(std::string&& value) {
-  _has_bits_[0] |= 0x00000004u;
-  user_message_.Set(
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:chat.ServerResponse.user_message)
-}
-inline void ServerResponse::set_user_message(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  _has_bits_[0] |= 0x00000004u;
-  user_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:chat.ServerResponse.user_message)
-}
-inline void ServerResponse::set_user_message(const char* value,
-    size_t size) {
-  _has_bits_[0] |= 0x00000004u;
-  user_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
-      reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:chat.ServerResponse.user_message)
-}
-inline std::string* ServerResponse::_internal_mutable_user_message() {
-  _has_bits_[0] |= 0x00000004u;
-  return user_message_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
-}
-inline std::string* ServerResponse::release_user_message() {
-  // @@protoc_insertion_point(field_release:chat.ServerResponse.user_message)
-  if (!_internal_has_user_message()) {
-    return nullptr;
+inline void ServerResponse::clear_messagecommunication() {
+  if (GetArena() == nullptr && messagecommunication_ != nullptr) {
+    delete messagecommunication_;
   }
+  messagecommunication_ = nullptr;
   _has_bits_[0] &= ~0x00000004u;
-  return user_message_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline void ServerResponse::set_allocated_user_message(std::string* user_message) {
-  if (user_message != nullptr) {
+inline const ::chat::MessageCommunication& ServerResponse::_internal_messagecommunication() const {
+  const ::chat::MessageCommunication* p = messagecommunication_;
+  return p != nullptr ? *p : reinterpret_cast<const ::chat::MessageCommunication&>(
+      ::chat::_MessageCommunication_default_instance_);
+}
+inline const ::chat::MessageCommunication& ServerResponse::messagecommunication() const {
+  // @@protoc_insertion_point(field_get:chat.ServerResponse.messageCommunication)
+  return _internal_messagecommunication();
+}
+inline void ServerResponse::unsafe_arena_set_allocated_messagecommunication(
+    ::chat::MessageCommunication* messagecommunication) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(messagecommunication_);
+  }
+  messagecommunication_ = messagecommunication;
+  if (messagecommunication) {
     _has_bits_[0] |= 0x00000004u;
   } else {
     _has_bits_[0] &= ~0x00000004u;
   }
-  user_message_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), user_message,
-      GetArena());
-  // @@protoc_insertion_point(field_set_allocated:chat.ServerResponse.user_message)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:chat.ServerResponse.messageCommunication)
+}
+inline ::chat::MessageCommunication* ServerResponse::release_messagecommunication() {
+  _has_bits_[0] &= ~0x00000004u;
+  ::chat::MessageCommunication* temp = messagecommunication_;
+  messagecommunication_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::chat::MessageCommunication* ServerResponse::unsafe_arena_release_messagecommunication() {
+  // @@protoc_insertion_point(field_release:chat.ServerResponse.messageCommunication)
+  _has_bits_[0] &= ~0x00000004u;
+  ::chat::MessageCommunication* temp = messagecommunication_;
+  messagecommunication_ = nullptr;
+  return temp;
+}
+inline ::chat::MessageCommunication* ServerResponse::_internal_mutable_messagecommunication() {
+  _has_bits_[0] |= 0x00000004u;
+  if (messagecommunication_ == nullptr) {
+    auto* p = CreateMaybeMessage<::chat::MessageCommunication>(GetArena());
+    messagecommunication_ = p;
+  }
+  return messagecommunication_;
+}
+inline ::chat::MessageCommunication* ServerResponse::mutable_messagecommunication() {
+  // @@protoc_insertion_point(field_mutable:chat.ServerResponse.messageCommunication)
+  return _internal_mutable_messagecommunication();
+}
+inline void ServerResponse::set_allocated_messagecommunication(::chat::MessageCommunication* messagecommunication) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete messagecommunication_;
+  }
+  if (messagecommunication) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(messagecommunication);
+    if (message_arena != submessage_arena) {
+      messagecommunication = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, messagecommunication, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  messagecommunication_ = messagecommunication;
+  // @@protoc_insertion_point(field_set_allocated:chat.ServerResponse.messageCommunication)
+}
+
+// .chat.UserInfo userInfoResponse = 6;
+inline bool ServerResponse::_internal_has_userinforesponse() const {
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  PROTOBUF_ASSUME(!value || userinforesponse_ != nullptr);
+  return value;
+}
+inline bool ServerResponse::has_userinforesponse() const {
+  return _internal_has_userinforesponse();
+}
+inline void ServerResponse::clear_userinforesponse() {
+  if (GetArena() == nullptr && userinforesponse_ != nullptr) {
+    delete userinforesponse_;
+  }
+  userinforesponse_ = nullptr;
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline const ::chat::UserInfo& ServerResponse::_internal_userinforesponse() const {
+  const ::chat::UserInfo* p = userinforesponse_;
+  return p != nullptr ? *p : reinterpret_cast<const ::chat::UserInfo&>(
+      ::chat::_UserInfo_default_instance_);
+}
+inline const ::chat::UserInfo& ServerResponse::userinforesponse() const {
+  // @@protoc_insertion_point(field_get:chat.ServerResponse.userInfoResponse)
+  return _internal_userinforesponse();
+}
+inline void ServerResponse::unsafe_arena_set_allocated_userinforesponse(
+    ::chat::UserInfo* userinforesponse) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(userinforesponse_);
+  }
+  userinforesponse_ = userinforesponse;
+  if (userinforesponse) {
+    _has_bits_[0] |= 0x00000008u;
+  } else {
+    _has_bits_[0] &= ~0x00000008u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:chat.ServerResponse.userInfoResponse)
+}
+inline ::chat::UserInfo* ServerResponse::release_userinforesponse() {
+  _has_bits_[0] &= ~0x00000008u;
+  ::chat::UserInfo* temp = userinforesponse_;
+  userinforesponse_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::chat::UserInfo* ServerResponse::unsafe_arena_release_userinforesponse() {
+  // @@protoc_insertion_point(field_release:chat.ServerResponse.userInfoResponse)
+  _has_bits_[0] &= ~0x00000008u;
+  ::chat::UserInfo* temp = userinforesponse_;
+  userinforesponse_ = nullptr;
+  return temp;
+}
+inline ::chat::UserInfo* ServerResponse::_internal_mutable_userinforesponse() {
+  _has_bits_[0] |= 0x00000008u;
+  if (userinforesponse_ == nullptr) {
+    auto* p = CreateMaybeMessage<::chat::UserInfo>(GetArena());
+    userinforesponse_ = p;
+  }
+  return userinforesponse_;
+}
+inline ::chat::UserInfo* ServerResponse::mutable_userinforesponse() {
+  // @@protoc_insertion_point(field_mutable:chat.ServerResponse.userInfoResponse)
+  return _internal_mutable_userinforesponse();
+}
+inline void ServerResponse::set_allocated_userinforesponse(::chat::UserInfo* userinforesponse) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete userinforesponse_;
+  }
+  if (userinforesponse) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(userinforesponse);
+    if (message_arena != submessage_arena) {
+      userinforesponse = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, userinforesponse, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000008u;
+  } else {
+    _has_bits_[0] &= ~0x00000008u;
+  }
+  userinforesponse_ = userinforesponse;
+  // @@protoc_insertion_point(field_set_allocated:chat.ServerResponse.userInfoResponse)
+}
+
+// .chat.ChangeStatus change = 7;
+inline bool ServerResponse::_internal_has_change() const {
+  bool value = (_has_bits_[0] & 0x00000010u) != 0;
+  PROTOBUF_ASSUME(!value || change_ != nullptr);
+  return value;
+}
+inline bool ServerResponse::has_change() const {
+  return _internal_has_change();
+}
+inline void ServerResponse::clear_change() {
+  if (GetArena() == nullptr && change_ != nullptr) {
+    delete change_;
+  }
+  change_ = nullptr;
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline const ::chat::ChangeStatus& ServerResponse::_internal_change() const {
+  const ::chat::ChangeStatus* p = change_;
+  return p != nullptr ? *p : reinterpret_cast<const ::chat::ChangeStatus&>(
+      ::chat::_ChangeStatus_default_instance_);
+}
+inline const ::chat::ChangeStatus& ServerResponse::change() const {
+  // @@protoc_insertion_point(field_get:chat.ServerResponse.change)
+  return _internal_change();
+}
+inline void ServerResponse::unsafe_arena_set_allocated_change(
+    ::chat::ChangeStatus* change) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(change_);
+  }
+  change_ = change;
+  if (change) {
+    _has_bits_[0] |= 0x00000010u;
+  } else {
+    _has_bits_[0] &= ~0x00000010u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:chat.ServerResponse.change)
+}
+inline ::chat::ChangeStatus* ServerResponse::release_change() {
+  _has_bits_[0] &= ~0x00000010u;
+  ::chat::ChangeStatus* temp = change_;
+  change_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::chat::ChangeStatus* ServerResponse::unsafe_arena_release_change() {
+  // @@protoc_insertion_point(field_release:chat.ServerResponse.change)
+  _has_bits_[0] &= ~0x00000010u;
+  ::chat::ChangeStatus* temp = change_;
+  change_ = nullptr;
+  return temp;
+}
+inline ::chat::ChangeStatus* ServerResponse::_internal_mutable_change() {
+  _has_bits_[0] |= 0x00000010u;
+  if (change_ == nullptr) {
+    auto* p = CreateMaybeMessage<::chat::ChangeStatus>(GetArena());
+    change_ = p;
+  }
+  return change_;
+}
+inline ::chat::ChangeStatus* ServerResponse::mutable_change() {
+  // @@protoc_insertion_point(field_mutable:chat.ServerResponse.change)
+  return _internal_mutable_change();
+}
+inline void ServerResponse::set_allocated_change(::chat::ChangeStatus* change) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete change_;
+  }
+  if (change) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(change);
+    if (message_arena != submessage_arena) {
+      change = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, change, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000010u;
+  } else {
+    _has_bits_[0] &= ~0x00000010u;
+  }
+  change_ = change;
+  // @@protoc_insertion_point(field_set_allocated:chat.ServerResponse.change)
 }
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 

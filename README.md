@@ -1,7 +1,7 @@
 # so-chat
 
 ## Server:
-    IP: 3.8.236.80
+    IP: 18.134.244.91
     PORT: 8000
 
 ## Ejecutar en server:
@@ -15,7 +15,7 @@
     g++-10 -o client client.cpp -lprotobuf
     g++-10 -o client client.cpp petition.pb.cc `pkg-config --cflags --libs protobuf`
     clang++ -std=c++11 -stdlib=libc++ -o client client.cpp petition.pb.cc -pthread -I/usr/local/include -L/usr/local/lib -lprotobuf -lpthread
-    ./client username 3.8.236.80 8000
+    ./client username 18.134.244.91 8000
 
 ## Para que es ayuda? debe responder el server o el cliente?
 
