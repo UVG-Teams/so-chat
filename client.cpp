@@ -36,8 +36,6 @@ int main(int argc, char *argv[]) {
     username = argv[1];
     host = gethostbyname(argv[2]);
     port = strtol(argv[3], NULL, 0);
-    char server_buffer[MAX_CLIENT_BUFFER];
-    char client_buffer[MAX_CLIENT_BUFFER];
     string my_ip;
     get_my_ip(&my_ip);
 
@@ -60,8 +58,12 @@ int main(int argc, char *argv[]) {
     connect_to_server(socket_fd, &server_address, host, port);
 
     do {
+        char server_buffer[MAX_CLIENT_BUFFER];
+        char client_buffer[MAX_CLIENT_BUFFER];
         chat::ClientPetition client_petition;
+        chat::ServerResponse server_response;
         string petition;
+        string response;
 
         cout << "\n1. Registro de usuario" << endl
              << "2. Info de usuarios conectados" << endl
@@ -111,9 +113,27 @@ int main(int argc, char *argv[]) {
             cout << "La conexion fallo, vuelva a intentar" << endl;
         }
 
-        // int len_read = read(socket_fd, server_buffer, MAX_CLIENT_BUFFER - 1);
-        // server_buffer[len_read] = '\0';
-        // cout << "Server:\n" << server_buffer << endl;
+        int len_read = read(socket_fd, &server_buffer, MAX_CLIENT_BUFFER - 1);
+        server_buffer[len_read] = '\0';
+        response = (string)server_buffer;
+        server_response.ParseFromString(response);
+        cout << "Server:\n"
+             << server_response.option() << " " << endl
+             << server_response.code() << endl;
+
+        if (server_response.has_servermessage()) {
+            cout << "\n" << server_response.servermessage() << endl;
+        }
+
+        if (server_response.has_connectedusers()) {
+            chat::ConnectedUsersResponse connected_users = server_response.connectedusers();
+
+            cout << "Connected Users: \n" << endl;
+            for (int i = 0; i < connected_users.connectedusers_size(); i++) {
+                chat::UserInfo user_info = connected_users.connectedusers(i);
+                cout << user_info.username() << " " << user_info.ip() << "\n" << endl;
+            }
+        }
 
     } while(choice != 5);
 }
