@@ -12,6 +12,9 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 
+// ProtoBuff
+#include "petition.pb.h"
+
 
 #define MAX_CLIENT_BUFFER 2048
 using namespace std;
@@ -25,7 +28,7 @@ struct Client {
 
 struct ChatroomsData {
     int socket_fd;
-    vector<int> client_sockets;
+    vector<Client> clients;
     fd_set read_fds;
     pthread_mutex_t *client_list_mutex;
 
@@ -54,6 +57,7 @@ void disconnect_client(ChatroomsData *chatrooms_data, int current_client_socket_
 
 
 int main(int argc, char *argv[]) {
+    GOOGLE_PROTOBUF_VERIFY_VERSION;
 
     struct sockaddr_in server_address;
     int socket_fd;
@@ -86,7 +90,7 @@ void bind_socket(struct sockaddr_in *server_address, int socket_fd, long port) {
     server_address -> sin_addr.s_addr = htonl(INADDR_ANY);
     server_address -> sin_port = htons(port);
 
-    if(bind(socket_fd, (struct sockaddr *)server_address, sizeof(struct sockaddr_in)) == -1) {
+    if(::bind(socket_fd, (struct sockaddr *)server_address, sizeof(struct sockaddr_in)) == -1) {
         cout <<  "Enlazado de los sockets fallido" << endl;
         exit(1);
     }
@@ -128,8 +132,8 @@ void *new_clients_handler(void *data) {
             bool is_defined_already = false;
 
             // Verificar que no exista el file descriptor en la lista de file descriptors leidos
-            for(int i = 0; i < chatrooms_data -> client_sockets.size(); i++) {
-                if(FD_ISSET(chatrooms_data -> client_sockets[i], &(chatrooms_data -> read_fds))) {
+            for(int i = 0; i < chatrooms_data -> clients.size(); i++) {
+                if(FD_ISSET(chatrooms_data -> clients[i].socket_fd, &(chatrooms_data -> read_fds))) {
                     is_defined_already = true;
                     break;
                 }
@@ -137,7 +141,9 @@ void *new_clients_handler(void *data) {
 
             // Si no estaba definido se agrega
             if (!is_defined_already) {
-                chatrooms_data -> client_sockets.push_back(new_client_socket_fd);
+                Client new_client;
+                new_client.socket_fd = new_client_socket_fd;
+                chatrooms_data -> clients.push_back(new_client);
             }
 
             // Agregar un nuevo socket fd a la lista de fds leidos
@@ -172,18 +178,49 @@ void *client_listener(void *client_data) {
 
     // queue *q = data->queue;
     char client_buffer[MAX_CLIENT_BUFFER];
+    chat::ClientPetition client_petition;
+    string petition;
 
     while(true) {
-        int len_read = read(current_client_socket_fd, client_buffer, MAX_CLIENT_BUFFER - 1);
+        int len_read = read(current_client_socket_fd, &client_buffer, MAX_CLIENT_BUFFER - 1);
         client_buffer[len_read] = '\0';
 
-        cout << "Cliente: " << client_buffer << endl;
+        petition = (string)client_buffer;
+        client_petition.ParseFromString(petition);
 
-        if(strcmp(client_buffer, "/exit") == 0) {
+        if(client_petition.option() == 7) {
             cout << "El cliente se ha desconectado, socket: " << current_client_socket_fd << endl;
             disconnect_client(chatrooms_data, current_client_socket_fd);
             return NULL;
-        } else if (strcmp(client_buffer, "/users") == 0) {
+        } else {
+            switch (client_petition.option()) {
+                case 1:
+                    for (int i = 0; i < chatrooms_data -> clients.size(); i++) {
+                        Client client_i = chatrooms_data -> clients[i];
+                        if (client_i.socket_fd == current_client_socket_fd) {
+                            client_i.username = client_petition.mutable_registration() -> username();
+                            client_i.ip = client_petition.mutable_registration() -> ip();
+                            chatrooms_data -> clients[i] = client_i;
+                        }
+                    }
+                    break;
+                case 2:
+                    for (int i = 0; i < chatrooms_data -> clients.size(); i++) {
+                        Client client_i = chatrooms_data -> clients[i];
+                        cout << "Client: " << client_i.username << client_i.ip << endl;
+                    }
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                default:
+                    break;
+            }
             write(current_client_socket_fd, "Usuarios: ", MAX_CLIENT_BUFFER - 1);
         }
 
@@ -224,13 +261,13 @@ void disconnect_client(ChatroomsData *chatrooms_data, int current_client_socket_
     // }
 
     // cout << "Este va a morir: " << current_client_socket_fd << endl;
-    vector<int>::iterator it = chatrooms_data -> client_sockets.begin();
+    vector<Client>::iterator it = chatrooms_data -> clients.begin();
 
-    while (it != chatrooms_data -> client_sockets.end()) {
+    while (it != chatrooms_data -> clients.end()) {
         // cout << "Pos actual: " << *it << endl;
-        if (*it == current_client_socket_fd) {
+        if ((*it).socket_fd == current_client_socket_fd) {
             // cout << "Este muere: " << current_client_socket_fd << endl;
-            it = chatrooms_data -> client_sockets.erase(it);
+            it = chatrooms_data -> clients.erase(it);
         } else {
             ++it;
         }

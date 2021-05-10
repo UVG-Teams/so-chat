@@ -2,37 +2,77 @@ syntax = "proto3";
 
 package chat;
 
+// REGISTRO DE USUARIOS
+message UserRegistration {
+    optional string username = 1;
+    optional string ip = 2;
+}
+
+// INFORMACION DEL USUARIO
+message UserInfo {
+    optional string username = 1;
+    optional string status = 2;
+    optional string ip = 3;
+}
+
+// SOLICITAR INFORMACION
+// user: (username || everyone)
+message UserRequest {
+    optional string user = 1;
+}
+
+// ENVIADO POR EL SERVIDOR
+message ConnectedUsersResponse {
+    repeated UserInfo connectedUsers = 1;
+}
+
+// CAMBIAR DE ESTADO
+// POSIBLES STATUS: activo, inactivo, ocupado
+message ChangeStatus {
+    optional string username = 1;
+    optional string status = 2;
+}
+
+// ENVIO DE MENSAJES (DIRECTOS || BROADCAST)
+// recipient: (username || everyone)
+// sender: username del remitente
+message MessageCommunication {
+    optional string message = 1;
+    optional string recipient = 2; 
+    optional string sender = 3; 
+}
+
+// option 1: Registro de Usuarios
+// option 2: Usuarios Conectados
+// option 3: Cambio de Estado
+// option 4: Mensajes
+// option 5: Informacion de un usuario en particular
+// PARA TODOS LOS USUARIOS CONECTADOS MANDAR UN UserRequest con everyone
+// PARA INFO DE UN USUARIO MANDAR UN UserRequest con el username
 message ClientPetition {
     optional int32 option = 1;
-
-    // ##### Registro #####
-    optional string username = 2;
-    optional string ip = 3;
-
-    // ##### Usuarios conectados #####
-    // optional string username = 4;   // (username || everyone)
-
-    // ##### Chat #####
-    // optional string username = 5;
-    optional string message = 6;
-    optional string sent_to = 7;    // (username || broadcast)
-
-    // ##### Cambiar estado #####
-    optional string new_status = 8;
-    // optional string username = 9;   // ????????
+    optional UserRegistration registration = 2;
+    optional UserRequest users = 3;
+    optional ChangeStatus change = 4;
+    optional MessageCommunication messageCommunication = 5;
 }
 
+// option 1: Registro de Usuarios
+// option 2: Usuarios Conectados
+// option 3: Cambio de Estado
+// option 4: Mensajes
+// option 5: Informacion de un usuario en particular
+// codigo 200: Exito
+// codigo 500: Fallido
+// EN RESPUESTA A UNA SOLICITUD DEL CLIENTE POR EJEMPLO: REGISTRO DE USUARIOS
+// UNICAMENTE RETORNA OPCION, CODIGO Y MENSAJE DEL SERVIDOR
+// PARA SABER SI LA SOLICITUD FUE EXITOSA O FALLO EL SERVIDOR
 message ServerResponse {
-    optional int32 code = 1;
-    optional string server_message = 2;
-
-    // ##### Mensaje de un usuario #####
-    optional string username = 3;
-    optional string user_message = 4;
+    optional int32 option = 1;
+    optional int32 code = 2;
+    optional string serverMessage = 3;
+    optional ConnectedUsersResponse connectedUsers = 4;
+    optional MessageCommunication messageCommunication = 5;
+    optional UserInfo userInfoResponse = 6;
+    optional ChangeStatus change = 7;
 }
-
-// if ClientMessage.option == 1:
-//     ClientMessage.username
-//     ClientMessage.ip
-// if ClientMessage.option == 2:
-//     ClientMessage.username
