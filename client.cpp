@@ -157,6 +157,10 @@ int main(int argc, char *argv[]) {
             cout << "\n" << server_response.servermessage() << endl;
         }
 
+        if (server_response.code() == 500) {
+            exit(1);
+        }
+
         if (server_response.has_connectedusers()) {
             chat::ConnectedUsersResponse connected_users = server_response.connectedusers();
 

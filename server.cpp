@@ -193,20 +193,38 @@ void *client_listener(void *client_data) {
             server_response.set_option(client_petition.option());
 
             switch (client_petition.option()) {
-                case 1:
-                    for (int i = 0; i < chatrooms_data -> clients.size(); i++) {
-                        Client client_i = chatrooms_data -> clients[i];
-                        if (client_i.socket_fd == current_client_socket_fd) {
-                            client_i.username = client_petition.mutable_registration() -> username();
-                            client_i.ip = client_petition.mutable_registration() -> ip();
-                            client_i.status = "Activo";
-
-                            // Registration completed
-                            chatrooms_data -> clients[i] = client_i;
+                case 1: {
+                    vector<Client>::iterator it = chatrooms_data -> clients.begin();
+                    while (it != chatrooms_data -> clients.end()) {
+                        if ((*it).username == client_petition.mutable_registration() -> username()) {
+                            it = chatrooms_data -> clients.erase(it);
+                            server_response.set_code(500);
+                            server_response.set_servermessage("Ese username ya esta registrado");
+                        } else {
+                            ++it;
                         }
                     }
-                    server_response.set_code(200);
+
+                    if (server_response.code() != 500) {
+                        for (int i = 0; i < chatrooms_data -> clients.size(); i++) {
+                            Client client_i = chatrooms_data -> clients[i];
+                            if (client_i.socket_fd == current_client_socket_fd) {
+                                client_i.username = client_petition.mutable_registration() -> username();
+                                client_i.ip = client_petition.mutable_registration() -> ip();
+                                client_i.status = "Activo";
+
+                                // Registration completed
+                                chatrooms_data -> clients[i] = client_i;
+                                server_response.set_code(200);
+                            }
+                        }
+
+                        cout << "Size: " << chatrooms_data -> clients.size() << endl;
+                    }
+
+                    cout << "Size 2: " << chatrooms_data -> clients.size() << endl;
                     break;
+                }
                 case 2: {
                     chat::ConnectedUsersResponse* connected_users = server_response.mutable_connectedusers();
                     for (int i = 0; i < chatrooms_data -> clients.size(); ++i) {
