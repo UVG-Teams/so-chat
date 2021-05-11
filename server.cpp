@@ -24,6 +24,7 @@ struct Client {
     int socket_fd;
     string username;
     string ip;
+    string status;
 };
 
 struct ChatroomsData {
@@ -133,7 +134,7 @@ void *new_clients_handler(void *data) {
 
             // Verificar que no exista el file descriptor en la lista de file descriptors leidos
             for(int i = 0; i < chatrooms_data -> clients.size(); i++) {
-                if(FD_ISSET(chatrooms_data -> clients[i].socket_fd, &(chatrooms_data -> read_fds))) {
+                if(FD_ISSET(chatrooms_data -> clients[i].socket_fd, &(chatrooms_data -> read_fds)) == 0) {
                     is_defined_already = true;
                     break;
                 }
@@ -153,13 +154,6 @@ void *new_clients_handler(void *data) {
             CurrentClientData client_data(new_client_socket_fd, chatrooms_data);
             pthread_t client_thread;
 
-            // cout << "Inicio: " << chatrooms_data -> client_sockets.size() << endl;
-            // for (vector<int>::iterator i = chatrooms_data -> client_sockets.begin(); i != chatrooms_data -> client_sockets.end(); i++) {
-            //     cout << "Puntero" << *i << endl;
-            //     cout << "&" << &i << endl;
-            //     cout << "valor?" << chatrooms_data -> client_sockets[*i] << endl;
-            // }
-
             if((pthread_create(&client_thread, NULL, client_listener, (void *)&client_data)) == 0) {
                 cout << "Escuchando a cliente por socket: " << new_client_socket_fd << endl;
             } else {
@@ -177,22 +171,31 @@ void *client_listener(void *client_data) {
     int current_client_socket_fd = current_client_data -> socket_fd;
 
     // queue *q = data->queue;
-    char client_buffer[MAX_CLIENT_BUFFER];
-    chat::ClientPetition client_petition;
-    string petition;
-
     while(true) {
+        char client_buffer[MAX_CLIENT_BUFFER];
+        char server_buffer[MAX_CLIENT_BUFFER];
+        chat::ClientPetition client_petition;
+        chat::ServerResponse server_response;
+        string petition;
+        string response;
         int len_read = read(current_client_socket_fd, &client_buffer, MAX_CLIENT_BUFFER - 1);
         client_buffer[len_read] = '\0';
 
         petition = (string)client_buffer;
         client_petition.ParseFromString(petition);
 
+        if (client_petition.option() == 0) {
+            continue;
+        }
+
         if(client_petition.option() == 7) {
             cout << "El cliente se ha desconectado, socket: " << current_client_socket_fd << endl;
             disconnect_client(chatrooms_data, current_client_socket_fd);
             return NULL;
         } else {
+
+            server_response.set_option(client_petition.option());
+
             switch (client_petition.option()) {
                 case 1:
                     for (int i = 0; i < chatrooms_data -> clients.size(); i++) {
@@ -200,16 +203,27 @@ void *client_listener(void *client_data) {
                         if (client_i.socket_fd == current_client_socket_fd) {
                             client_i.username = client_petition.mutable_registration() -> username();
                             client_i.ip = client_petition.mutable_registration() -> ip();
+                            client_i.status = "active";
+
+                            // Registration completed
                             chatrooms_data -> clients[i] = client_i;
                         }
                     }
+                    server_response.set_code(200);
                     break;
-                case 2:
-                    for (int i = 0; i < chatrooms_data -> clients.size(); i++) {
+                case 2: {
+                    chat::ConnectedUsersResponse* connected_users = server_response.mutable_connectedusers();
+                    for (int i = 0; i < chatrooms_data -> clients.size(); ++i) {
                         Client client_i = chatrooms_data -> clients[i];
-                        cout << "Client: " << client_i.username << client_i.ip << endl;
+                        chat::UserInfo* user_info = connected_users -> add_connectedusers();
+                        user_info -> set_username(client_i.username);
+                        user_info -> set_ip(client_i.ip);
+                        user_info -> set_status(client_i.status);
                     }
+
+                    server_response.set_code(200);
                     break;
+                }
                 case 3:
                     break;
                 case 4:
@@ -221,7 +235,10 @@ void *client_listener(void *client_data) {
                 default:
                     break;
             }
-            write(current_client_socket_fd, "Usuarios: ", MAX_CLIENT_BUFFER - 1);
+
+            server_response.SerializeToString(&response);
+            strcpy(server_buffer, response.c_str());
+            write(current_client_socket_fd, server_buffer, MAX_CLIENT_BUFFER - 1);
         }
 
         // If the client sent /exit\n, remove them from the client list and close their socket
