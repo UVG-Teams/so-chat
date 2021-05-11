@@ -262,9 +262,11 @@ void *client_listener(void *client_data) {
                     break;
             }
 
-            server_response.SerializeToString(&response);
-            strcpy(server_buffer, response.c_str());
-            write(current_client_socket_fd, server_buffer, MAX_CLIENT_BUFFER - 1);
+            if (client_petition.option() != 0) {
+                server_response.SerializeToString(&response);
+                strcpy(server_buffer, response.c_str());
+                write(current_client_socket_fd, server_buffer, MAX_CLIENT_BUFFER - 1);
+            }
         }
 
         // If the client sent /exit\n, remove them from the client list and close their socket

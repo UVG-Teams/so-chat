@@ -134,16 +134,21 @@ int main(int argc, char *argv[]) {
                 break;
         }
 
-        client_petition.SerializeToString(&petition);
-        strcpy(client_buffer, petition.c_str());
-        if(write(socket_fd, client_buffer, MAX_CLIENT_BUFFER - 1) == -1) {
-            cout << "La conexion fallo, vuelva a intentar" << endl;
-        }
 
-        int len_read = read(socket_fd, &server_buffer, MAX_CLIENT_BUFFER - 1);
-        server_buffer[len_read] = '\0';
-        response = (string)server_buffer;
-        server_response.ParseFromString(response);
+        if (client_petition.option() != 0) {
+            // Send petition
+            client_petition.SerializeToString(&petition);
+            strcpy(client_buffer, petition.c_str());
+            if(write(socket_fd, client_buffer, MAX_CLIENT_BUFFER - 1) == -1) {
+                cout << "La conexion fallo, vuelva a intentar" << endl;
+            }
+
+            // Read response
+            int len_read = read(socket_fd, &server_buffer, MAX_CLIENT_BUFFER - 1);
+            server_buffer[len_read] = '\0';
+            response = (string)server_buffer;
+            server_response.ParseFromString(response);
+        }
         cout << "Server:\n"
              << server_response.option() << " " << endl
              << server_response.code() << endl;
