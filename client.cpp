@@ -122,21 +122,21 @@ int main(int argc, char *argv[]) {
              << server_response.option() << " " << endl
              << server_response.code() << endl;
 
-        if (server_response.has_servermessage() != -1) {
+        if (server_response.has_servermessage()) {
             cout << "\n" << server_response.servermessage() << endl;
         }
 
-        if (server_response.has_connectedusers() != -1) {
+        if (server_response.has_connectedusers()) {
             chat::ConnectedUsersResponse connected_users = server_response.connectedusers();
 
             cout << "Connected Users: \n" << endl;
             for (int i = 0; i < connected_users.connectedusers_size(); i++) {
                 chat::UserInfo user_info = connected_users.connectedusers(i);
-                cout << user_info.username() << " " << user_info.ip() << "\n" << endl;
+                cout << user_info.username() << " " << user_info.ip() << " " << user_info.status() << "\n" << endl;
             }
         }
 
-    } while(choice != 5);
+    } while(choice != 7);
 }
 
 

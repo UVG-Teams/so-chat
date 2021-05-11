@@ -24,6 +24,7 @@ struct Client {
     int socket_fd;
     string username;
     string ip;
+    string status;
 };
 
 struct ChatroomsData {
@@ -153,13 +154,6 @@ void *new_clients_handler(void *data) {
             CurrentClientData client_data(new_client_socket_fd, chatrooms_data);
             pthread_t client_thread;
 
-            // cout << "Inicio: " << chatrooms_data -> client_sockets.size() << endl;
-            // for (vector<int>::iterator i = chatrooms_data -> client_sockets.begin(); i != chatrooms_data -> client_sockets.end(); i++) {
-            //     cout << "Puntero" << *i << endl;
-            //     cout << "&" << &i << endl;
-            //     cout << "valor?" << chatrooms_data -> client_sockets[*i] << endl;
-            // }
-
             if((pthread_create(&client_thread, NULL, client_listener, (void *)&client_data)) == 0) {
                 cout << "Escuchando a cliente por socket: " << new_client_socket_fd << endl;
             } else {
@@ -190,6 +184,10 @@ void *client_listener(void *client_data) {
         petition = (string)client_buffer;
         client_petition.ParseFromString(petition);
 
+        if (client_petition.option() == 0) {
+            continue;
+        }
+
         if(client_petition.option() == 7) {
             cout << "El cliente se ha desconectado, socket: " << current_client_socket_fd << endl;
             disconnect_client(chatrooms_data, current_client_socket_fd);
@@ -205,6 +203,7 @@ void *client_listener(void *client_data) {
                         if (client_i.socket_fd == current_client_socket_fd) {
                             client_i.username = client_petition.mutable_registration() -> username();
                             client_i.ip = client_petition.mutable_registration() -> ip();
+                            client_i.status = "active";
 
                             // Registration completed
                             chatrooms_data -> clients[i] = client_i;
@@ -216,10 +215,10 @@ void *client_listener(void *client_data) {
                     chat::ConnectedUsersResponse* connected_users = server_response.mutable_connectedusers();
                     for (int i = 0; i < chatrooms_data -> clients.size(); ++i) {
                         Client client_i = chatrooms_data -> clients[i];
-                        cout << "Client2: " << client_i.username << client_i.ip << endl;
                         chat::UserInfo* user_info = connected_users -> add_connectedusers();
                         user_info -> set_username(client_i.username);
                         user_info -> set_ip(client_i.ip);
+                        user_info -> set_status(client_i.status);
                     }
 
                     server_response.set_code(200);
