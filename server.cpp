@@ -133,7 +133,7 @@ void *new_clients_handler(void *data) {
 
             // Verificar que no exista el file descriptor en la lista de file descriptors leidos
             for(int i = 0; i < chatrooms_data -> clients.size(); i++) {
-                if(FD_ISSET(chatrooms_data -> clients[i].socket_fd, &(chatrooms_data -> read_fds))) {
+                if(FD_ISSET(chatrooms_data -> clients[i].socket_fd, &(chatrooms_data -> read_fds)) == 0) {
                     is_defined_already = true;
                     break;
                 }
@@ -212,22 +212,19 @@ void *client_listener(void *client_data) {
                     }
                     server_response.set_code(200);
                     break;
-                case 2:
-                    chat::ConnectedUsersResponse* connected_users;
-                    for (int i = 0; i < chatrooms_data -> clients.size(); i++) {
+                case 2: {
+                    chat::ConnectedUsersResponse* connected_users = server_response.mutable_connectedusers();
+                    for (int i = 0; i < chatrooms_data -> clients.size(); ++i) {
                         Client client_i = chatrooms_data -> clients[i];
-                        cout << "Client: " << client_i.username << client_i.ip << endl;
-                        // chat::UserInfo* user_info = connected_users -> add_connectedusers();
-                        chat::UserInfo user_info;
-                        // user_info -> set_username(client_i.username);
-                        // user_info -> set_ip(client_i.ip);
-                        // user_info.set_username(client_i.username);
-                        // user_info.set_ip(client_i.ip);
-                        // connected_users -> add_connectedusers(user_info);
+                        cout << "Client2: " << client_i.username << client_i.ip << endl;
+                        chat::UserInfo* user_info = connected_users -> add_connectedusers();
+                        user_info -> set_username(client_i.username);
+                        user_info -> set_ip(client_i.ip);
                     }
+
                     server_response.set_code(200);
-                    // server_response.set_allocated_connectedusers(connected_users);
                     break;
+                }
                 case 3:
                     break;
                 case 4:

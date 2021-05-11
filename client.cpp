@@ -31,6 +31,7 @@ static int socket_fd;
 void connect_to_server(int socket_fd, struct sockaddr_in *server_address, struct hostent *host, long port);
 void get_my_ip(string *my_ip);
 
+
 int main(int argc, char *argv[]) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
     username = argv[1];
@@ -121,11 +122,11 @@ int main(int argc, char *argv[]) {
              << server_response.option() << " " << endl
              << server_response.code() << endl;
 
-        if (server_response.has_servermessage()) {
+        if (server_response.has_servermessage() != -1) {
             cout << "\n" << server_response.servermessage() << endl;
         }
 
-        if (server_response.has_connectedusers()) {
+        if (server_response.has_connectedusers() != -1) {
             chat::ConnectedUsersResponse connected_users = server_response.connectedusers();
 
             cout << "Connected Users: \n" << endl;
