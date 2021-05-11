@@ -67,7 +67,7 @@ int main(int argc, char *argv[]) {
         string response;
 
         cout << "\n1. Registro de usuario" << endl
-             << "2. Info de usuarios conectados" << endl
+             << "2. Lista de usuarios conectados" << endl
              << "3. Cambiar estado" << endl
              << "4. Chat" << endl
              << "5. Info de usuario" << endl
@@ -85,12 +85,38 @@ int main(int argc, char *argv[]) {
                 break;
             case 2:
                 break;
-            case 3:
+            case 3: {
+                int status_choice;
+                cout << "\n1. Activo" << endl
+                    << "2. Inactivo" << endl
+                    << "3. Ocupado\n" << endl;
+                cout << "Ingresa una opción" << endl;
+                cin >> status_choice;
+
+                string status;
+                if (status_choice == 1) {
+                    status = "Activo";
+                } else if (status_choice == 2) {
+                    status = "Inactivo";
+                } else if (status_choice == 3) {
+                    status = "Ocupado";
+                } else {
+                    status = "Activo";
+                }
+
+                client_petition.mutable_change() -> set_username(username);
+                client_petition.mutable_change() -> set_status(status);
                 break;
+            }
             case 4:
                 break;
-            case 5:
+            case 5: {
+                string username_requested;
+                cout << "Ingresa un nombre de usuario (username || everyone): " << endl;
+                cin >> username_requested;
+                client_petition.mutable_users() -> set_user(username_requested);
                 break;
+            }
             case 6:
                 break;
             case 7:
@@ -108,16 +134,21 @@ int main(int argc, char *argv[]) {
                 break;
         }
 
-        client_petition.SerializeToString(&petition);
-        strcpy(client_buffer, petition.c_str());
-        if(write(socket_fd, client_buffer, MAX_CLIENT_BUFFER - 1) == -1) {
-            cout << "La conexion fallo, vuelva a intentar" << endl;
-        }
 
-        int len_read = read(socket_fd, &server_buffer, MAX_CLIENT_BUFFER - 1);
-        server_buffer[len_read] = '\0';
-        response = (string)server_buffer;
-        server_response.ParseFromString(response);
+        if (client_petition.option() != 0) {
+            // Send petition
+            client_petition.SerializeToString(&petition);
+            strcpy(client_buffer, petition.c_str());
+            if(write(socket_fd, client_buffer, MAX_CLIENT_BUFFER - 1) == -1) {
+                cout << "La conexion fallo, vuelva a intentar" << endl;
+            }
+
+            // Read response
+            int len_read = read(socket_fd, &server_buffer, MAX_CLIENT_BUFFER - 1);
+            server_buffer[len_read] = '\0';
+            response = (string)server_buffer;
+            server_response.ParseFromString(response);
+        }
         cout << "Server:\n"
              << server_response.option() << " " << endl
              << server_response.code() << endl;
@@ -134,6 +165,13 @@ int main(int argc, char *argv[]) {
                 chat::UserInfo user_info = connected_users.connectedusers(i);
                 cout << user_info.username() << " " << user_info.ip() << " " << user_info.status() << "\n" << endl;
             }
+        }
+
+        if (server_response.has_userinforesponse()) {
+            chat::UserInfo user_info = server_response.userinforesponse();
+
+            cout << "User Info: \n" << endl;
+            cout << user_info.username() << " " << user_info.ip() << " " << user_info.status() << "\n" << endl;
         }
 
     } while(choice != 7);
