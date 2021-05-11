@@ -51,7 +51,6 @@ struct CurrentClientData {
 
 
 void bind_socket(struct sockaddr_in *server_address, int socket_fd, long port);
-void startChatrooms(int socket_fd);
 void *new_clients_handler(void *data);
 void *client_listener(void *client_data);
 void disconnect_client(ChatroomsData *chatrooms_data, int current_client_socket_fd);
@@ -79,25 +78,6 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
-    startChatrooms(socket_fd);
-    close(socket_fd);
-}
-
-// Enlazar el socket
-void bind_socket(struct sockaddr_in *server_address, int socket_fd, long port) {
-    memset(server_address, 0, sizeof(*server_address));
-
-    server_address -> sin_family = AF_INET;
-    server_address -> sin_addr.s_addr = htonl(INADDR_ANY);
-    server_address -> sin_port = htons(port);
-
-    if(::bind(socket_fd, (struct sockaddr *)server_address, sizeof(struct sockaddr_in)) == -1) {
-        cout <<  "Enlazado de los sockets fallido" << endl;
-        exit(1);
-    }
-}
-
-void startChatrooms(int socket_fd) {
     ChatroomsData data(socket_fd, (pthread_mutex_t *) malloc(sizeof(pthread_mutex_t)));
     pthread_mutex_init(data.client_list_mutex, NULL);
 
@@ -115,6 +95,22 @@ void startChatrooms(int socket_fd) {
 
     pthread_mutex_destroy(data.client_list_mutex);
     free(data.client_list_mutex);
+
+    close(socket_fd);
+}
+
+// Enlazar el socket
+void bind_socket(struct sockaddr_in *server_address, int socket_fd, long port) {
+    memset(server_address, 0, sizeof(*server_address));
+
+    server_address -> sin_family = AF_INET;
+    server_address -> sin_addr.s_addr = htonl(INADDR_ANY);
+    server_address -> sin_port = htons(port);
+
+    if(::bind(socket_fd, (struct sockaddr *)server_address, sizeof(struct sockaddr_in)) == -1) {
+        cout <<  "Enlazado de los sockets fallido" << endl;
+        exit(1);
+    }
 }
 
 // Agrega el client_fd a la lista y crea un hilo de manejador de cliente
@@ -203,7 +199,7 @@ void *client_listener(void *client_data) {
                         if (client_i.socket_fd == current_client_socket_fd) {
                             client_i.username = client_petition.mutable_registration() -> username();
                             client_i.ip = client_petition.mutable_registration() -> ip();
-                            client_i.status = "active";
+                            client_i.status = "Activo";
 
                             // Registration completed
                             chatrooms_data -> clients[i] = client_i;
@@ -225,10 +221,40 @@ void *client_listener(void *client_data) {
                     break;
                 }
                 case 3:
+                    for (int i = 0; i < chatrooms_data -> clients.size(); ++i) {
+                        Client client_i = chatrooms_data -> clients[i];
+                        if (client_i.username == client_petition.mutable_change() -> username()) {
+                            client_i.status = client_petition.mutable_change() -> status();
+                            chatrooms_data -> clients[i] = client_i;
+                        }
+                    }
+                    server_response.set_code(200);
                     break;
                 case 4:
                     break;
                 case 5:
+                    if (client_petition.mutable_users() -> user() == "everyone") {
+                        chat::ConnectedUsersResponse* connected_users = server_response.mutable_connectedusers();
+                        for (int i = 0; i < chatrooms_data -> clients.size(); ++i) {
+                            Client client_i = chatrooms_data -> clients[i];
+                            chat::UserInfo* user_info = connected_users -> add_connectedusers();
+                            user_info -> set_username(client_i.username);
+                            user_info -> set_ip(client_i.ip);
+                            user_info -> set_status(client_i.status);
+                        }
+                    } else {
+                        chat::UserInfo* user_info = server_response.mutable_userinforesponse();
+                        for (int i = 0; i < chatrooms_data -> clients.size(); ++i) {
+                            Client client_i = chatrooms_data -> clients[i];
+                            if (client_i.username == client_petition.mutable_users() -> user()) {
+                                user_info -> set_username(client_i.username);
+                                user_info -> set_ip(client_i.ip);
+                                user_info -> set_status(client_i.status);
+                            }
+                        }
+                    }
+
+                    server_response.set_code(200);
                     break;
                 case 6:
                     break;
@@ -266,36 +292,15 @@ void *client_listener(void *client_data) {
 void disconnect_client(ChatroomsData *chatrooms_data, int current_client_socket_fd) {
     pthread_mutex_lock(chatrooms_data -> client_list_mutex);
 
-    // for(vector<int>::iterator i = chatrooms_data -> client_sockets.begin(); i != chatrooms_data -> client_sockets.end(); i++) {
-    //     cout << "Este va a morir: " << current_client_socket_fd << endl;
-    //     cout << "Pos actual: " << chatrooms_data -> client_sockets[*i] << endl;
-    //     if(chatrooms_data -> client_sockets[i] == current_client_socket_fd) {
-    //         chatrooms_data -> client_sockets.erase(i);
-    //         close(current_client_socket_fd);
-    //         cout << "Este muere: " << current_client_socket_fd << endl;
-    //         break;
-    //     }
-    // }
-
-    // cout << "Este va a morir: " << current_client_socket_fd << endl;
     vector<Client>::iterator it = chatrooms_data -> clients.begin();
 
     while (it != chatrooms_data -> clients.end()) {
-        // cout << "Pos actual: " << *it << endl;
         if ((*it).socket_fd == current_client_socket_fd) {
-            // cout << "Este muere: " << current_client_socket_fd << endl;
             it = chatrooms_data -> clients.erase(it);
         } else {
             ++it;
         }
     }
-
-    // cout << "Fin: " << chatrooms_data -> client_sockets.size() << endl;
-    // for (vector<int>::iterator i = chatrooms_data -> client_sockets.begin(); i != chatrooms_data -> client_sockets.end(); i++) {
-    //     cout << "Puntero" << *i << endl;
-    //     cout << "&" << &i << endl;
-    //     cout << "valor?" << chatrooms_data -> client_sockets[*i] << endl;
-    // }
 
     pthread_mutex_unlock(chatrooms_data -> client_list_mutex);
 }
