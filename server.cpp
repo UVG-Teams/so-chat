@@ -258,40 +258,37 @@ void *client_listener(void *client_data) {
                     // ==================================
                     // Chat
                     // ==================================
+                    char server_chat_buffer[MAX_CLIENT_BUFFER];
+                    chat::ServerResponse server_chat_response;
+                    string response_chat;
+                    server_chat_response.set_option(4);
+
                     string sender = client_petition.mutable_messagecommunication() -> sender();
                     string receiver = client_petition.mutable_messagecommunication() -> recipient();
                     string message = client_petition.mutable_messagecommunication() -> message();
 
                     if (client_petition.mutable_messagecommunication() -> recipient() == "everyone") {
-                        cout << "HOLA1" << endl;
                         for (int i = 0; i < chatrooms_data -> clients.size(); ++i) {
                             Client client_i = chatrooms_data -> clients[i];
-                            char server_chat_buffer[MAX_CLIENT_BUFFER];
-                            chat::ServerResponse server_chat_response;
-                            string response_chat;
 
                             server_chat_response.mutable_messagecommunication() -> set_sender(sender);
                             server_chat_response.mutable_messagecommunication() -> set_recipient(receiver);
                             server_chat_response.mutable_messagecommunication() -> set_message(message);
 
+                            server_chat_response.set_code(200);
                             server_chat_response.SerializeToString(&response_chat);
                             strcpy(server_chat_buffer, response_chat.c_str());
                             write(client_i.socket_fd, server_chat_buffer, MAX_CLIENT_BUFFER - 1);
                         }
                     } else {
-                        cout << "HOLA2" << endl;
                         for (int i = 0; i < chatrooms_data -> clients.size(); ++i) {
                             Client client_i = chatrooms_data -> clients[i];
                             if (client_i.username == client_petition.mutable_messagecommunication() -> recipient()) {
-                                cout << "HOLA3" << endl;
-                                char server_chat_buffer[MAX_CLIENT_BUFFER];
-                                chat::ServerResponse server_chat_response;
-                                string response_chat;
-
                                 server_chat_response.mutable_messagecommunication() -> set_sender(sender);
                                 server_chat_response.mutable_messagecommunication() -> set_recipient(receiver);
                                 server_chat_response.mutable_messagecommunication() -> set_message(message);
 
+                                server_chat_response.set_code(200);
                                 server_chat_response.SerializeToString(&response_chat);
                                 strcpy(server_chat_buffer, response_chat.c_str());
                                 write(client_i.socket_fd, server_chat_buffer, MAX_CLIENT_BUFFER - 1);

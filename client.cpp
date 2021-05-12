@@ -138,7 +138,6 @@ int main(int argc, char *argv[]) {
                 string message;
                 cout << "\nMensaje: ";
                 getline(cin >> ws, message);
-                cout << message;
                 client_petition.mutable_messagecommunication() -> set_message(message);
                 break;
             }
