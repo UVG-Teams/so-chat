@@ -170,7 +170,6 @@ int main(int argc, char *argv[]) {
                 break;
         }
 
-
         if (client_petition.option() != 0) {
             // ==================================
             // Send petition
@@ -180,15 +179,17 @@ int main(int argc, char *argv[]) {
             if(write(socket_fd, client_buffer, MAX_CLIENT_BUFFER - 1) == -1) {
                 cout << "\nLa conexion fallo, vuelva a intentar" << endl;
             }
+        }
 
-            // ==================================
-            // Read response
-            // ==================================
-            int len_read = read(socket_fd, &server_buffer, MAX_CLIENT_BUFFER - 1);
-            server_buffer[len_read] = '\0';
-            response = (string)server_buffer;
-            server_response.ParseFromString(response);
+        // ==================================
+        // Read response
+        // ==================================
+        int len_read = read(socket_fd, &server_buffer, MAX_CLIENT_BUFFER - 1);
+        server_buffer[len_read] = '\0';
+        response = (string)server_buffer;
+        server_response.ParseFromString(response);
 
+        if (server_response.option() != 0) {
             cout << "\nServer:\n"
                 << server_response.option() << " " << endl
                 << server_response.code() << endl;
@@ -225,6 +226,8 @@ int main(int argc, char *argv[]) {
                 cout << message_communication.sender() << ": " << message_communication.message() << "\n" << endl;
             }
         }
+        // ==================================
+        // ==================================
 
     } while(choice != 7);
 }
