@@ -67,14 +67,14 @@ int main(int argc, char *argv[]) {
     port = strtol(argv[1], NULL, 0);
 
     if(socket_fd == -1) {
-        cout << "No se pudo crear el socket" << endl;
+        cout << "\nNo se pudo crear el socket" << endl;
         exit(1);
     }
 
     bind_socket(&server_address, socket_fd, port);
 
     if(listen(socket_fd, 1) == -1) {
-        cout << "Union fallida" << endl;
+        cout << "\nUnion fallida" << endl;
         exit(1);
     }
 
@@ -85,7 +85,7 @@ int main(int argc, char *argv[]) {
     pthread_t connectionThread;
 
     if((pthread_create(&connectionThread, NULL, new_clients_handler, (void *)&data)) == 0) {
-        cout << "Server listo" << endl;
+        cout << "\nServer listo" << endl;
     }
 
     FD_ZERO(&(data.read_fds));
@@ -108,7 +108,7 @@ void bind_socket(struct sockaddr_in *server_address, int socket_fd, long port) {
     server_address -> sin_port = htons(port);
 
     if(::bind(socket_fd, (struct sockaddr *)server_address, sizeof(struct sockaddr_in)) == -1) {
-        cout <<  "Enlazado de los sockets fallido" << endl;
+        cout <<  "\nEnlazado de los sockets fallido" << endl;
         exit(1);
     }
 }
@@ -151,7 +151,7 @@ void *new_clients_handler(void *data) {
             pthread_t client_thread;
 
             if((pthread_create(&client_thread, NULL, client_listener, (void *)&client_data)) == 0) {
-                cout << "Escuchando a cliente por socket: " << new_client_socket_fd << endl;
+                cout << "\nEscuchando a cliente por socket: " << new_client_socket_fd << endl;
             } else {
                 close(new_client_socket_fd);
             }
@@ -185,7 +185,7 @@ void *client_listener(void *client_data) {
         }
 
         if(client_petition.option() == 7) {
-            cout << "El cliente se ha desconectado, socket: " << current_client_socket_fd << endl;
+            cout << "\nEl cliente se ha desconectado, socket: " << current_client_socket_fd << endl;
             disconnect_client(chatrooms_data, current_client_socket_fd);
             return NULL;
         } else {
@@ -193,21 +193,41 @@ void *client_listener(void *client_data) {
             server_response.set_option(client_petition.option());
 
             switch (client_petition.option()) {
-                case 1:
-                    for (int i = 0; i < chatrooms_data -> clients.size(); i++) {
-                        Client client_i = chatrooms_data -> clients[i];
-                        if (client_i.socket_fd == current_client_socket_fd) {
-                            client_i.username = client_petition.mutable_registration() -> username();
-                            client_i.ip = client_petition.mutable_registration() -> ip();
-                            client_i.status = "Activo";
-
-                            // Registration completed
-                            chatrooms_data -> clients[i] = client_i;
+                case 1: {
+                    // ==================================
+                    // Registro de usuario
+                    // ==================================
+                    vector<Client>::iterator it = chatrooms_data -> clients.begin();
+                    while (it != chatrooms_data -> clients.end()) {
+                        if ((*it).username == client_petition.mutable_registration() -> username()) {
+                            it = chatrooms_data -> clients.erase(it);
+                            server_response.set_code(500);
+                            server_response.set_servermessage("Ese username ya esta registrado");
+                        } else {
+                            ++it;
                         }
                     }
-                    server_response.set_code(200);
+
+                    if (server_response.code() != 500) {
+                        for (int i = 0; i < chatrooms_data -> clients.size(); i++) {
+                            Client client_i = chatrooms_data -> clients[i];
+                            if (client_i.socket_fd == current_client_socket_fd) {
+                                client_i.username = client_petition.mutable_registration() -> username();
+                                client_i.ip = client_petition.mutable_registration() -> ip();
+                                client_i.status = "Activo";
+
+                                // Registration completed
+                                chatrooms_data -> clients[i] = client_i;
+                                server_response.set_code(200);
+                            }
+                        }
+                    }
                     break;
+                }
                 case 2: {
+                    // ==================================
+                    // Lista de usuarios conectados
+                    // ==================================
                     chat::ConnectedUsersResponse* connected_users = server_response.mutable_connectedusers();
                     for (int i = 0; i < chatrooms_data -> clients.size(); ++i) {
                         Client client_i = chatrooms_data -> clients[i];
@@ -220,7 +240,10 @@ void *client_listener(void *client_data) {
                     server_response.set_code(200);
                     break;
                 }
-                case 3:
+                case 3: {
+                    // ==================================
+                    // Cambiar estado
+                    // ==================================
                     for (int i = 0; i < chatrooms_data -> clients.size(); ++i) {
                         Client client_i = chatrooms_data -> clients[i];
                         if (client_i.username == client_petition.mutable_change() -> username()) {
@@ -230,9 +253,56 @@ void *client_listener(void *client_data) {
                     }
                     server_response.set_code(200);
                     break;
-                case 4:
+                }
+                case 4: {
+                    // ==================================
+                    // Chat
+                    // ==================================
+                    char server_chat_buffer[MAX_CLIENT_BUFFER];
+                    chat::ServerResponse server_chat_response;
+                    string response_chat;
+                    server_chat_response.set_option(4);
+
+                    string sender = client_petition.mutable_messagecommunication() -> sender();
+                    string receiver = client_petition.mutable_messagecommunication() -> recipient();
+                    string message = client_petition.mutable_messagecommunication() -> message();
+
+                    if (client_petition.mutable_messagecommunication() -> recipient() == "everyone") {
+                        for (int i = 0; i < chatrooms_data -> clients.size(); ++i) {
+                            Client client_i = chatrooms_data -> clients[i];
+
+                            server_chat_response.mutable_messagecommunication() -> set_sender(sender);
+                            server_chat_response.mutable_messagecommunication() -> set_recipient(receiver);
+                            server_chat_response.mutable_messagecommunication() -> set_message(message);
+
+                            server_chat_response.set_code(200);
+                            server_chat_response.SerializeToString(&response_chat);
+                            strcpy(server_chat_buffer, response_chat.c_str());
+                            write(client_i.socket_fd, server_chat_buffer, MAX_CLIENT_BUFFER - 1);
+                        }
+                    } else {
+                        for (int i = 0; i < chatrooms_data -> clients.size(); ++i) {
+                            Client client_i = chatrooms_data -> clients[i];
+                            if (client_i.username == client_petition.mutable_messagecommunication() -> recipient()) {
+                                server_chat_response.mutable_messagecommunication() -> set_sender(sender);
+                                server_chat_response.mutable_messagecommunication() -> set_recipient(receiver);
+                                server_chat_response.mutable_messagecommunication() -> set_message(message);
+
+                                server_chat_response.set_code(200);
+                                server_chat_response.SerializeToString(&response_chat);
+                                strcpy(server_chat_buffer, response_chat.c_str());
+                                write(client_i.socket_fd, server_chat_buffer, MAX_CLIENT_BUFFER - 1);
+                            }
+                        }
+                    }
+
+                    server_response.set_code(200);
                     break;
-                case 5:
+                }
+                case 5: {
+                    // ==================================
+                    // Info de usuario
+                    // ==================================
                     if (client_petition.mutable_users() -> user() == "everyone") {
                         chat::ConnectedUsersResponse* connected_users = server_response.mutable_connectedusers();
                         for (int i = 0; i < chatrooms_data -> clients.size(); ++i) {
@@ -256,8 +326,13 @@ void *client_listener(void *client_data) {
 
                     server_response.set_code(200);
                     break;
-                case 6:
+                }
+                case 6: {
+                    // ==================================
+                    // Ayuda
+                    // ==================================
                     break;
+                }
                 default:
                     break;
             }
@@ -268,25 +343,6 @@ void *client_listener(void *client_data) {
                 write(current_client_socket_fd, server_buffer, MAX_CLIENT_BUFFER - 1);
             }
         }
-
-        // If the client sent /exit\n, remove them from the client list and close their socket
-        // if(strcmp(msgBuffer, "/exit\n") == 0) {
-        //     fprintf(stderr, "Client on socket %d has disconnected.\n", current_client_socket_fd);
-        //     removeClient(chatrooms_data, current_client_socket_fd);
-        //     return NULL;
-        // } else {
-        //     Wait for queue to not be full before pushing message
-        //     while(q->full) {
-        //         pthread_cond_wait(q->notFull, q->mutex);
-        //     }
-
-        //     // Obtain lock, push message to queue, unlock, set condition variable
-        //     pthread_mutex_lock(q->mutex);
-        //     fprintf(stderr, "Pushing message to queue: %s\n", msgBuffer);
-        //     queuePush(q, msgBuffer);
-        //     pthread_mutex_unlock(q->mutex);
-        //     pthread_cond_signal(q->notEmpty);
-        // }
     }
 }
 

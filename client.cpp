@@ -20,6 +20,14 @@
 #define MAX_CLIENT_BUFFER 2048
 using namespace std;
 
+struct ServerData {
+    int socket_fd;
+
+    ServerData(int sfd) {
+        socket_fd = sfd;
+    }
+};
+
 int choice;
 char *username;
 struct sockaddr_in server_address;
@@ -30,6 +38,7 @@ static int socket_fd;
 
 void connect_to_server(int socket_fd, struct sockaddr_in *server_address, struct hostent *host, long port);
 void get_my_ip(string *my_ip);
+void *server_reader(void *data);
 
 
 int main(int argc, char *argv[]) {
@@ -37,10 +46,11 @@ int main(int argc, char *argv[]) {
     username = argv[1];
     host = gethostbyname(argv[2]);
     port = strtol(argv[3], NULL, 0);
+    pthread_t tid;
     string my_ip;
     get_my_ip(&my_ip);
 
-    cout << "MY IP: " << my_ip << endl;
+    cout << "\nMY IP: " << my_ip << endl;
 
     if(host == NULL) {
         cout << "\nNo se pudo obtener el host" << stderr << endl;
@@ -54,17 +64,14 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
-    cout << "Socket: " << socket_fd << endl;
+    cout << "\nSocket: " << socket_fd << endl;
 
     connect_to_server(socket_fd, &server_address, host, port);
 
     do {
-        char server_buffer[MAX_CLIENT_BUFFER];
         char client_buffer[MAX_CLIENT_BUFFER];
         chat::ClientPetition client_petition;
-        chat::ServerResponse server_response;
         string petition;
-        string response;
 
         cout << "\n1. Registro de usuario" << endl
              << "2. Lista de usuarios conectados" << endl
@@ -80,12 +87,21 @@ int main(int argc, char *argv[]) {
 
         switch(choice) {
             case 1:
+                // ==================================
+                // Registro de usuario
+                // ==================================
                 client_petition.mutable_registration() -> set_username(username);
                 client_petition.mutable_registration() -> set_ip(my_ip);
                 break;
             case 2:
+                // ==================================
+                // Lista de usuarios conectados
+                // ==================================
                 break;
             case 3: {
+                // ==================================
+                // Cambiar estado
+                // ==================================
                 int status_choice;
                 cout << "\n1. Activo" << endl
                     << "2. Inactivo" << endl
@@ -108,24 +124,50 @@ int main(int argc, char *argv[]) {
                 client_petition.mutable_change() -> set_status(status);
                 break;
             }
-            case 4:
+            case 4: {
+                // ==================================
+                // Chat
+                // ==================================
+                client_petition.mutable_messagecommunication() -> set_sender(username);
+
+                string receiver;
+                cout << "\nDestinatario: " << endl;
+                cin >> receiver;
+                client_petition.mutable_messagecommunication() -> set_recipient(receiver);
+
+                string message;
+                cout << "\nMensaje: ";
+                getline(cin >> ws, message);
+                client_petition.mutable_messagecommunication() -> set_message(message);
                 break;
+            }
             case 5: {
+                // ==================================
+                // Info de usuario
+                // ==================================
                 string username_requested;
-                cout << "Ingresa un nombre de usuario (username || everyone): " << endl;
+
+                cout << "\nIngresa un nombre de usuario (username || everyone): " << endl;
                 cin >> username_requested;
+
                 client_petition.mutable_users() -> set_user(username_requested);
                 break;
             }
             case 6:
+                // ==================================
+                // Ayuda
+                // ==================================
                 break;
             case 7:
+                // ==================================
+                // Salir
+                // ==================================
                 client_petition.SerializeToString(&petition);
                 strcpy(client_buffer, petition.c_str());
                 if(write(socket_fd, client_buffer, MAX_CLIENT_BUFFER - 1) == -1) {
-                    cout << "La conexion fallo, vuelva a intentar" << endl;
+                    cout << "\nLa conexion fallo, vuelva a intentar" << endl;
                 } else {
-                    cout << "Adios :)" << endl;
+                    cout << "\nAdios :)" << endl;
                     close(socket_fd);
                     google::protobuf::ShutdownProtobufLibrary();
                     return 1;
@@ -134,45 +176,19 @@ int main(int argc, char *argv[]) {
                 break;
         }
 
-
         if (client_petition.option() != 0) {
+            // ==================================
             // Send petition
+            // ==================================
             client_petition.SerializeToString(&petition);
             strcpy(client_buffer, petition.c_str());
             if(write(socket_fd, client_buffer, MAX_CLIENT_BUFFER - 1) == -1) {
-                cout << "La conexion fallo, vuelva a intentar" << endl;
-            }
-
-            // Read response
-            int len_read = read(socket_fd, &server_buffer, MAX_CLIENT_BUFFER - 1);
-            server_buffer[len_read] = '\0';
-            response = (string)server_buffer;
-            server_response.ParseFromString(response);
-        }
-        cout << "Server:\n"
-             << server_response.option() << " " << endl
-             << server_response.code() << endl;
-
-        if (server_response.has_servermessage()) {
-            cout << "\n" << server_response.servermessage() << endl;
-        }
-
-        if (server_response.has_connectedusers()) {
-            chat::ConnectedUsersResponse connected_users = server_response.connectedusers();
-
-            cout << "Connected Users: \n" << endl;
-            for (int i = 0; i < connected_users.connectedusers_size(); i++) {
-                chat::UserInfo user_info = connected_users.connectedusers(i);
-                cout << user_info.username() << " " << user_info.ip() << " " << user_info.status() << "\n" << endl;
+                cout << "\nLa conexion fallo, vuelva a intentar" << endl;
             }
         }
 
-        if (server_response.has_userinforesponse()) {
-            chat::UserInfo user_info = server_response.userinforesponse();
-
-            cout << "User Info: \n" << endl;
-            cout << user_info.username() << " " << user_info.ip() << " " << user_info.status() << "\n" << endl;
-        }
+        ServerData server_data(socket_fd);
+        pthread_create(&tid, NULL, server_reader, (void *)&server_data);
 
     } while(choice != 7);
 }
@@ -192,7 +208,7 @@ void connect_to_server(int socket_fd, struct sockaddr_in *server_address, struct
 
     // Conectar el socket
     if(connect(socket_fd, (struct sockaddr *) server_address, sizeof(struct sockaddr)) < 0) {
-        cout << "No se ha podido conectar con el servidor" << endl;
+        cout << "\nNo se ha podido conectar con el servidor" << endl;
         exit(1);
     }
 }
@@ -205,7 +221,7 @@ void get_my_ip(string *my_ip) {
     int sock = socket(AF_INET, SOCK_DGRAM, 0);
 
     if(sock < 0) {
-        cout << "Socket error" << endl;
+        cout << "\nSocket error" << endl;
     }
 
     memset(&serv, 0, sizeof(serv));
@@ -215,7 +231,7 @@ void get_my_ip(string *my_ip) {
 
     int err = connect(sock, (const struct sockaddr*)&serv, sizeof(serv));
     if (err < 0) {
-        cout << "Error" << endl;
+        cout << "\nError" << endl;
     }
 
     struct sockaddr_in name;
@@ -227,9 +243,61 @@ void get_my_ip(string *my_ip) {
     if(p != NULL) {
         *my_ip = (string)buffer;
     } else {
-        cout << "Error" << endl;
+        cout << "\nError" << endl;
     }
 
     close(sock);
     return;
+}
+
+void *server_reader(void *data) {
+    ServerData *server_data = (ServerData *) data;
+    while (true) {
+        char server_buffer[MAX_CLIENT_BUFFER];
+        chat::ServerResponse server_response;
+        string response;
+
+        int len_read = read(server_data -> socket_fd, &server_buffer, MAX_CLIENT_BUFFER - 1);
+        server_buffer[len_read] = '\0';
+        response = (string)server_buffer;
+        server_response.ParseFromString(response);
+
+        if (server_response.option() != 0) {
+            cout << "\nServer:\n"
+                << server_response.option() << " " << endl
+                << server_response.code() << endl;
+
+            if (server_response.has_servermessage()) {
+                cout << "\n" << server_response.servermessage() << endl;
+            }
+
+            if (server_response.code() == 500) {
+                exit(1);
+            }
+
+            if (server_response.has_connectedusers()) {
+                chat::ConnectedUsersResponse connected_users = server_response.connectedusers();
+
+                cout << "\nConnected Users: \n" << endl;
+                for (int i = 0; i < connected_users.connectedusers_size(); i++) {
+                    chat::UserInfo user_info = connected_users.connectedusers(i);
+                    cout << user_info.username() << " " << user_info.ip() << " " << user_info.status() << "\n" << endl;
+                }
+            }
+
+            if (server_response.has_userinforesponse()) {
+                chat::UserInfo user_info = server_response.userinforesponse();
+
+                cout << "\nUser Info: \n" << endl;
+                cout << user_info.username() << " " << user_info.ip() << " " << user_info.status() << "\n" << endl;
+            }
+
+            if (server_response.has_messagecommunication()) {
+                chat::MessageCommunication message_communication = server_response.messagecommunication();
+
+                cout << "\nMessage: \n" << endl;
+                cout << message_communication.sender() << ": " << message_communication.message() << "\n" << endl;
+            }
+        }
+    }
 }
