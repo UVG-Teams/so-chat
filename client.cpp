@@ -73,10 +73,6 @@ int main(int argc, char *argv[]) {
         chat::ClientPetition client_petition;
         string petition;
 
-        ServerData server_data(socket_fd);
-
-        pthread_create(&tid, NULL, server_reader, (void *)&server_data);
-
         cout << "\n1. Registro de usuario" << endl
              << "2. Lista de usuarios conectados" << endl
              << "3. Cambiar estado" << endl
@@ -191,6 +187,9 @@ int main(int argc, char *argv[]) {
                 cout << "\nLa conexion fallo, vuelva a intentar" << endl;
             }
         }
+
+        ServerData server_data(socket_fd);
+        pthread_create(&tid, NULL, server_reader, (void *)&server_data);
 
     } while(choice != 7);
 }
