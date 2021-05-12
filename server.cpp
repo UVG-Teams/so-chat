@@ -263,6 +263,7 @@ void *client_listener(void *client_data) {
                     string message = client_petition.mutable_messagecommunication() -> message();
 
                     if (client_petition.mutable_messagecommunication() -> recipient() == "everyone") {
+                        cout << "HOLA1" << endl;
                         for (int i = 0; i < chatrooms_data -> clients.size(); ++i) {
                             Client client_i = chatrooms_data -> clients[i];
                             char server_chat_buffer[MAX_CLIENT_BUFFER];
@@ -278,9 +279,11 @@ void *client_listener(void *client_data) {
                             write(client_i.socket_fd, server_chat_buffer, MAX_CLIENT_BUFFER - 1);
                         }
                     } else {
+                        cout << "HOLA2" << endl;
                         for (int i = 0; i < chatrooms_data -> clients.size(); ++i) {
                             Client client_i = chatrooms_data -> clients[i];
                             if (client_i.username == client_petition.mutable_messagecommunication() -> recipient()) {
+                                cout << "HOLA3" << endl;
                                 char server_chat_buffer[MAX_CLIENT_BUFFER];
                                 chat::ServerResponse server_chat_response;
                                 string response_chat;

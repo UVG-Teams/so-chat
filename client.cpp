@@ -217,6 +217,13 @@ int main(int argc, char *argv[]) {
                 cout << "\nUser Info: \n" << endl;
                 cout << user_info.username() << " " << user_info.ip() << " " << user_info.status() << "\n" << endl;
             }
+
+            if (server_response.has_messagecommunication()) {
+                chat::MessageCommunication message_communication = server_response.messagecommunication();
+
+                cout << "\nMessage: \n" << endl;
+                cout << message_communication.sender() << ": " << message_communication.message() << "\n" << endl;
+            }
         }
 
     } while(choice != 7);
