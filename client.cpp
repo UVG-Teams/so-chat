@@ -20,6 +20,14 @@
 #define MAX_CLIENT_BUFFER 2048
 using namespace std;
 
+struct ServerData {
+    int socket_fd;
+
+    ServerData(int sfd) {
+        socket_fd = sfd;
+    }
+};
+
 int choice;
 char *username;
 struct sockaddr_in server_address;
@@ -30,6 +38,7 @@ static int socket_fd;
 
 void connect_to_server(int socket_fd, struct sockaddr_in *server_address, struct hostent *host, long port);
 void get_my_ip(string *my_ip);
+void *server_reader(void *data);
 
 
 int main(int argc, char *argv[]) {
@@ -37,6 +46,7 @@ int main(int argc, char *argv[]) {
     username = argv[1];
     host = gethostbyname(argv[2]);
     port = strtol(argv[3], NULL, 0);
+    pthread_t tid;
     string my_ip;
     get_my_ip(&my_ip);
 
@@ -59,12 +69,13 @@ int main(int argc, char *argv[]) {
     connect_to_server(socket_fd, &server_address, host, port);
 
     do {
-        char server_buffer[MAX_CLIENT_BUFFER];
         char client_buffer[MAX_CLIENT_BUFFER];
         chat::ClientPetition client_petition;
-        chat::ServerResponse server_response;
         string petition;
-        string response;
+
+        ServerData server_data(socket_fd);
+
+        pthread_create(&tid, NULL, server_reader, (void *)&server_data);
 
         cout << "\n1. Registro de usuario" << endl
              << "2. Lista de usuarios conectados" << endl
@@ -181,54 +192,6 @@ int main(int argc, char *argv[]) {
             }
         }
 
-        // ==================================
-        // Read response
-        // ==================================
-        int len_read = read(socket_fd, &server_buffer, MAX_CLIENT_BUFFER - 1);
-        server_buffer[len_read] = '\0';
-        response = (string)server_buffer;
-        server_response.ParseFromString(response);
-
-        if (server_response.option() != 0) {
-            cout << "\nServer:\n"
-                << server_response.option() << " " << endl
-                << server_response.code() << endl;
-
-            if (server_response.has_servermessage()) {
-                cout << "\n" << server_response.servermessage() << endl;
-            }
-
-            if (server_response.code() == 500) {
-                exit(1);
-            }
-
-            if (server_response.has_connectedusers()) {
-                chat::ConnectedUsersResponse connected_users = server_response.connectedusers();
-
-                cout << "\nConnected Users: \n" << endl;
-                for (int i = 0; i < connected_users.connectedusers_size(); i++) {
-                    chat::UserInfo user_info = connected_users.connectedusers(i);
-                    cout << user_info.username() << " " << user_info.ip() << " " << user_info.status() << "\n" << endl;
-                }
-            }
-
-            if (server_response.has_userinforesponse()) {
-                chat::UserInfo user_info = server_response.userinforesponse();
-
-                cout << "\nUser Info: \n" << endl;
-                cout << user_info.username() << " " << user_info.ip() << " " << user_info.status() << "\n" << endl;
-            }
-
-            if (server_response.has_messagecommunication()) {
-                chat::MessageCommunication message_communication = server_response.messagecommunication();
-
-                cout << "\nMessage: \n" << endl;
-                cout << message_communication.sender() << ": " << message_communication.message() << "\n" << endl;
-            }
-        }
-        // ==================================
-        // ==================================
-
     } while(choice != 7);
 }
 
@@ -287,4 +250,56 @@ void get_my_ip(string *my_ip) {
 
     close(sock);
     return;
+}
+
+void *server_reader(void *data) {
+    ServerData *server_data = (ServerData *) data;
+    while (true) {
+        char server_buffer[MAX_CLIENT_BUFFER];
+        chat::ServerResponse server_response;
+        string response;
+
+        int len_read = read(server_data -> socket_fd, &server_buffer, MAX_CLIENT_BUFFER - 1);
+        server_buffer[len_read] = '\0';
+        response = (string)server_buffer;
+        server_response.ParseFromString(response);
+
+        if (server_response.option() != 0) {
+            cout << "\nServer:\n"
+                << server_response.option() << " " << endl
+                << server_response.code() << endl;
+
+            if (server_response.has_servermessage()) {
+                cout << "\n" << server_response.servermessage() << endl;
+            }
+
+            if (server_response.code() == 500) {
+                exit(1);
+            }
+
+            if (server_response.has_connectedusers()) {
+                chat::ConnectedUsersResponse connected_users = server_response.connectedusers();
+
+                cout << "\nConnected Users: \n" << endl;
+                for (int i = 0; i < connected_users.connectedusers_size(); i++) {
+                    chat::UserInfo user_info = connected_users.connectedusers(i);
+                    cout << user_info.username() << " " << user_info.ip() << " " << user_info.status() << "\n" << endl;
+                }
+            }
+
+            if (server_response.has_userinforesponse()) {
+                chat::UserInfo user_info = server_response.userinforesponse();
+
+                cout << "\nUser Info: \n" << endl;
+                cout << user_info.username() << " " << user_info.ip() << " " << user_info.status() << "\n" << endl;
+            }
+
+            if (server_response.has_messagecommunication()) {
+                chat::MessageCommunication message_communication = server_response.messagecommunication();
+
+                cout << "\nMessage: \n" << endl;
+                cout << message_communication.sender() << ": " << message_communication.message() << "\n" << endl;
+            }
+        }
+    }
 }
