@@ -164,6 +164,7 @@ int main(int argc, char *argv[]) {
                 // Salir
                 // ==================================
                 interrupt_handler(-1);
+                exit(0);
             default:
                 break;
         }
