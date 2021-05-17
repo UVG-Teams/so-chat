@@ -187,6 +187,7 @@ void *client_listener(void *client_data) {
         if(client_petition.option() == 7) {
             cout << "\nEl cliente se ha desconectado, socket: " << current_client_socket_fd << endl;
             disconnect_client(chatrooms_data, current_client_socket_fd);
+            close(current_client_socket_fd);
             return NULL;
         } else {
 
@@ -197,18 +198,38 @@ void *client_listener(void *client_data) {
                     // ==================================
                     // Registro de usuario
                     // ==================================
+                    bool user_already_exists = false;
                     vector<Client>::iterator it = chatrooms_data -> clients.begin();
+
                     while (it != chatrooms_data -> clients.end()) {
                         if ((*it).username == client_petition.mutable_registration() -> username()) {
-                            it = chatrooms_data -> clients.erase(it);
                             server_response.set_code(500);
                             server_response.set_servermessage("Ese username ya esta registrado");
-                        } else {
-                            ++it;
+                            user_already_exists = true;
+                            break;
                         }
+
+                        if ((*it).ip == client_petition.mutable_registration() -> ip()) {
+                            server_response.set_code(500);
+                            server_response.set_servermessage("Esa IP ya esta registrado");
+                            user_already_exists = true;
+                            break;
+                        }
+
+                        ++it;
                     }
 
-                    if (server_response.code() != 500) {
+                    if (user_already_exists) {
+                        server_response.set_option(7);
+                        server_response.SerializeToString(&response);
+                        strcpy(server_buffer, response.c_str());
+                        write(current_client_socket_fd, server_buffer, MAX_CLIENT_BUFFER - 1);
+
+                        cout << "\nEl cliente ha sido desconectado, socket: " << current_client_socket_fd << endl;
+                        disconnect_client(chatrooms_data, current_client_socket_fd);
+                        close(current_client_socket_fd);
+                        return NULL;
+                    } else {
                         for (int i = 0; i < chatrooms_data -> clients.size(); i++) {
                             Client client_i = chatrooms_data -> clients[i];
                             if (client_i.socket_fd == current_client_socket_fd) {
@@ -355,6 +376,7 @@ void disconnect_client(ChatroomsData *chatrooms_data, int current_client_socket_
     while (it != chatrooms_data -> clients.end()) {
         if ((*it).socket_fd == current_client_socket_fd) {
             it = chatrooms_data -> clients.erase(it);
+            close(current_client_socket_fd);
         } else {
             ++it;
         }

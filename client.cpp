@@ -261,6 +261,10 @@ void *server_reader(void *data) {
                 << server_response.option() << " " << endl
                 << server_response.code() << endl;
 
+            if (server_response.option() == 7) {
+                interrupt_handler(-1);
+            }
+
             if (server_response.has_servermessage()) {
                 cout << "\n" << server_response.servermessage() << endl;
             }
