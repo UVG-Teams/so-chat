@@ -39,6 +39,7 @@ static int socket_fd;
 void connect_to_server(int socket_fd, struct sockaddr_in *server_address, struct hostent *host, long port);
 void get_my_ip(string *my_ip);
 void *server_reader(void *data);
+void interrupt_handler(int signal);
 
 
 int main(int argc, char *argv[]) {
@@ -162,19 +163,13 @@ int main(int argc, char *argv[]) {
                 // ==================================
                 // Salir
                 // ==================================
-                client_petition.SerializeToString(&petition);
-                strcpy(client_buffer, petition.c_str());
-                if(write(socket_fd, client_buffer, MAX_CLIENT_BUFFER - 1) == -1) {
-                    cout << "\nLa conexion fallo, vuelva a intentar" << endl;
-                } else {
-                    cout << "\nAdios :)" << endl;
-                    close(socket_fd);
-                    google::protobuf::ShutdownProtobufLibrary();
-                    return 1;
-                }
+                interrupt_handler(-1);
+                exit(1);
             default:
                 break;
         }
+
+        signal(SIGINT, interrupt_handler);
 
         if (client_petition.option() != 0) {
             // ==================================
@@ -267,6 +262,10 @@ void *server_reader(void *data) {
                 << server_response.option() << " " << endl
                 << server_response.code() << endl;
 
+            if (server_response.option() == 7) {
+                interrupt_handler(-1);
+            }
+
             if (server_response.has_servermessage()) {
                 cout << "\n" << server_response.servermessage() << endl;
             }
@@ -299,5 +298,26 @@ void *server_reader(void *data) {
                 cout << message_communication.sender() << ": " << message_communication.message() << "\n" << endl;
             }
         }
+    }
+}
+
+
+void interrupt_handler(int signal_unused) {
+    char client_buffer[MAX_CLIENT_BUFFER];
+    chat::ClientPetition client_petition;
+    string petition;
+
+    client_petition.set_option(7);
+
+    client_petition.SerializeToString(&petition);
+    strcpy(client_buffer, petition.c_str());
+
+    if(write(socket_fd, client_buffer, MAX_CLIENT_BUFFER - 1) == -1) {
+        cout << "\nLa conexion fallo, vuelva a intentar" << endl;
+    } else {
+        cout << "\nAdios :)" << endl;
+        close(socket_fd);
+        google::protobuf::ShutdownProtobufLibrary();
+        exit(1);
     }
 }
