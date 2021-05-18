@@ -51,7 +51,7 @@ struct CurrentClientData {
     }
 };
 
-int timeout_seconds = 10;
+int timeout_seconds = 120;
 
 
 void bind_socket(struct sockaddr_in *server_address, int socket_fd, long port);
@@ -191,6 +191,7 @@ void *client_listener(void *client_data) {
             continue;
         }
 
+        // Verificar inactividad
         auto time_span = static_cast<chrono::duration<double>>(end - start);
         if (timeout_seconds < time_span.count()) {
             for (int i = 0; i < chatrooms_data -> clients.size(); i++) {
