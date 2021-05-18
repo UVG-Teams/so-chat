@@ -107,6 +107,12 @@ int main(int argc, char *argv[]) {
                 // ==================================
                 break;
             case 6: // Ayuda
+                cout << "Lo primero que tienes que hacer es registrarte, para eso presiona 1." << endl
+                     << "Si no te registras puedes ver los usuarios conectados, presionando 2, o bien salir del chat presionando 7." << endl
+                     << "Una vez registrado puedes hacer uso de todas las funcionalidades del chat" << endl
+                     << "Si quieres cambiar tu estado, que por defecto es 'Activo' debes presionar 3 y elegir una opcion." << endl
+                     << "Si quieres saber la información de un usuario conectado ingresa 5 y luego el nombre de usuario que quieres obtener información o bien 'everyone' para saber la información de todos." << endl
+                     << "por último, si quieres chatear con alguien, ingresa la opción 4, escribe el nombre del destinatario o bien 'everyone' para enviar un mensaje a todos los usuarios conectados" << endl;
                 break;
             case 7: // Salir
                 // ==================================
@@ -236,6 +242,12 @@ int main(int argc, char *argv[]) {
                 // ==================================
                 // Ayuda
                 // ==================================
+                cout << "Lo primero que tienes que hacer es registrarte, para eso presiona 1." << endl
+                     << "Si no te registras puedes ver los usuarios conectados, presionando 2, o bien salir del chat presionando 7." << endl
+                     << "Una vez registrado puedes hacer uso de todas las funcionalidades del chat" << endl
+                     << "Si quieres cambiar tu estado, que por defecto es 'Activo' debes presionar 3 y elegir una opcion." << endl
+                     << "Si quieres saber la información de un usuario conectado ingresa 5 y luego el nombre de usuario que quieres obtener información o bien 'everyone' para saber la información de todos." << endl
+                     << "por último, si quieres chatear con alguien, ingresa la opción 4, escribe el nombre del destinatario o bien 'everyone' para enviar un mensaje a todos los usuarios conectados" << endl;
                 break;
             case 7:
                 // ==================================
