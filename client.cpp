@@ -133,14 +133,16 @@ int main(int argc, char *argv[]) {
         chat::ClientPetition client_petition;
         string petition;
 
-        cout << "\n" << endl
-             << "2. Lista de usuarios conectados" << endl
-             << "3. Cambiar estado" << endl
-             << "4. Chat" << endl
-             << "5. Info de usuario" << endl
-             << "6. Ayuda" << endl
-             << "7. Salir\n" << endl;
-        cout << "Ingresa una opción" << endl;
+        if (choice != 4) {
+            cout << "\n" << endl
+                << "2. Lista de usuarios conectados" << endl
+                << "3. Cambiar estado" << endl
+                << "4. Chat" << endl
+                << "5. Info de usuario" << endl
+                << "6. Ayuda" << endl
+                << "7. Salir\n" << endl;
+        }
+        cout << "\nIngresa una opción:" << endl;
         cin >> choice;
 
         client_petition.set_option(choice);

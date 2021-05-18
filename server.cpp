@@ -97,6 +97,7 @@ int main(int argc, char *argv[]) {
     free(data.client_list_mutex);
 
     close(socket_fd);
+    pthread_exit(NULL);
 }
 
 // Enlazar el socket
@@ -159,6 +160,7 @@ void *new_clients_handler(void *data) {
             pthread_mutex_unlock(chatrooms_data -> client_list_mutex);
         }
     }
+    pthread_exit(NULL);
 }
 
 void *client_listener(void *client_data) {
@@ -365,6 +367,7 @@ void *client_listener(void *client_data) {
             }
         }
     }
+    pthread_exit(NULL);
 }
 
 // Removes the socket from the list of active client sockets and closes it
