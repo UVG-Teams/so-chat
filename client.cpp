@@ -273,7 +273,7 @@ void connect_to_server(int socket_fd, struct sockaddr_in *server_address, struct
     // socket_fd es un socket file descriptor
 
     // Se asigna el valor 0 a los valores de server_address
-    memset(server_address, 0, sizeof(server_address));
+    memset(server_address, 0, sizeof(*server_address));
 
     server_address -> sin_family = AF_INET;
     server_address -> sin_addr = *((struct in_addr *)host -> h_addr_list[0]);
