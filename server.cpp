@@ -4,8 +4,9 @@
         Gian Luca Rivera
 */
 
+#include <chrono>
 #include <vector>
-#include <string.h>
+#include <cstring>
 #include <iostream>
 #include <unistd.h>
 #include <pthread.h>
@@ -42,12 +43,15 @@ struct ChatroomsData {
 struct CurrentClientData {
     int socket_fd;
     ChatroomsData *chatrooms_data;
+    chrono::steady_clock sc;
 
     CurrentClientData(int csfd, ChatroomsData *data) {
         socket_fd = csfd;
         chatrooms_data = data;
     }
 };
+
+int timeout_seconds = 10;
 
 
 void bind_socket(struct sockaddr_in *server_address, int socket_fd, long port);
@@ -168,7 +172,6 @@ void *client_listener(void *client_data) {
     ChatroomsData *chatrooms_data = (ChatroomsData *) current_client_data -> chatrooms_data;
     int current_client_socket_fd = current_client_data -> socket_fd;
 
-    // queue *q = data->queue;
     while(true) {
         char client_buffer[MAX_CLIENT_BUFFER];
         char server_buffer[MAX_CLIENT_BUFFER];
@@ -176,14 +179,27 @@ void *client_listener(void *client_data) {
         chat::ServerResponse server_response;
         string petition;
         string response;
+        auto start = current_client_data -> sc.now();
         int len_read = read(current_client_socket_fd, &client_buffer, MAX_CLIENT_BUFFER - 1);
         client_buffer[len_read] = '\0';
+        auto end = current_client_data -> sc.now();
 
         petition = (string)client_buffer;
         client_petition.ParseFromString(petition);
 
         if (client_petition.option() == 0) {
             continue;
+        }
+
+        auto time_span = static_cast<chrono::duration<double>>(end - start);
+        if (timeout_seconds < time_span.count()) {
+            for (int i = 0; i < chatrooms_data -> clients.size(); i++) {
+                Client client_i = chatrooms_data -> clients[i];
+                if (client_i.socket_fd == current_client_socket_fd) {
+                    client_i.status = "Inactivo";
+                    chatrooms_data -> clients[i] = client_i;
+                }
+            }
         }
 
         if(client_petition.option() == 7) {
@@ -223,6 +239,7 @@ void *client_listener(void *client_data) {
 
                     if (user_already_exists) {
                         server_response.set_option(7);
+                        server_response.set_servermessage("El usuario ya existe");
                         server_response.SerializeToString(&response);
                         strcpy(server_buffer, response.c_str());
                         write(current_client_socket_fd, server_buffer, MAX_CLIENT_BUFFER - 1);
